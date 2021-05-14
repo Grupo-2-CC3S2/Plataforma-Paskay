@@ -1,5 +1,5 @@
-# Plataforma-Paskay
-
+# Paskay
+ 
 ## Integrantes
+* Felix Romo Carlos Gabriel 
 
-Carlos Felix Romo

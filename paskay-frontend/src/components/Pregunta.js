@@ -4,7 +4,7 @@ import './Pregunta.css';
 class Solucion extends Component{
    constructor(props){
       super(props)
-     this.state = {open: 1}
+     this.state = {open: 0}
 
       this.toggle = () =>{
         if(this.state.open) {
@@ -19,15 +19,17 @@ class Solucion extends Component{
 
         return(
 
-        <div>
-        <div onClick = {this.toggle}>Mejor respuesta</div>
-          <div className = "resp-p">
-            <img alt = "solucion" src = {this.props.sol}></img>
+        <div className = "solucion">
+          <div onClick = {this.toggle}>Mejor respuesta</div>
+            <div className = "resp-p">
+              <img alt = "solucion" src = {this.props.sol}></img>
           </div>
         </div>
         )
       }else return(
-        <div onClick = {this.toggle}>Mejor respuesta</div>
+        <div className = "solucion">
+          <div onClick = {this.toggle}>&gt;Mejor respuesta</div>
+        </div>
       )
     }
    
@@ -46,7 +48,6 @@ class Pregunta extends Component {
     
  
   return (
-    <div className = "container">
       <div className = "card-p">
         <div className = "head-p">
           Pregunta #{this.props.preg.id}  <span>{this.props.preg.universidad} {this.props.preg.anio}</span>
@@ -64,7 +65,6 @@ class Pregunta extends Component {
         </div>
         <Solucion sol = {this.props.preg.sol}/>
       </div>
-    </div>
   )};
 }
 

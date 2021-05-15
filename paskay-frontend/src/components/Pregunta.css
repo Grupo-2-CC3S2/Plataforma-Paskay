@@ -1,9 +1,26 @@
+.homepage{
+  display: flex;
+  justify-content: space-between;
+  background: #101D29;
+}
+/*
+.homepage > div:first-child{
+  width: 70%;
+}
+
+*/
+.homepage > div:nth-child(2){
+  width: 30%;
+  background: #770606;
+}
 .card-p{
-  padding: 10px;
+  padding: 3px;
+  margin: 3px 0px;
+  background: #9897DE;
 }
 .head-p{
-  padding: 5px 15px;
-  background: blue;
+  padding: 10px 15px;
+  background: #770606;
   color: white;
   display: flex;
   justify-content: space-between;
@@ -19,10 +36,26 @@
   padding: 0px 5px;
 }
 
+.body-p{
+  padding: 5px 0px;
+  text-align: center;
+}
 .body-p img{
   width: 50%;
+}
+.resp-p{
+  text-align: center;
 }
 
 .resp-p img{
   width: 50%;
+  text-align: center;
+}
+
+
+.solucion > div:first-child{
+  display: inline-block;
+  background: blue;
+  padding: 3px;
+  color: white;
 }

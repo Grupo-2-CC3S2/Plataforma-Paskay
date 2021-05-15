@@ -1,0 +1,28 @@
+.card-p{
+  padding: 10px;
+}
+.head-p{
+  padding: 5px 15px;
+  background: blue;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.head-p span{
+
+  color: white;
+}
+
+.keywords a{
+  padding: 0px 5px;
+}
+
+.body-p img{
+  width: 50%;
+}
+
+.resp-p img{
+  width: 50%;
+}

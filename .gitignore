@@ -1,0 +1,22 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/paskay-frontend/node_modules
+
+
+# testing
+/paskay-frontend/coverage
+
+# production
+/paskay-frontend/build
+
+# misc
+/paskay-frontend/.DS_Store
+/paskay-frontend/.env.local
+/paskay-frontend/.env.development.local
+/paskay-frontend/.env.test.local
+/paskay-frontend/.env.production.local
+
+/paskay-frontend/npm-debug.log*
+/paskay-frontend/yarn-debug.log*
+/paskay-frontend/yarn-error.log*

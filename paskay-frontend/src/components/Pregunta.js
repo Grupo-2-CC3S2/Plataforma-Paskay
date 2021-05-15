@@ -22,7 +22,7 @@ class Solucion extends Component{
         <div>
         <div onClick = {this.toggle}>Mejor respuesta</div>
           <div className = "resp-p">
-            <img src = {this.props.sol}></img>
+            <img alt = "solucion" src = {this.props.sol}></img>
           </div>
         </div>
         )
@@ -34,25 +34,16 @@ class Solucion extends Component{
 }
 
 class Pregunta extends Component {
+  /*
    constructor(props){
       super(props)
     }
     
-
+*/
   
   render(){
 
-    const sol = () =>{
-      if(0){
-        return(
-          <div className = "resp-p">
-
-            <div>Mejor respuesta</div>
-            <img src = {this.props.preg.sol}></img>
-          </div>
-        )
-      }
-    }
+    
  
   return (
     <div className = "container">
@@ -61,14 +52,13 @@ class Pregunta extends Component {
           Pregunta #{this.props.preg.id}  <span>{this.props.preg.universidad} {this.props.preg.anio}</span>
         </div> 
         <div className = "body-p">
-          <img src = {this.props.preg.preg}></img>
+          <img alt = "pregunta" src = {this.props.preg.preg}></img>
         </div>
         <div className = "keywords">
           keywords: 
-          {this.props.preg.keywords.map((k)=>{
-
+          {this.props.preg.keywords.map((i,k)=>{
             return(
-              <a href = "#" >{k}</a>
+              <a key = {k} href = "#" >{i}</a>
             )
           })}
         </div>

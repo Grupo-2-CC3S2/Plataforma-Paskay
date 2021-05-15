@@ -55,7 +55,7 @@ class MainPage extends Component {
             <nav>
                 <ul>
                   <li>
-                    <Link  exact= {true} onClick = {this.handleClick} to="/">Inicio</Link>
+                    <Link  exact= "true" onClick = {this.handleClick} to="/">Inicio</Link>
                   </li>
                   <li>
                     <Link onClick = {this.handleClick} to="/about">Nosotros</Link>

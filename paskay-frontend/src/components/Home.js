@@ -3,10 +3,6 @@ import React, {Component} from 'react';
 import Pregunta from './Pregunta'
 
 class Home extends Component {
-   constructor(props){
-      super(props)
-     console.log(this.props.preguntas)
-    }
   
   render(){
   return (
@@ -14,7 +10,7 @@ class Home extends Component {
       {
         this.props.preguntas.map((p) => {
           return(
-            <Pregunta preg = {p}/>
+            <Pregunta key = {"preg" + p.id} preg = {p}/>
           )
         })
       }  

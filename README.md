@@ -1,3 +1,3 @@
 # Plataforma-Paskay
 
-#Bryan Asmat Franco
+- Bryan Asmat Franco.

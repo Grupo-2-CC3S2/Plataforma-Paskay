@@ -9,9 +9,14 @@ import {
 import Home from './Home';
 import About from './About';
 
+import { faHome } from "@fortawesome/free-solid-svg-icons";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 class MainPage extends Component {
   constructor(props){
       super(props)
+      this.state = {pages:["HomePage","subir","generar"],actPage:"HomePage"}
       this.preguntas = 
         [
           {
@@ -35,9 +40,31 @@ class MainPage extends Component {
 
         ];    
     }
-  
-  
+    
   render(){
+
+    this.cas = ()=>{
+    if(this.state.pages[0]=="HomePage"){
+      return (
+        <FontAwesomeIcon icon={faHome} />)}
+    if(this.state.pages[0] == "Buscar"){
+      return(
+        <FontAwesomeIcon icon={faSearch} />
+      )
+    }
+    }
+
+
+    this.handleClick = (n) =>{
+      if (n != 0) return
+      if(this.state.pages[0] == "HomePage"){
+        this.setState({pages: ["Buscar","subir","generar"]})
+      }else{
+        if(this.state.pages[0] == "Buscar"){
+            this.setState({pages: ["HomePage","subir","generar"]})
+        }
+      }
+    }
     const HomePage = () => {
           return(
               <Home 
@@ -48,17 +75,28 @@ class MainPage extends Component {
   return (
 
 
-    <div>
+    <div className = "contenedor">
     
   <Router>
         <div>
-            <nav>
+            <nav className = "marco-izq">
                 <ul>
                   <li>
-                    <Link  exact= "true" onClick = {this.handleClick} to="/">Inicio</Link>
+                    {(() =>{ /* ... */
+                        if(this.state.pages[0]=="HomePage"){
+                          return (
+                            <Link  exact= "true" onClick = {() => this.handleClick(0)} to="/about"><FontAwesomeIcon icon={faSearch} /></Link>
+                            )}
+                        if(this.state.pages[0] == "Buscar"){
+                          return(
+                            <Link  exact= "true" onClick = {() => this.handleClick(0)} to="/"> <FontAwesomeIcon icon={faHome} /></Link>
+                          )
+                        }
+                      
+                    })()}
                   </li>
                   <li>
-                    <Link onClick = {this.handleClick} to="/about">Nosotros</Link>
+                    <Link onClick = {() => this.handleClick(1)} to="/about">{this.state.pages[1]}</Link>
                   </li>
                </ul>
               </nav>

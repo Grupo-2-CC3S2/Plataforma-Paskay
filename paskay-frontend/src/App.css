@@ -1,3 +1,28 @@
+.marco-izq{
+  background: blue;
+  position: fixed;
+  height: 100vh;
+  min-width: 100px;
+}
+.marco-izq ul{
+  margin: 0px;
+  padding: 0px;
+}
+.marco-izq li{
+  background: red;
+  height: 33.3vh;
+  list-style: none;
+}
+.marco-izq li a{
+  text-decoration: none;
+  width: 100%;
+}
+.contenedor{
+  background: red;
+
+}
+
+
 .App {
   text-align: center;
 }

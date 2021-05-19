@@ -1,15 +1,36 @@
+header{
+  height: 120px;
+  margin-left: 100px;
+  background: #101D29;
+  display: flex;
+  justify-content: space-between;
+
+}
+header div:nth-child(2){
+  width: 20%;
+}
+header div:nth-child(1){
+  
+  width: 80%;
+}
+header h1{
+  color: white;
+  text-align: center;
+  margin-top: 0px;
+}
 .marco-izq{
   background: blue;
   position: fixed;
   height: 100vh;
   min-width: 100px;
+  top: 0px;
 }
 .marco-izq ul{
   margin: 0px;
   padding: 0px;
 }
 .marco-izq li{
-  background: red;
+  background: #29101d;
   height: 33.3vh;
   list-style: none;
   display: flex;
@@ -23,7 +44,7 @@
   justify-content: center;
 }
 .contenedor{
-  background: red;
+  background: #29101d;
 
 }
 

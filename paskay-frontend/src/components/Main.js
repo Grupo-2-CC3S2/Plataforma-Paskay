@@ -6,7 +6,7 @@ import {
   Link,
 } from "react-router-dom";
 
-import Home from './Home';
+import HomePage from './HomePage';
 import About from './About';
 import UploadPage from './UploadPage';
 import GenPage from './GenPage';
@@ -66,9 +66,9 @@ class MainPage extends Component {
             this.setState({actPage: "HomePage"})
       }
     }
-    const HomePage = () => {
+    const BuildHomePage = () => {
           return(
-              <Home 
+              <HomePage 
                   preguntas = {this.preguntas}
               />
           );
@@ -79,6 +79,10 @@ class MainPage extends Component {
     <div className = "contenedor">
     
   <Router>
+      <header>
+        <div><h1>PLATAFORMA PASKAY</h1></div>
+        <div><button>Iniciar sesion</button></div>
+      </header>
         <div>
             <nav className = "marco-izq">
                 <ul>
@@ -128,7 +132,7 @@ class MainPage extends Component {
           <Route path="/generador" component = {GenPage}></Route>
           <Route path="/upload" component = {UploadPage}></Route>
           <Route path="/about" component = {About}></Route>
-          <Route path="/" component = {HomePage}></Route>
+          <Route path="/" component = {BuildHomePage}></Route>
         </Switch>
     </Router>
     </div>

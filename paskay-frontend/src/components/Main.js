@@ -8,15 +8,19 @@ import {
 
 import Home from './Home';
 import About from './About';
+import UploadPage from './UploadPage';
+import GenPage from './GenPage';
 
+import { faFileAlt } from "@fortawesome/free-solid-svg-icons";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faUpload } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 class MainPage extends Component {
   constructor(props){
       super(props)
-      this.state = {pages:["HomePage","subir","generar"],actPage:"HomePage"}
+      this.state = {pages:["SearchPage","UploadPage","GenPage"],actPage:"HomePage"}
       this.preguntas = 
         [
           {
@@ -56,13 +60,10 @@ class MainPage extends Component {
 
 
     this.handleClick = (n) =>{
-      if (n != 0) return
-      if(this.state.pages[0] == "HomePage"){
-        this.setState({pages: ["Buscar","subir","generar"]})
+      if(this.state.actPage != this.state.pages[n]){
+        this.setState({actPage: this.state.pages[n]})
       }else{
-        if(this.state.pages[0] == "Buscar"){
-            this.setState({pages: ["HomePage","subir","generar"]})
-        }
+            this.setState({actPage: "HomePage"})
       }
     }
     const HomePage = () => {
@@ -82,26 +83,50 @@ class MainPage extends Component {
             <nav className = "marco-izq">
                 <ul>
                   <li>
-                    {(() =>{ /* ... */
-                        if(this.state.pages[0]=="HomePage"){
+                    {(() =>{
+                        if(this.state.actPage != this.state.pages[0]){
                           return (
-                            <Link  exact= "true" onClick = {() => this.handleClick(0)} to="/about"><FontAwesomeIcon icon={faSearch} /></Link>
-                            )}
-                        if(this.state.pages[0] == "Buscar"){
+                            <Link  exact= "true" onClick = {() => this.handleClick(0)} to="/about"><FontAwesomeIcon icon={faSearch} size = "4x"/></Link>
+                            )}else{
                           return(
-                            <Link  exact= "true" onClick = {() => this.handleClick(0)} to="/"> <FontAwesomeIcon icon={faHome} /></Link>
-                          )
-                        }
+                            <Link  exact= "true" onClick = {() => this.handleClick(0)} to="/"> <FontAwesomeIcon icon={faHome} size = "4x"/></Link>
+                          )}
                       
                     })()}
                   </li>
                   <li>
-                    <Link onClick = {() => this.handleClick(1)} to="/about">{this.state.pages[1]}</Link>
+                    {(() =>{
+                        if(this.state.actPage != this.state.pages[1]){
+                          return (
+                            <Link  exact= "true" onClick = {() => this.handleClick(1)} to="/upload"><FontAwesomeIcon icon={faUpload} size = "4x"/></Link>
+                            )}else{
+                          return(
+                            <Link  exact= "true" onClick = {() => this.handleClick(1)} to="/"> <FontAwesomeIcon icon={faHome} size = "4x"/></Link>
+                          )}
+                      
+                    })()}
+
                   </li>
+                  <li>
+                    {(() =>{
+                        if(this.state.actPage != this.state.pages[2]){
+                          return (
+                            <Link  exact= "true" onClick = {() => this.handleClick(2)} to="/generador"><FontAwesomeIcon icon={faFileAlt} size = "4x"/></Link>
+                            )}else{
+                          return(
+                            <Link  exact= "true" onClick = {() => this.handleClick(2)} to="/"> <FontAwesomeIcon icon={faHome} size = "4x"/></Link>
+                          )}
+                      
+                    })()}
+
+                  </li>
+
                </ul>
               </nav>
           </div>
         <Switch>
+          <Route path="/generador" component = {GenPage}></Route>
+          <Route path="/upload" component = {UploadPage}></Route>
           <Route path="/about" component = {About}></Route>
           <Route path="/" component = {HomePage}></Route>
         </Switch>

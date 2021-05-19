@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 
-class Home extends Component {
+class UploadPage extends Component {
   
   render(){
   return (
     <div className = "container homepage page">
-        Este es el About us    
+        Este es el upload page
       </div>
   )};
 }
 
-export default Home;
+export default UploadPage;

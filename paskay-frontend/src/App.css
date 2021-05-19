@@ -12,10 +12,15 @@
   background: red;
   height: 33.3vh;
   list-style: none;
+  display: flex;
+  align-items: center;
+
 }
 .marco-izq li a{
   text-decoration: none;
   width: 100%;
+  display: flex;
+  justify-content: center;
 }
 .contenedor{
   background: red;
@@ -83,7 +88,9 @@ html {
   padding-right: 15px;
   padding-left: 15px;
   margin-right: auto;
-  margin-left: auto;
+  /*margin-left: auto;*/
+  margin-left: 100px;
+  text-align: center;
 }
 
 @media (min-width: 576px) {
@@ -100,13 +107,13 @@ html {
 
 @media (min-width: 992px) {
   .container {
-    max-width: 960px;
+    max-width: 860px;
   }
 }
 
 @media (min-width: 1200px) {
   .container {
-    max-width: 1140px;
+    max-width: 1040px;
   }
 }
 
@@ -1969,7 +1976,5 @@ html {
   }
 }
 /*# sourceMappingURL=bootstrap-grid.css.map */
-
-
 
 

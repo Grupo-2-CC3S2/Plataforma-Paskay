@@ -1,13 +1,14 @@
+
 import React, {Component} from 'react';
 
-class Home extends Component {
+class GenPage extends Component {
   
   render(){
   return (
     <div className = "container homepage page">
-        Este es el About us    
+        Este es el egnerado de exámenes
       </div>
   )};
 }
 
-export default Home;
+export default GenPage;

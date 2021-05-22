@@ -17,13 +17,19 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { faUpload } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+
+import {  CSSTransition } from 'react-transition-group';
+
 class Main extends Component {
   //Empieza constructor
   constructor(props){
       super(props)
       this.state = {
         pages:["SearchPage","UploadPage","GenPage"],
-        actPage:"HomePage"
+        actPage:"HomePage",
+        open0:true,
+        open1:true,
+        open2:true,
       }
 
       //Se borra mas adelante
@@ -55,20 +61,12 @@ class Main extends Component {
   //Nos devuelve algo
   render(){
 
-    //Funcion flecha nos devuelve algo, creando un metodo
-    this.cas = ()=>{
-      //Para que aparezcan los iconos
-      if(this.state.pages[0]==="HomePage"){
-        return (
-          <FontAwesomeIcon icon={faHome} />)}
-
-      if(this.state.pages[0]==="Buscar"){
-        return(
-          <FontAwesomeIcon icon={faSearch} />)}
-    }
 
     //Esto es un metodo, para cambiar el icono
     this.handleClick = (n) =>{
+      if(n === 0){ this.setState({open0:!this.state.open0}); console.log(this.state.open0)}
+      if(n === 1){ this.setState({open1:!this.state.open1}); console.log(this.state.open0)}
+      if(n === 2){ this.setState({open2:!this.state.open2}); console.log(this.state.open0)}
       if(this.state.actPage !== this.state.pages[n]){
         this.setState({actPage: this.state.pages[n]})
       }else{
@@ -96,18 +94,37 @@ class Main extends Component {
               <div>
                   <nav className = "marco-izq">
                       <ul>
-                        <li>
+<CSSTransition
+                                                              in = {this.state.open0}
+                                                          timeout={300}
+                                                              classNames = "page"
+                                                                    >
+
+
+                                                <li>
                           {(() =>{
                               if(this.state.actPage !== this.state.pages[0]){
                                 return (
                                   <Link  exact= "true" onClick = {() => this.handleClick(0)} to="/buscador"><FontAwesomeIcon icon={faSearch} size = "4x"/></Link>
                                   )}else{
                                 return(
-                                  <Link  exact= "true" onClick = {() => this.handleClick(0)} to="/"> <FontAwesomeIcon icon={faHome} size = "4x"/></Link>
+                                                                      <Link  exact= "true" onClick = {() => this.handleClick(0)} to="/"> <FontAwesomeIcon icon={faHome} size = "4x"/></Link>
+
                                 )}
                             
                           })()}
                         </li>
+                                  </CSSTransition>
+
+<CSSTransition
+                                                              in = {this.state.open1}
+                                                          timeout={300}
+                                                              classNames = "page"
+                                                                    >
+
+
+
+
                         <li>
                           {(() =>{
                               if(this.state.actPage !== this.state.pages[1]){
@@ -121,6 +138,16 @@ class Main extends Component {
                           })()}
 
                         </li>
+
+                                  </CSSTransition>
+<CSSTransition
+                                                              in = {this.state.open2}
+                                                          timeout={300}
+                                                              classNames = "page"
+                                                                    >
+
+
+
                         <li>
                           {(() =>{
                               if(this.state.actPage !== this.state.pages[2]){
@@ -135,6 +162,7 @@ class Main extends Component {
 
                         </li>
 
+                                  </CSSTransition>
                     </ul>
                     </nav>
                 </div>

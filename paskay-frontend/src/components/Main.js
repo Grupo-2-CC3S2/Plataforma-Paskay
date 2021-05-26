@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import logo from '../logo.png';
 import {
   BrowserRouter as Router,
   Switch,
@@ -88,39 +89,26 @@ class Main extends Component {
       <div className = "contenedor">      
         <Router>
             <header>
-              <div><h1>PLATAFORMA PASKAY</h1></div>
+              <div><h1><img src = {logo}></img>PLATAFORMA PASKAY</h1></div>
               <div><button>Iniciar sesion</button></div>
             </header>
               <div>
                   <nav className = "marco-izq">
                       <ul>
-<CSSTransition
-                                                              in = {this.state.open0}
-                                                          timeout={300}
-                                                              classNames = "page"
-                                                                    >
+                         
+                                   <li>
+                                        {(() =>{
+                                            if(this.state.actPage !== this.state.pages[0]){
+                                              return (
+                                                <Link  exact= "true" onClick = {() => this.handleClick(0)} to="/buscador"><FontAwesomeIcon icon={faSearch} size = "4x"/></Link>
+                                                )}else{
+                                              return(
+                                                                                    <Link  exact= "true" onClick = {() => this.handleClick(0)} to="/"> <FontAwesomeIcon icon={faHome} size = "4x"/></Link>
 
-
-                                                <li>
-                          {(() =>{
-                              if(this.state.actPage !== this.state.pages[0]){
-                                return (
-                                  <Link  exact= "true" onClick = {() => this.handleClick(0)} to="/buscador"><FontAwesomeIcon icon={faSearch} size = "4x"/></Link>
-                                  )}else{
-                                return(
-                                                                      <Link  exact= "true" onClick = {() => this.handleClick(0)} to="/"> <FontAwesomeIcon icon={faHome} size = "4x"/></Link>
-
-                                )}
-                            
-                          })()}
-                        </li>
-                                  </CSSTransition>
-
-<CSSTransition
-                                                              in = {this.state.open1}
-                                                          timeout={300}
-                                                              classNames = "page"
-                                                                    >
+                                              )}
+                                          
+                                        })()}
+                                    </li>
 
 
 
@@ -139,15 +127,6 @@ class Main extends Component {
 
                         </li>
 
-                                  </CSSTransition>
-<CSSTransition
-                                                              in = {this.state.open2}
-                                                          timeout={300}
-                                                              classNames = "page"
-                                                                    >
-
-
-
                         <li>
                           {(() =>{
                               if(this.state.actPage !== this.state.pages[2]){
@@ -161,9 +140,7 @@ class Main extends Component {
                           })()}
 
                         </li>
-
-                                  </CSSTransition>
-                    </ul>
+                   </ul>
                     </nav>
                 </div>
               <Switch>

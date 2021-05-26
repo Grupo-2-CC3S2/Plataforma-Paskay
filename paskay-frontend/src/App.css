@@ -1,12 +1,12 @@
 header{
-  height: 120px;
+  height: 40px;
   margin-left: 100px;
-  background: #101D29;
+  background: #1a4461;
   display: flex !important;
   justify-content: space-between;
   align-items: center;
-
 }
+
 header div:nth-child(2){
   width: 20%;
 }
@@ -16,11 +16,17 @@ header div:nth-child(1){
 }
 header h1{
   color: white;
-  text-align: center;
+  text-align: left;
+  font-size: 1em;
   margin-top: 0px;
+  margin-bottom: 0px;
+}
+header h1 img{
+  width: 30px;
+  margin: 3px;
 }
 .marco-izq{
-  background: #29101d;
+  background: #1a4461;
   position: fixed;
   height: 100vh;
   min-width: 100px;
@@ -29,16 +35,18 @@ header h1{
 .marco-izq ul{
   margin: 0px;
   padding: 0px;
+  position: relative;
 }
 .marco-izq li{
-  background: #29101d;
-  height: 33.3vh;
+  background: #1a4461;
+  height: 33vh;
   list-style: none;
   display: flex;
   align-items: center;
 
 }
 .marco-izq li a{
+  color:white;
   text-decoration: none;
   width: 100%;
   display: flex;
@@ -49,7 +57,9 @@ header h1{
   color: blue;
 }
 .contenedor{
-  background: #29101d;
+  background-image: url("./bg.jpg");
+  min-height: 100vh;
+
 
 }
 
@@ -64,7 +74,7 @@ header h1{
 }
 .page-exit {
     opacity: 1;
-    transform: translateX(-100%);
+    transform: translateX(-10%);
 }
 .page-exit-active {
     transform: translateX(-100%);

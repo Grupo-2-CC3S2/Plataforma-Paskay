@@ -5,6 +5,7 @@ import {
   Switch,
   Route,
   Link,
+  NavLink,
 } from "react-router-dom";
 
 import HomePage from './HomePage/HomePage';
@@ -95,57 +96,20 @@ class Main extends Component {
               <div>
                   <nav className = "marco-izq">
                       <ul>
-                         
-                                   <li>
-                                        {(() =>{
-                                            if(this.state.actPage !== this.state.pages[0]){
-                                              return (
-                                                <Link  exact= "true" onClick = {() => this.handleClick(0)} to="/buscador"><FontAwesomeIcon icon={faSearch} size = "4x"/></Link>
-                                                )}else{
-                                              return(
-                                                                                    <Link  exact= "true" onClick = {() => this.handleClick(0)} to="/"> <FontAwesomeIcon icon={faHome} size = "4x"/></Link>
-
-                                              )}
-                                          
-                                        })()}
-                                    </li>
-
-
-
-
-                        <li>
-                          {(() =>{
-                              if(this.state.actPage !== this.state.pages[1]){
-                                return (
-                                  <Link  exact= "true" onClick = {() => this.handleClick(1)} to="/upload"><FontAwesomeIcon icon={faUpload} size = "4x"/></Link>
-                                  )}else{
-                                return(
-                                  <Link  exact= "true" onClick = {() => this.handleClick(1)} to="/"> <FontAwesomeIcon icon={faHome} size = "4x"/></Link>
-                                )}
-                            
-                          })()}
-
-                        </li>
-
-                        <li>
-                          {(() =>{
-                              if(this.state.actPage !== this.state.pages[2]){
-                                return (
-                                  <Link  exact= "true" onClick = {() => this.handleClick(2)} to="/generador"><FontAwesomeIcon icon={faFileAlt} size = "4x"/></Link>
-                                  )}else{
-                                return(
-                                  <Link  exact= "true" onClick = {() => this.handleClick(2)} to="/"> <FontAwesomeIcon icon={faHome} size = "4x"/></Link>
-                                )}
-                            
-                          })()}
-
-                        </li>
-                   </ul>
+                              <li>
+                                <NavLink activeClassName="selected" exact= "true" onClick = {() => this.handleClick(1)} to="/"> <FontAwesomeIcon icon={faHome} size = "4x"/></NavLink>
+                              </li>
+                              <li>
+                                <NavLink activeClassName = "selected"  exact= "true" onClick = {() => this.handleClick(1)} to="/upload"><FontAwesomeIcon icon={faUpload} size = "4x"/></NavLink>
+                              </li>
+                              <li>
+                                <NavLink activeClassName = "selected"  exact= "true" onClick = {() => this.handleClick(2)} to="/generador"><FontAwesomeIcon icon={faFileAlt} size = "4x"/></NavLink>
+                              </li>
+                      </ul>
                     </nav>
                 </div>
               <Switch>
                 <Route path="/generador" component = {GenPage}></Route>
-                <Route path="/buscador" component = {Buscador}></Route>
                 <Route path="/upload" component = {UploadPage}></Route>
                 <Route path="/" component = {BuildHomePage}></Route>
               </Switch>

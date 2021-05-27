@@ -2,15 +2,129 @@
 import React, {Component} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css'
 
+//////////////////////SAMPLE//////////////////////////////
+
+function PostButton(props){
+  var style = {
+      width:24,
+      height:24
+  }
+  return (
+      <button style = {style} onClick = { () => props.handleClick()}>{props.label}</button>
+  )
+}
+function PostText(props){
+  var style = {
+      border:"1px solid black",
+      width: props.width
+  }
+  return (
+      <div style = {style}>{props.text}</div>
+  )
+}
+function Post(props){
+  var style = {
+      display:"flex"
+  }
+  return (
+      <div style = {style}>
+          <PostButton label = "x" handleClick = {props.removeItem}/>
+          <PostText text = {props.firstName} width = "200"/>
+          <PostText text = {props.lastName} width = "200" />
+      </div>
+  )
+}
+
+function PostList(props){
+  return (
+      <ol>
+      {
+          props.postList.map((item,index) => 
+              <Post key = {index} 
+                    firstName = {item.firstName} 
+                    lastName = {item.lastName}
+                    removeItem = {() => props.removeItem(index)}
+              />
+           )
+       }
+      </ol>
+  )  
+}
+
+/////////////////////////////////////////////////////////
+
+
 class UploadPage extends Component {
   
+  /////////////////////////////////////////////////////////
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      firstname: "",
+      lastname: "",
+      items: []
+    };
+  }
+
+  handleChange(event) {
+    if (event.target.name === "firstname") {
+      this.setState({ firstname: event.target.value });
+    } else if (event.target.name === "lastname") {
+      this.setState({ lastname: event.target.value });
+    }
+  }
+
+  addItem() {
+    this.setState({
+      items: [ 
+        ...this.state.items, 
+        {
+          firstName: this.state.firstname,
+          lastName: this.state.lastname
+        }
+      ],
+      firstname: "",
+      lastname: ""
+    });
+  }
+
+  removeItem(index) {
+    const items = this.state.items.filter((e, idx) => idx !== index); 
+    this.setState({ items });
+  }
+  ////////////////////////////////////////////////////////
+
+
   estilos={
     color: 'black', 
+    backgroundColor: 'rgba(100, 255, 255, .2)'
+
   } 
 
   render(){
   return (
+
     <div style={this.estilos} className = "container homepage page">
+
+      {/*//////////////////////////////////////////////////////////////*/}
+      <div>First Name</div>
+        <input
+          name="firstname"
+          value={this.state.firstname}
+          onChange={this.handleChange.bind(this)} />
+        <div>Last Name</div>
+        <input
+          name="lastname"
+          value={this.state.lastname}
+          onChange={this.handleChange.bind(this)} />
+        <button onClick={() => this.addItem()}>Submit</button>
+        <PostList
+          postList={this.state.items}
+          removeItem={this.removeItem.bind(this)} />
+      {/*//////////////////////////////////////////////////////////////*/}
+
+
     <form>
       <div className="row">
         <div className="col-md-12 my-3"><hr/><h2>SUBIR PROBLEMA</h2><hr/></div>

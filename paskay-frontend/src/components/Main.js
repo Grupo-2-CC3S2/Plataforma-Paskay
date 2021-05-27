@@ -11,11 +11,12 @@ import {
 import HomePage from './HomePage/HomePage';
 import UploadPage from './UploadPage/UploadPage';
 import GenPage from './GenPage/GenPage';
+import IniciarSesion from './InicioSesion/InicioSesion';
 import Buscador from './Buscador/Buscador';
 
 import { faFileAlt } from "@fortawesome/free-solid-svg-icons";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { faUpload } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -91,24 +92,25 @@ class Main extends Component {
         <Router>
             <header>
               <div><h1><img src = {logo}></img>PLATAFORMA PASKAY</h1></div>
-              <div><button>Iniciar sesion</button></div>
+              <NavLink activeClassName="selected-in" exact= "true"  to="/login"> <FontAwesomeIcon icon={faUser} size = "1x"/>Iniciar Sesion</NavLink>
             </header>
               <div>
                   <nav className = "marco-izq">
                       <ul>
                               <li>
-                                <NavLink activeClassName="selected" exact= "true" onClick = {() => this.handleClick(1)} to="/"> <FontAwesomeIcon icon={faHome} size = "4x"/></NavLink>
+                                <NavLink activeClassName="selected" exact= "true" onClick = {() => this.handleClick(1)} to="/"> <FontAwesomeIcon icon={faHome} size = "4x"/><span>Inicio</span></NavLink>
                               </li>
                               <li>
-                                <NavLink activeClassName = "selected"  exact= "true" onClick = {() => this.handleClick(1)} to="/upload"><FontAwesomeIcon icon={faUpload} size = "4x"/></NavLink>
+                                <NavLink activeClassName = "selected"  exact= "true" onClick = {() => this.handleClick(1)} to="/upload"><FontAwesomeIcon icon={faUpload} size = "4x"/><span>Subir preg.</span></NavLink>
                               </li>
                               <li>
-                                <NavLink activeClassName = "selected"  exact= "true" onClick = {() => this.handleClick(2)} to="/generador"><FontAwesomeIcon icon={faFileAlt} size = "4x"/></NavLink>
+                                <NavLink activeClassName = "selected"  exact= "true" onClick = {() => this.handleClick(2)} to="/generador"><FontAwesomeIcon icon={faFileAlt} size = "4x"/><span>Generador</span></NavLink>
                               </li>
                       </ul>
                     </nav>
                 </div>
               <Switch>
+                <Route path="/login" component = {IniciarSesion}></Route>
                 <Route path="/generador" component = {GenPage}></Route>
                 <Route path="/upload" component = {UploadPage}></Route>
                 <Route path="/" component = {BuildHomePage}></Route>

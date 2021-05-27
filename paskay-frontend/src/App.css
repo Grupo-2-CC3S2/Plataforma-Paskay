@@ -7,13 +7,22 @@ header{
   justify-content: space-between;
   align-items: center;
 }
+header a{
+  padding: 5px 3px;
+  margin: 0px 5px;
+  border-radius: 3px;
+  color: white;
+  background: #dc3e45;
+}
+header svg{
+  color: white;
+  margin: 0px 5px;
+}
 
 header div:nth-child(2){
-  width: 20%;
 }
 header div:nth-child(1){
   
-  width: 80%;
 }
 header h1{
   color: white;
@@ -26,19 +35,19 @@ header h1 img{
   width: 30px;
   margin: 3px;
 }
-.marco-izq{
+
+nav{
   background: #1a4461;
   position: fixed;
   height: 100vh;
   min-width: 100px;
   top: 0px;
 }
-.marco-izq ul{
+nav ul{
   margin: 0px;
   padding: 0px;
-  position: relative;
 }
-.marco-izq li{
+nav li{
   background: #1a4461;
   height: 33vh;
   list-style: none;
@@ -46,23 +55,65 @@ header h1 img{
   align-items: center;
 
 }
-.marco-izq li a{
+nav li a{
   color:white;
   text-decoration: none;
   width: 100%;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 
 }
-.marco-izq li a:hover{
+nav li a:hover{
   color: blue;
 }
 .contenedor{
   background-image: url("./bg.jpg");
   min-height: 100vh;
+}
 
+nav span{
+  text-align: center;
+  margin: 6px 0px 0px 0px;
+}
+
+@media (max-width: 768px) {
+  nav{
+    background: #1a4461;
+    position: fixed;
+    max-height: 10vh;
+    width: 100%;
+    top: 90vh;
+    bottom: 90px;
+  }
+  nav ul{
+      display: flex;
+
+    }
+
+  nav li{
+    background: #1a4461;
+    width:33%;
+    list-style: none;
+    max-height: 10vh;
+    display: flex;
+    align-items: center;
+
+  }
+  nav svg{
+    font-size: 2em !important;
+  }
+  header{
+    margin-left: 0px;
+  }
+  nav span{
+    text-align: center;
+    margin: 6px 0px 0px 0px;
+    font-size: 0.9em;
+  }
 
 }
+
 
 
 .page-enter {
@@ -2029,4 +2080,7 @@ html {
 
 .selected svg {
   color: red;
+}
+.selected-in{
+  border: 2px solid black;
 }

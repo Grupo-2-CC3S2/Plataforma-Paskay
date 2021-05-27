@@ -1,3 +1,4 @@
+
 header{
   height: 40px;
   margin-left: 100px;
@@ -2025,3 +2026,7 @@ html {
 /*# sourceMappingURL=bootstrap-grid.css.map */
 
 
+
+.selected svg {
+  color: red;
+}

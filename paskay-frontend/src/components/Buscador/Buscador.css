@@ -1,3 +1,10 @@
+.flex{
+  background: blue;
+  flex: 0 0 30%;
+  max-width: 30%;
+}
+
+
 body {
     background: #a8a8b4;
     text-align: right;

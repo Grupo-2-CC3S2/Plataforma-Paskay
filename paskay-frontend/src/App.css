@@ -42,6 +42,7 @@ nav{
   height: 100vh;
   min-width: 100px;
   top: 0px;
+  z-index: 20;
 }
 nav ul{
   margin: 0px;

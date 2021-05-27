@@ -27,14 +27,7 @@ class Main extends Component {
   //Empieza constructor
   constructor(props){
       super(props)
-      this.state = {
-        pages:["SearchPage","UploadPage","GenPage"],
-        actPage:"HomePage",
-        open0:true,
-        open1:true,
-        open2:true,
-      }
-
+      
       //Se borra mas adelante
       this.preguntas = 
         [
@@ -55,6 +48,33 @@ class Main extends Component {
             sol: "./solucion.jpg",
             enunciado: "El enunciado de la pregunta es esta",
             keywords: ["UNFV","Aritmetica","Divisivilidad"]
+          },
+          {
+            id: 10,
+            universidad: "UNAC",
+            anio: "2013-I",
+            preg: "./pr.jpg",
+            sol: "./solucion.jpg",
+            enunciado: "El enunciado de la pregunta es esta",
+            keywords: ["UNAC","Algebra","factorizacion"]
+          },
+          {
+            id: 11,
+            universidad: "UNFV",
+            anio: "2010-II",
+            preg: "./pr.jpg",
+            sol: "./solucion.jpg",
+            enunciado: "El enunciado de la pregunta es esta",
+            keywords: ["UNFV","Aritmetica","Divisivilidad"]
+          },
+          {
+            id: 12,
+            universidad: "UNFV",
+            anio: "2014-II",
+            preg: "./pr.jpg",
+            sol: "./solucion.jpg",
+            enunciado: "El enunciado de la pregunta es esta",
+            keywords: ["UNFV","Aritmetica","Divisivilidad"]
           }
 
         ];    
@@ -63,19 +83,7 @@ class Main extends Component {
     
   //Nos devuelve algo
   render(){
-
-
-    //Esto es un metodo, para cambiar el icono
-    this.handleClick = (n) =>{
-      if(n === 0){ this.setState({open0:!this.state.open0}); console.log(this.state.open0)}
-      if(n === 1){ this.setState({open1:!this.state.open1}); console.log(this.state.open0)}
-      if(n === 2){ this.setState({open2:!this.state.open2}); console.log(this.state.open0)}
-      if(this.state.actPage !== this.state.pages[n]){
-        this.setState({actPage: this.state.pages[n]})
-      }else{
-            this.setState({actPage: "HomePage"})
-      }
-    }
+  
 
 
     //Enlazar un componente con una propiedad
@@ -95,16 +103,16 @@ class Main extends Component {
               <NavLink activeClassName="selected-in" exact= "true"  to="/login"> <FontAwesomeIcon icon={faUser} size = "1x"/>Iniciar Sesion</NavLink>
             </header>
               <div>
-                  <nav className = "marco-izq">
+                  <nav>
                       <ul>
                               <li>
-                                <NavLink activeClassName="selected" exact= "true" onClick = {() => this.handleClick(1)} to="/"> <FontAwesomeIcon icon={faHome} size = "4x"/><span>Inicio</span></NavLink>
+                                <NavLink activeClassName="selected" exact= "true"  to="/"> <FontAwesomeIcon icon={faHome} size = "4x"/><span>Inicio</span></NavLink>
                               </li>
                               <li>
-                                <NavLink activeClassName = "selected"  exact= "true" onClick = {() => this.handleClick(1)} to="/upload"><FontAwesomeIcon icon={faUpload} size = "4x"/><span>Subir preg.</span></NavLink>
+                                <NavLink activeClassName = "selected"  exact= "true" to="/upload"><FontAwesomeIcon icon={faUpload} size = "4x"/><span>Subir preg.</span></NavLink>
                               </li>
                               <li>
-                                <NavLink activeClassName = "selected"  exact= "true" onClick = {() => this.handleClick(2)} to="/generador"><FontAwesomeIcon icon={faFileAlt} size = "4x"/><span>Generador</span></NavLink>
+                                <NavLink activeClassName = "selected"  exact= "true"  to="/generador"><FontAwesomeIcon icon={faFileAlt} size = "4x"/><span>Generador</span></NavLink>
                               </li>
                       </ul>
                     </nav>

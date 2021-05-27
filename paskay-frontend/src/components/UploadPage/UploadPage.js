@@ -42,7 +42,7 @@ function PostList(props){
           props.postList.map((item,index) => 
               <Post key = {index} 
                     firstName = {item.firstName} 
-                    lastName = {item.lastName}
+                    //lastName = {item.lastName}
                     removeItem = {() => props.removeItem(index)}
               />
            )
@@ -62,7 +62,7 @@ class UploadPage extends Component {
 
     this.state = {
       firstname: "",
-      lastname: "",
+      //lastname: "",
       items: []
     };
   }
@@ -98,7 +98,8 @@ class UploadPage extends Component {
 
   estilos={
     color: 'black', 
-    backgroundColor: 'rgba(100, 255, 255, .2)'
+    //backgroundColor: 'rgba(100, 255, 255, .2)',
+    fontStyle: 'italic'
 
   } 
 
@@ -107,7 +108,7 @@ class UploadPage extends Component {
 
     <div style={this.estilos} className = "container homepage page">
 
-      {/*//////////////////////////////////////////////////////////////*/}
+      {/*//////////////////////////////////////////////////////////////
       <div>First Name</div>
         <input
           name="firstname"
@@ -121,21 +122,36 @@ class UploadPage extends Component {
         <button onClick={() => this.addItem()}>Submit</button>
         <PostList
           postList={this.state.items}
-          removeItem={this.removeItem.bind(this)} />
-      {/*//////////////////////////////////////////////////////////////*/}
+          removeItem={this.removeItem.bind(this)} 
+        />
+      //////////////////////////////////////////////////////////////*/}
 
 
-    <form>
+    {/*<form>*/}
       <div className="row">
         <div className="col-md-12 my-3"><hr/><h2>SUBIR PROBLEMA</h2><hr/></div>
-        <div className="col-md-6 my-3"><h4> Selecciona la imágen del problema</h4></div>
-        <div className="col-md-6 my-3"><input className="form-control" type='file'/></div>
+        <div className="col-md-4"><h5> Archivo de imágen</h5>
+          <input className="my-3" type='file'/>
+          <p>*Asegurese que el archivo tenga formato de imágen (png, jpg, jpeg) antes de cargarlo.
+              No se aceptan archivos con otro tipo de formato*</p>
+          <button class="btn btn-danger">Detectar Texto</button>
+        </div>
         <hr/>
-        <div className="col-md-12 my-3"><h3>Detalles </h3></div>
-        <div className="col-md-4 my-3"><h4>Curso</h4></div>
-        <div className="col-md-4 my-3"><h4>Tema</h4></div>
-        <div className="col-md-4 my-3"><h4>Subtema</h4></div>
+        <div className="col-md-3 abs-center">
+          <h5> Vista previa</h5>
+          <div className="card justiy-content-around" style={{width: "12rem"}}>
+            <img className="card-img-top" src={'./../../pmuestra1.png'}></img>
+          </div>
+        </div>
+        <div className="col-md-4">
+          <h5> Texto detectado</h5>
+          <textarea className="form-control my-2" rows={'2'}></textarea>
+          <p>*Si el texto detectado (arriba) no coincide con el de la imágen, tiene la opción a editarlo*</p>
+          <button class="btn btn-success my-2">Aceptar</button>
+        </div>
+        <div className="col-md-12 my-3"><h4>Detalles </h4></div>
         <div className="col-md-4 my-3">
+          <h5>Curso</h5>
           <select className="form-control">
             <option value="grapefruit">Aritmética</option>
             <option value="lime">Álgebra</option>
@@ -149,7 +165,8 @@ class UploadPage extends Component {
           </select>
         </div>
         <div className="col-md-4 my-3">
-        <select className="form-control">
+          <h5>Tema</h5>
+          <select className="form-control">
             <option value="grapefruit"></option>
             <option value="lime">Movimiento</option>
             <option value="lime">Mecánica</option>
@@ -160,7 +177,8 @@ class UploadPage extends Component {
           </select>
         </div>
         <div className="col-md-4 my-3">
-        <select className="form-control">
+          <h5>Subtema</h5>
+          <select className="form-control">
             <option value="grapefruit">Vectores</option>
             <option value="lime">MRU</option>
             <option selected value="coconut">MRUV</option>
@@ -168,10 +186,8 @@ class UploadPage extends Component {
             <option value="mango">Movimiento Parabólico</option>
           </select>
         </div>
-        <div className="col-md-4 my-3"><h4>Universidad</h4></div>
-        <div className="col-md-4 my-3"><h4>Año</h4></div>
-        <div className="col-md-4 my-3"><h4>Ciclo</h4></div>
         <div className="col-md-4 my-3">
+          <h5>Universidad</h5>
           <select className="form-control">
             <option value="grapefruit">UNI</option>
             <option value="lime">UNMSM</option>
@@ -181,8 +197,12 @@ class UploadPage extends Component {
             <option value="mango">OTRAS</option>
           </select>
         </div>
-        <div className="col-md-4 my-3"><input type="number" placeholder="2020"></input></div>
         <div className="col-md-4 my-3">
+          <h5>Año</h5>
+          <input className="form-control" type="number" placeholder="2020"></input>
+        </div>
+        <div className="col-md-4 my-3">
+          <h5>Ciclo</h5>
           <select className="form-control">
             <option value="grapefruit">I</option>
             <option value="lime">II</option>
@@ -190,23 +210,40 @@ class UploadPage extends Component {
           </select>
         </div>
         <div className="col-md-12 my-3"><h3>Filtros</h3></div>
-        <div className="col-md-6 my-3">
-          <h4>Descripción</h4>
+        <div className="col-md-8 my-3">
+          <h5>Descripción</h5>
           <textarea className=" form-control"></textarea>
         </div>
-        <div className="col-md-6">
-          <div className="col-md-12"><h4>Palabras clave</h4></div>
-          <div className="col-md-12 my-2"><input className="form-control"></input></div>
-          <div className="col-md-12 my-2"><input className="form-control"></input></div>
-          <div className="col-md-12 my-2"><input className="form-control"></input></div>
-          <div className="col-md-12 my-2"><button className="btn w-100 btn-success btn-block">Agregar</button></div>
+        <div className="col-md-4">
+          <div className="col-md-12 my-3"><h5>Palabras clave</h5></div>
+          <input
+          className="form-control my-2"
+          name="firstname"
+          value={this.state.firstname}
+          onChange={this.handleChange.bind(this)} 
+          />
+        {/*<div>Last Name</div>
+        <input
+          name="lastname"
+          value={this.state.lastname}
+          onChange={this.handleChange.bind(this)} 
+        />*/}
+        <button  
+          className="btn btn-primary w-100"
+          onClick={() => this.addItem()}>Agregar
+        
+        </button>
+        <PostList
+          postList={this.state.items}
+          removeItem={this.removeItem.bind(this)} 
+        />
         </div>
       </div>
       <row>
         <hr/>
         <div className="col-md-12"><input className="btn w-50 btn-primary btn-lg my-3" type="Submit"></input></div>
       </row>
-    </form>
+    {/*</form>*/}
     </div>
   )};
 }

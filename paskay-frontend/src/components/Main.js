@@ -113,7 +113,7 @@ class Main extends Component {
                 <Route path="/login" component = {IniciarSesion}></Route>
                 <Route path="/generador" component = {GenPage}></Route>
                 <Route path="/upload" component = {UploadPage}></Route>
-                <Route path="/" component = {BuildHomePage}></Route>
+                <Route path="/" component = {Buscador}></Route>
               </Switch>
           </Router>
         </div>

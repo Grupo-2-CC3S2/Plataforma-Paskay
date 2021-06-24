@@ -2,7 +2,7 @@
 
 # dependencies
 /paskay-frontend/node_modules
-
+/paskay-backend/node_modules
 
 # testing
 /paskay-frontend/coverage

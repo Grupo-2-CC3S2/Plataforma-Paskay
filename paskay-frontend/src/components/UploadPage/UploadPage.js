@@ -97,11 +97,10 @@ class UploadPage extends Component {
 
 
   estilos={
-    color: 'black', 
-    //backgroundColor: 'rgba(100, 255, 255, .2)',
+    color: 'black',
     fontStyle: 'italic'
 
-  } 
+  }; 
 
   render(){
   return (

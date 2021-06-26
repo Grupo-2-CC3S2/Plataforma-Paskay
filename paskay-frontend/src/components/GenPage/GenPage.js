@@ -2,7 +2,38 @@
 import React, {Component} from 'react';
 
 class GenPage extends Component {
-  
+
+   constructor(props){
+     super(props)
+
+     this.state = {user: "Sin usuario"}
+
+        
+    }
+ 
+  obtenerDatos = () => {
+    fetch('http://localhost:3001/generador')
+        .then(response => response.json())
+        .then(data => this.setState({ user: data.username }));
+    
+  }
+
+ componentDidMount() {
+   /*
+    // Simple GET request using fetch
+
+    fetch('http://localhost:3001/generador',{    
+    mode: 'no-cors', // no-cors, *cors, same-origin
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*'
+    },
+    })
+        .then(response => response.json())
+        .then(data => console.log("recibido",data)/*this.setState({ totalReactPackages: data.total }));
+    */
+  } 
+
   render(){
   return (
     <div className = "container homepage page">
@@ -45,6 +76,10 @@ class GenPage extends Component {
         </div>
         <div className="col-md-12 my-3">
           <button className="form-control my-4 btn btn-success">Generar</button>
+          <button onClick = {() => this.obtenerDatos()} className="form-control my-4 btn btn-success">Obtener Usuario</button>
+          <div>
+            {this.state.user}
+          </div>
         </div>
       </div>
       

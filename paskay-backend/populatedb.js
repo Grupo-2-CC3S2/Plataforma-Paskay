@@ -28,10 +28,8 @@ var temas = []
 var usuarios = []
 var solucions = []
 
-
 function problemaCreate(    
-  id_problema,
-  id_usuario,
+  usuario,
   likes,
   dislikes,
   description,
@@ -40,10 +38,10 @@ function problemaCreate(
   universidad,
   id_tema,
   url_image,
-  id_solucion,cb) {
+  soluciones,cb) {
   problemadetail = {
-    id_problema:id_problema,
-    id_usuario:id_usuario,
+    _id: new mongoose.Types.ObjectId(),
+    usuario:usuario,
     likes:likes,
     dislikes:dislikes,
     description:description,
@@ -52,7 +50,7 @@ function problemaCreate(
     universidad:universidad,
     id_tema:id_tema,
     url_image:url_image,
-    id_solucion:id_solucion,
+    soluciones:soluciones,
    }
   //if (d_birth != false) authordetail.date_of_birth = d_birth
   //if (d_death != false) authordetail.date_of_death = d_death
@@ -70,17 +68,18 @@ function problemaCreate(
   }  );
 }
 
-function solucionCreate(id_solucion,
+
+function solucionCreate(
   likes,
   dislikes,
   url_image_solucion,
-  id_usuario, cb) {
+  usuario, cb) {
   soluciondetail = {
-    id_solucion:id_solucion,
+    _id: new mongoose.Types.ObjectId(),
     likes:likes,
     dislikes:dislikes,
     url_image_solucion:url_image_solucion,
-    id_usuario:id_usuario}
+    usuario:usuario}
   //if (d_birth != false) authordetail.date_of_birth = d_birth
   //if (d_death != false) authordetail.date_of_death = d_death
   
@@ -97,18 +96,17 @@ function solucionCreate(id_solucion,
   }  );
 }
 
-function usuarioCreate(    id_usr,
+function usuarioCreate(
   nickname,
   nombre,
   apellido,
   correo, cb) {
-  usuariodetail = {id_usr:id_usr,
+  usuariodetail = {
+    _id: new mongoose.Types.ObjectId(),
     nickname:nickname,
     nombre:nombre,
     apellido:apellido,
     correo:correo}
-  //if (d_birth != false) authordetail.date_of_birth = d_birth
-  //if (d_death != false) authordetail.date_of_death = d_death
   
   var usuario = new Usuario(usuariodetail);
        
@@ -122,6 +120,7 @@ function usuarioCreate(    id_usr,
     cb(null, usuario)
   }  );
 }
+
 
 
 function temaCreate(    id_tema,
@@ -148,20 +147,53 @@ function temaCreate(    id_tema,
   }  );
 }
 
+function createUsuario(cb) {
+    async.parallel([
+        function(callback) {
+          usuarioCreate('PabRo','Pablo','Rojas','pablito@gmail.com', callback)
+        },
+        function(callback) {
+          usuarioCreate('PeCo','Pepe','Coronel','pepito@gmail.com', callback)
+        },
+        function(callback) {
+          usuarioCreate('CaRo','Carlos','Rojas','carlitos@gmail.com', callback)
+        }
+        ],
+        // Optional callback
+        cb);
+}
 
+function createSolucion(cb) {
+    async.parallel([
+        function(callback) {
+          solucionCreate(1,0,'./imagenes/solucion2.jpg',new mongoose.Types.ObjectId('60dbeb6d8e9a926a93b0c8e7'), callback);
+        },
+        function(callback) {
+          solucionCreate(3,1,'./imagenes/solucion1.jpg',new mongoose.Types.ObjectId('60dbeb6d8e9a926a93b0c8e7'), callback);
+        },
+        function(callback) {
+          solucionCreate(9,2,'./imagenes/solucion3.jpg',new mongoose.Types.ObjectId('60dbeb6d8e9a926a93b0c8e7'), callback);
+        }
+        ],
+        // optional callback
+        cb);
+}
+
+
+/*
 
 function createProblema(cb) {
     async.series([
         function(callback) {
-          problemaCreate('1','1','1','0','De entre todos los rectángulos con igual perímetro, ¿cuál es el de mayor área?',['5','4','1','0','6','na'],'2010-03-10','UNI','Optimizacion','./imagenes/problema1.jpg',
+          problemaCreate('1','0','De entre todos los rectángulos con igual perímetro, ¿cuál es el de mayor área?',['5','4','1','0','6','na'],'2010-03-10','UNI','Optimizacion','./imagenes/problema1.jpg',[ObjectId('')],
             1, callback);
         },
         function(callback) {
-          problemaCreate('2','2','2','1','|x+6|-8=4x',['0','4','5','0','6','na'],'2015-08-15','UNI','Valor Absoluto','./imagenes/problema2.jpg',
+          problemaCreate('2','1','|x+6|-8=4x',['0','4','5','0','6','na'],'2015-08-15','UNI','Valor Absoluto','./imagenes/problema2.jpg',
             2, callback);
         },
         function(callback) {
-          problemaCreate('3','2','4','2','Halle la ecuacion de la parabola, con vertice (2,4) y foco 4',['0','4','6','0','2','nb'],'2015-08-15','SAN MARCOS','Conicas','./imagenes/problema3.jpg',
+          problemaCreate('4','2','Halle la ecuacion de la parabola, con vertice (2,4) y foco 4',['0','4','6','0','2','nb'],'2015-08-15','SAN MARCOS','Conicas','./imagenes/problema3.jpg',
             3, callback);
         }
         ],
@@ -170,38 +202,6 @@ function createProblema(cb) {
 }
 
 
-function createSolucion(cb) {
-    async.parallel([
-        function(callback) {
-          solucionCreate('10','1','0','./imagenes/solucion2.jpg','2', callback);
-        },
-        function(callback) {
-          solucionCreate('20','3','1','./imagenes/solucion1.jpg','1', callback);
-        },
-        function(callback) {
-          solucionCreate('30','9','2','./imagenes/solucion3.jpg','3', callback);
-        }
-        ],
-        // optional callback
-        cb);
-}
-
-
-function createUsuario(cb) {
-    async.parallel([
-        function(callback) {
-          usuarioCreate('1','PabRo','Pablo','Rojas','pablito@gmail.com', callback)
-        },
-        function(callback) {
-          usuarioCreate('2','PeCo','Pepe','Coronel','pepito@gmail.com', callback)
-        },
-        function(callback) {
-          usuarioCreate('3','CaRo','Carlos','Rojas','carlitos@gmail.com', callback)
-        }
-        ],
-        // Optional callback
-        cb);
-}
 
 function createTema(cb) {
   async.parallel([
@@ -219,13 +219,13 @@ function createTema(cb) {
       cb);
 }
 
-
+*/
 
 async.series([
-    createProblema,
+ //   createProblema,
     createSolucion,
-    createUsuario,
-    createTema
+    createUsuario//,
+    //createTema
 ],
 
 

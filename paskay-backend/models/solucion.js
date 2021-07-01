@@ -4,11 +4,11 @@ var Schema = mongoose.Schema;
 
 var SolucionSchema = new Schema(
   {
-    id_solucion: {type: String, required:true, max: 50},
-    likes: {type: String, required:true, max: 50},
-    dislikes: {type: String, required:true, max: 50},
+    _id: Schema.Types.ObjectId,
+    likes: {type: Number, required:true},
+    dislikes: {type: Number, required:true},
     url_image_solucion: {type: String, required:true, max: 200},
-    id_usuario: {type: String, required:true, max: 50}
+    usuario: { type: Schema.Types.ObjectId, ref: 'Usuario' }
   }
 );
 

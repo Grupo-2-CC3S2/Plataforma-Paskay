@@ -4,22 +4,20 @@ var Schema = mongoose.Schema;
 
 var ProblemaSchema = new Schema(
   {
-    id_problema: {type: String, required:true, max: 100},
-    id_usuario: {type: String, required:true, max: 100},
-    likes: {type: String, required:true, max: 100},
-    dislikes: {type: String, required:true, max: 100},
+    _id: Schema.Types.ObjectId,
+    usuario: { type: Schema.Types.ObjectId, ref: 'Usuario' },
+    likes: {type: Number, required:true},
+    dislikes: {type: Number, required:true},
     description: {type: String, required:true, max: 1000},
-    claves: {type: Array},
+    claves: [{type: String}],
     anio_tomado: {type: Date},
-    universidad: {type: String, required:true, max: 50},
+    universidad: {type: String, required:true, max: 100},
     id_tema: {type: String, required:true, max: 50},
     url_image: {type: String, required:true, max: 200},
-    id_solucion: {type: String, required:true, max: 50},
-    id_usuario: {type: String, required:true, max: 50}
+    soluciones: [{ type: Schema.Types.ObjectId, ref: 'Solucion' }]
   }
 );
 
-// Virtual for author's URL
 ProblemaSchema
 .virtual('url')
 .get(function () {

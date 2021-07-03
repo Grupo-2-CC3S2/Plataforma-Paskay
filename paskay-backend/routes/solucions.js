@@ -3,6 +3,8 @@ var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
 
+const upload = require('../libs/storage')
+
 const Solucion = require('../models/solucion');
 
 router.route('/')
@@ -10,11 +12,12 @@ router.route('/')
   const solucion = await Solucion.find({});
   res.json(solucion);
 })
-.post(async (req, res, next) => {
-  const { 
+.post(upload.single('image'),async (req, res, next) => {
+  console.log(req.body)
+  let { 
           likes,
           dislikes,
-          url_image,
+          url_image_solucion,
           usuario
         } = req.body;
 
@@ -26,9 +29,13 @@ router.route('/')
                                   _id,
                                   likes,
                                   dislikes,
-                                  url_image,
+                                  url_image_solucion,
                                   usuario
                                 });
+  if(req.file){
+    const { filename } = req.file
+    solucion.setImgUrl(filename)
+  }
   await solucion.save();
   res.json({status: 'Solution Saved'});
 })
@@ -57,7 +64,7 @@ router.route('/:id')
           _id,
           likes,
           dislikes,
-          url_image,
+          url_image_solucion,
           usuario
         } = req.body;
 
@@ -69,7 +76,7 @@ router.route('/:id')
                                   _id,
                                   likes,
                                   dislikes,
-                                  url_image,
+                                  url_image_solucion,
                                   usuario
                                 });
 

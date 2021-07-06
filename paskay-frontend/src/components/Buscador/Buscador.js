@@ -6,6 +6,7 @@ import Pregunta from './Pregunta/Pregunta';
 //import { faThumbsDown } from "@fortawesome/free-solid-svg-icons";
 
 // ===========================Mostrar Pregunta ====================
+//
 const BuscarPregunta = () => {
   const [show, toggleShow] = React.useState(true);
 

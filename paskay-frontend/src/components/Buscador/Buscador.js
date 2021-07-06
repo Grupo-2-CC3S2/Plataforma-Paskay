@@ -5,12 +5,12 @@ import Pregunta from './Pregunta/Pregunta';
 //import { faThumbsUp } from "@fortawesome/free-solid-svg-icons";
 //import { faThumbsDown } from "@fortawesome/free-solid-svg-icons";
 
-<<<<<<< HEAD
+
 // ===========================Mostrar Pregunta ====================
-const BuscarPregunta = () => {
+/*const BuscarPregunta = () => {
   const [show, toggleShow] = React.useState(true);
 
-=======
+
 class Buscador extends Component { 
 
   constructor(props){
@@ -19,11 +19,11 @@ class Buscador extends Component {
   }
 
   search = () => {
-  /*
-    fetch('http://localhost:3001/search?search_query=\"Calcular\"')
-        .then(response => response.json())
-        .then(data => {console.log(data);this.setState({ results: data })});
-*/
+  
+  //  fetch('http://localhost:3001/search?search_query=\"Calcular\"')
+  //      .then(response => response.json())
+  //      .then(data => {console.log(data);this.setState({ results: data })});
+
  this.setState({results: [
     {
         "claves": [
@@ -55,7 +55,6 @@ class Buscador extends Component {
   }
 
   render(){
->>>>>>> 85f96141d3432bc572776ba90f37cda631fba096
   return (
     <div>
       <button
@@ -68,7 +67,7 @@ class Buscador extends Component {
     </div>
   )
 }
-
+*/
 
 // ===========================Fin Mostrar Pregunta ====================
 
@@ -199,7 +198,7 @@ class Buscador extends Component {
       </div>
       <div className="row my-3">
       <div className="col-md-12">
-        {/*<BuscarPregunta/>*/}
+        {/* se coloca la plantilla pregunta */}
         <Pregunta></Pregunta>
       </div>
       </div>
@@ -230,4 +229,3 @@ export default Buscador;
 //  })
 //}  
 //</div> 
-

@@ -1,14 +1,13 @@
 import React, {Component} from 'react';
-import Perfil from '../Perfil/Perfil';
 
-class IniciarSesion extends Component {
+class Perfil extends Component {
   
   render(){
   return (
     <div className="container">
 
       <div className="row">
-        <div className="col-md-12 my-3"><h2 className="titulo">Inicio de Sesion</h2></div>
+        <div className="col-md-12 my-3"><h2 className="titulo">Bienvenido @Usuario</h2></div>
         <div className="col-md-12 my-3">Ingrese correo electronico</div>
       </div>
 
@@ -58,9 +57,6 @@ class IniciarSesion extends Component {
           <button className="btn btn-primary w-40 ">Registrarse</button>
         </div>
       </div>
-      <div className="row">
-      <Perfil></Perfil>
-      </div>
 
     </div>
 
@@ -68,5 +64,5 @@ class IniciarSesion extends Component {
   )};
 }
 
-export default IniciarSesion;
+export default Perfil;
 

@@ -19,7 +19,7 @@ function Example() {
           className={'btn-block'}
           onClick={() => {setOpen(true); setOpen2(false);}}
           aria-controls="example-collapse-text"
-        aria-expanded={open}
+          //aria-expanded={open}
         >
           Problema como imágen
         </Button>
@@ -30,7 +30,7 @@ function Example() {
           className={'btn-block'}
           onClick={() => {setOpen(false); setOpen2(true);}}
           aria-controls="example-collapse-text2"
-        aria-expanded={open2}
+        //aria-expanded={open2}
         >
           Problema como Texto
         </Button>
@@ -69,9 +69,14 @@ function Example() {
             <div className="col-md-12 my-3"><h5>Palabras clave</h5></div>
               <button className="btn btn-primary w-100">Agregar</button>       
             </div>
+            <div className="col-md-12 my-3">
+              <button className="btn btn-primary btn-lg w-50">Subir</button>  
+            </div>
           </div>
         </div>
       </Collapse>
+
+      {/*////////////////// Contenido prob texto //////////////////*/}
       <Collapse in={open2}>
         <div className='row my-3'>
           <div className='col-md-8'>
@@ -82,6 +87,9 @@ function Example() {
           </div>
           <div className='col-md-4'>
             <input className='col-md-12 my-5' type='file'/>
+          </div>
+          <div className="col-md-12 my-3">
+            <button className="btn btn-primary btn-lg w-50">Subir</button>  
           </div>
         </div>
       </Collapse>
@@ -286,10 +294,6 @@ class UploadPage extends Component {
         <Example />
       </div>  
       
-      <row>
-        <hr/>
-        <div className="col-md-12"><input value="Subir" className="btn w-50 btn-primary btn-lg my-3" type="Submit"></input></div>
-      </row>
     {/*</form>*/}
     </div>
   )};

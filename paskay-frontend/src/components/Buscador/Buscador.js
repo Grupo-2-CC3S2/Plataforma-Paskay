@@ -1,34 +1,59 @@
 import React, {Component} from 'react';
+import { useState } from 'react';
 import './Buscador.css';
+import Pregunta from './Pregunta/Pregunta';
 //import { faThumbsUp } from "@fortawesome/free-solid-svg-icons";
 //import { faThumbsDown } from "@fortawesome/free-solid-svg-icons";
 
+// ===========================Mostrar Pregunta ====================
+const BuscarPregunta = () => {
+  const [show, toggleShow] = React.useState(true);
+
+  return (
+    <div>
+      <button
+        className="btn btn-primary w-50"
+        onClick={() => toggleShow(!show)}
+      >
+        {show ? 'Ocultar Solución' : 'Mostrar Solución'}
+      </button>    
+      {show && <div><Pregunta/></div>}
+    </div>
+  )
+}
+
+
+// ===========================Fin Mostrar Pregunta ====================
+
 class Buscador extends Component { 
   
+  constructor() {
+    super();
+    this.state = { 
+      checked: false,
+      text:''
+    };
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange() {
+    this.setState({
+      checked: !this.state.checked,
+    })
+  }
+
+  /*handleChange(event) {
+    this.setState({
+      text:event.target.value
+    })
+  }*/
+  
   render(){
-  return (
-      
-    <div className="box container">
-
-      <div className="row">
-        <div className="col-md-12 my-3"><h1 className="titulo">PLATAFORMA PASKAY</h1></div>
-        <div className="col-md-12"><h2>¡Únete a millones de usuarios en la resolución de problemas!</h2></div>    
-      </div>
-
-      <div className="row my-3">
-        <div className="col-md-10"> 
-          <input className="form-control " placeholder="Introduzca el problema (e.g. 2x+5=9)" size="15" type="text" />
-        </div>
-        <div className="col-md-2"> 
-          <button className="btn btn-primary w-100 ">Buscar</button>
-        </div>
-      </div>
-
-      <div className="row">
-        <div className="col-md-4"><input type="checkbox" name="check" id="check" value="1"/> Busqueda avanzada</div> 
-      </div>
-
-      <div className="row my-3">
+   
+  // ==========================BUSQUEDA AVANZADA =================================  
+    const content = !this.state.checked ? null: 
+    <div>
+        <div className="row my-3">
         <div className="col-md-3 "><p>Curso</p></div>
         <div className="col-md-3 "><p>Tema</p></div>
         <div className="col-md-3 "><p>Universidad</p></div>
@@ -86,10 +111,50 @@ class Buscador extends Component {
 
       </div>
 
+      </div>
+    // ==========================FIN BUSQUEDA AVANZADA =================================
+
+  return (
+  
+      
+    <div className="box container">
+      <div className="row">
+        <div className="col-md-12 my-3"><h1 className="titulo">PLATAFORMA PASKAY</h1></div>
+        <div className="col-md-12"><h2>¡Únete a millones de usuarios en la resolución de problemas!</h2></div>    
+      </div>
+
+      <div className="row my-3">
+        <div className="col-md-10"> 
+          <input  className="form-control " placeholder="Escribe tu pregunta" 
+          size="15" type="text" /*value={this.state.value} onChange={this.handleChange}*/ />
+        </div>
+        <div className="col-md-2"> 
+          <button className="btn btn-primary w-100 " value="Submit">Buscar</button>
+        </div>
+      </div>
+
+      <div className="row">
+        <div className="col-md-4"><input type="checkbox" 
+        checked={ this.state.checked } 
+        onChange={ this.handleChange }
+        name="check" id="check" value="1"/> 
+        Busqueda avanzada</div> 
+      </div>
+      <div>
+        { content }
+      </div>
+
       <div className="row my-3">
         <div className="col-md-12"> 
-          <button className="btn btn-primary w-40 ">Buscar</button>
+          {/*<button className="btn btn-primary w-50 ">Buscar</button>*/}
+          <h5>Resultados relacionados a {this.state.text}</h5>
         </div>
+      </div>
+      <div className="row my-3">
+      <div className="col-md-12">
+        {/*<BuscarPregunta/>*/}
+        <Pregunta></Pregunta>
+      </div>
       </div>
 
     </div>

@@ -1,5 +1,14 @@
 
 import React, {Component} from 'react';
+import { connect } from 'react-redux'
+import {changeTest2} from '../../redux/ActionCreators';
+
+function mapStateToProps(state) {
+  console.log("stateee",state)
+  return {
+    test: state.test.testState2
+  }
+}
 
 class GenPage extends Component {
 
@@ -18,21 +27,6 @@ class GenPage extends Component {
     
   }
 
- componentDidMount() {
-   /*
-    // Simple GET request using fetch
-
-    fetch('http://localhost:3001/generador',{    
-    mode: 'no-cors', // no-cors, *cors, same-origin
-    headers: {
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*'
-    },
-    })
-        .then(response => response.json())
-        .then(data => console.log("recibido",data)/*this.setState({ totalReactPackages: data.total }));
-    */
-  } 
 
   render(){
   return (
@@ -76,9 +70,9 @@ class GenPage extends Component {
         </div>
         <div className="col-md-12 my-3">
           <button className="form-control my-4 btn btn-success">Generar</button>
-          <button onClick = {() => this.obtenerDatos()} className="form-control my-4 btn btn-success">Obtener Usuario</button>
+          <button onClick = {() => {this.props.dispatch(changeTest2("User logged"));console.log(this.props)}} className="form-control my-4 btn btn-success">Obtener Usuario</button>
           <div>
-            {this.state.user}
+            {this.props.test}
           </div>
         </div>
       </div>
@@ -132,4 +126,6 @@ class GenPage extends Component {
   )};
 }
 
-export default GenPage;
+
+//connect(mapStateToProps)(MyComponent)
+export default connect(mapStateToProps,null/*mapStateToProps,mapDispatchToProps*/)(GenPage);

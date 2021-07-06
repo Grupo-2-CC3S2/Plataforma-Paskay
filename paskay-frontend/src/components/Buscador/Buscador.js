@@ -5,10 +5,57 @@ import Pregunta from './Pregunta/Pregunta';
 //import { faThumbsUp } from "@fortawesome/free-solid-svg-icons";
 //import { faThumbsDown } from "@fortawesome/free-solid-svg-icons";
 
+<<<<<<< HEAD
 // ===========================Mostrar Pregunta ====================
 const BuscarPregunta = () => {
   const [show, toggleShow] = React.useState(true);
 
+=======
+class Buscador extends Component { 
+
+  constructor(props){
+    super(props)
+     this.state = {results: ["none"]}
+  }
+
+  search = () => {
+  /*
+    fetch('http://localhost:3001/search?search_query=\"Calcular\"')
+        .then(response => response.json())
+        .then(data => {console.log(data);this.setState({ results: data })});
+*/
+ this.setState({results: [
+    {
+        "claves": [
+            "5",
+            "4",
+            "1",
+            "0",
+            "0"
+        ],
+        "soluciones": [
+            "60ddff590c4fc62a853bf7df"
+        ],
+        "_id": "60de050062ad7830f3a7e451",
+        "usuario": "60ddfde3ab81f828cd3e39d1",
+        "likes": 0,
+        "dislikes": 1,
+        "name": "Calcular el area con derivadas",
+        "description": "De entre todos los rectángulos con igual perímetro, ¿cuál es el de mayor área?",
+        "anio_tomado": "2010-03-10T00:00:00.000Z",
+        "universidad": "UNI",
+        "id_tema": "Optimizacion",
+        "url_image": "./imagenes/problema1",
+        "__v": 0,
+        "score": 0.6
+    }
+]
+})
+    console.log("los resltados",JSON.stringify(this.state.results[0]))
+  }
+
+  render(){
+>>>>>>> 85f96141d3432bc572776ba90f37cda631fba096
   return (
     <div>
       <button
@@ -146,8 +193,8 @@ class Buscador extends Component {
 
       <div className="row my-3">
         <div className="col-md-12"> 
-          {/*<button className="btn btn-primary w-50 ">Buscar</button>*/}
           <h5>Resultados relacionados a {this.state.text}</h5>
+          <button onClick = {() => this.search()} className="btn btn-primary w-40 ">Buscar</button>
         </div>
       </div>
       <div className="row my-3">
@@ -156,6 +203,11 @@ class Buscador extends Component {
         <Pregunta></Pregunta>
       </div>
       </div>
+
+        {this.state.results.map((el) => {
+          return <div>{JSON.stringify(el)}</div>
+
+        })}
 
     </div>
   

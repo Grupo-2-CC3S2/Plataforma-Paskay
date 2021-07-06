@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var { appConfig } = require('../config')
 
 var Schema = mongoose.Schema;
 
@@ -11,6 +12,12 @@ var SolucionSchema = new Schema(
     usuario: { type: Schema.Types.ObjectId, ref: 'Usuario' }
   }
 );
+
+SolucionSchema.methods.setImgUrl = function setImgUrl (filename) {
+  console.log("app:",appConfig)
+  const { host, port } = appConfig;
+  this.url_image_solucion = `${host}:${port}/public/${filename}`
+}
 
 // Virtual for author's URL
 SolucionSchema

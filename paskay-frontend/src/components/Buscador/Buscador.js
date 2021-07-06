@@ -5,47 +5,53 @@ import './Buscador.css';
 
 class Buscador extends Component { 
 
-  constructor(props){
-    super(props)
-     this.state = {results: ["none"]}
+  constructor() {
+    super();
+    this.state = {
+      buscador: '',
+      curso:'all',
+      tema:'all',
+      universidad:'all',
+      año:'all'
+    };
+    this.handleChange = this.handleChange.bind(this);
+    this.addTask = this.pedirTask.bind(this);
   }
 
-  search = () => {
-  /*
-    fetch('http://localhost:3001/search?search_query=\"Calcular\"')
-        .then(response => response.json())
-        .then(data => {console.log(data);this.setState({ results: data })});
-*/
- this.setState({results: [
-    {
-        "claves": [
-            "5",
-            "4",
-            "1",
-            "0",
-            "0"
-        ],
-        "soluciones": [
-            "60ddff590c4fc62a853bf7df"
-        ],
-        "_id": "60de050062ad7830f3a7e451",
-        "usuario": "60ddfde3ab81f828cd3e39d1",
-        "likes": 0,
-        "dislikes": 1,
-        "name": "Calcular el area con derivadas",
-        "description": "De entre todos los rectángulos con igual perímetro, ¿cuál es el de mayor área?",
-        "anio_tomado": "2010-03-10T00:00:00.000Z",
-        "universidad": "UNI",
-        "id_tema": "Optimizacion",
-        "url_image": "./imagenes/problema1",
-        "__v": 0,
-        "score": 0.6
-    }
-]
-})
-    console.log("los resltados",JSON.stringify(this.state.results[0]))
+  handleChange(e) {
+    //console.log(e.target.name, e.target.value)
+    //console.log(e.target.value)
+    const { name, value } = e.target;
+    this.setState({
+      [name]: value
+    });
   }
 
+  pedirTask = (e) => {
+    e.preventDefault();
+    console.log(this.state);   
+    if (this.state.buscador === "") return
+    //fetch('http://localhost:3001/search?search_query=' + this.state.buscador)
+    fetch(`http://localhost:3001/search?search_query=${this.state.buscador}&curso=${this.state.curso}&tema=${this.state.tema}&universidad=${this.state.universidad}&anio=${this.state.año}`)
+    .then(res=> res.json()) // Convierte el resultado en json
+    .then(data => console.log(data))// Imprime el resultado en consola
+    .catch(err => console.log(err)); 
+ 
+
+    /*
+    fetch('/',{//Especificar a la ruta a donde se va enviar
+      method: 'GET',
+      body: JSON.stringify(this.state), //Convertir un objeto a string
+      headers:{
+        'Accept': 'aplication/json',
+        'Content-Type': 'aplication/json'
+      }
+    }).then(res=>console.log(res)) //Si en caso recibio algo debe dar respuesta
+    .catch(err => console.log(err)); 
+    */
+  }
+
+ 
   render(){
   return (
       
@@ -56,14 +62,16 @@ class Buscador extends Component {
         <div className="col-md-12"><h2>¡Únete a millones de usuarios en la resolución de problemas!</h2></div>    
       </div>
 
+      <form onSubmit={this.pedirTask}>
       <div className="row my-3">
         <div className="col-md-10"> 
-          <input className="form-control " placeholder="Introduzca el problema (e.g. 2x+5=9)" size="15" type="text" />
+          <input name="buscador" onChange={this.handleChange} value={this.state.buscador} className="form-control " placeholder="Introduzca el problema (e.g. 2x+5=9)" size="15" type="text" />
         </div>
         <div className="col-md-2"> 
-          <button className="btn btn-primary w-100 ">Buscar</button>
+          <button type="submit" className="btn btn-primary w-100 ">Buscar</button>
         </div>
       </div>
+      </form>
 
       <div className="row">
         <div className="col-md-4"><input type="checkbox" name="check" id="check" value="1"/> Busqueda avanzada</div> 
@@ -76,52 +84,52 @@ class Buscador extends Component {
         <div className="col-md-3 "><p>Año</p></div>
       </div>
 
-
+  
       <div className="row">
           <div className="col-md-3">
-          <select className="form-control">
-              <option value="grapefruit">Aritmética</option>
-              <option value="lime">Álgebra</option>
-              <option selected value="coconut">Geometría</option>
-              <option value="mango">Trigonometría</option>
-              <option value="mango">RM</option>
-              <option value="mango">Física</option>
-              <option value="mango">Química</option>
-              <option value="mango">Letras</option>
-              <option value="mango">Otros</option>
+          <select className="form-control" name="curso" onChange={this.handleChange} value={this.state.curso}>
+              <option value="Aritmética">Aritmética</option>
+              <option value="Álgebra">Álgebra</option>
+              <option value="Geometría">Geometría</option>
+              <option value="Trigonometría">Trigonometría</option>
+              <option value="RM">RM</option>
+              <option value="Física">Física</option>
+              <option value="Química">Química</option>
+              <option value="Letras">Letras</option>
+              <option value="Otros">Otros</option>
             </select>
           </div>
           <div className="col-md-3">
-          <select className="form-control">
-              <option value="grapefruit">Proporciones</option>
-              <option value="lime">Vectores</option>
-              <option selected value="coconut">Productos notables</option>
-              <option value="mango">Regla de tres simple</option>
-              <option value="mango">Logica</option>
-              <option value="mango">Ecuaciones</option>
-              <option value="mango">Inecuaciones</option>
-              <option value="mango">Valor Absoluto</option>
-              <option value="mango">Otros</option>
+          <select className="form-control" name="tema" onChange={this.handleChange} value={this.state.tema}>
+              <option value="Proporciones">Proporciones</option>
+              <option value="Vectores">Vectores</option>
+              <option value="Productos notables">Productos notables</option>
+              <option value="Regla de tres simple">Regla de tres simple</option>
+              <option value="Logica">Logica</option>
+              <option value="Ecuaciones">Ecuaciones</option>
+              <option value="Inecuaciones">Inecuaciones</option>
+              <option value="Valor Absoluto">Valor Absoluto</option>
+              <option value="Otros">Otros</option>
             </select>
           </div>
           <div className="col-md-3">
-          <select className="form-control">
-              <option value="grapefruit">universidad Nacional de San Marcos</option>
-              <option value="lime">Universidad del Callao</option>
-              <option selected value="coconut">Universidad Nacional de Ingenieria</option>
+          <select className="form-control" name="universidad" onChange={this.handleChange} value={this.state.universidad}>
+              <option value="Universidad Nacional de San Marcos">Universidad Nacional de San Marcos</option>
+              <option value="Universidad del Callao">Universidad del Callao</option>
+              <option value="Universidad Nacional de Ingenieria">Universidad Nacional de Ingenieria</option>
             </select>
           </div>
           <div className="col-md-3">        
-            <select className="form-control">
-              <option value="grapefruit">2021-1</option>
-              <option value="lime">2020-2</option>
-              <option selected value="coconut">2020-1</option>
-              <option value="mango">2019-2</option>
-              <option value="mango">2019-1</option>
-              <option value="mango">2018-2</option>
-              <option value="mango">2018-1</option>
-              <option value="mango">2017-2</option>
-              <option value="mango">Otros</option>
+            <select className="form-control" name="año" onChange={this.handleChange} value={this.state.año}>
+              <option value="2021-1">2021-1</option>
+              <option value="2020-2">2020-2</option>
+              <option value="2020-1">2020-1</option>
+              <option value="2019-2">2019-2</option>
+              <option value="2019-1">2019-1</option>
+              <option value="2018-2">2018-2</option>
+              <option value="2018-1">2018-1</option>
+              <option value="2017-2">2017-2</option>
+              <option value="Otros">Otros</option>
             </select>
           </div>
 
@@ -129,14 +137,9 @@ class Buscador extends Component {
 
       <div className="row my-3">
         <div className="col-md-12"> 
-          <button onClick = {() => this.search()} className="btn btn-primary w-40 ">Buscar</button>
+          <button className="btn btn-primary w-40 ">Buscar</button>
         </div>
       </div>
-
-        {this.state.results.map((el) => {
-          return <div>{JSON.stringify(el)}</div>
-
-        })}
 
     </div>
   

@@ -27,21 +27,68 @@ const BuscarPregunta = () => {
 // ===========================Fin Mostrar Pregunta ====================
 
 class Buscador extends Component { 
-  
-  constructor() {
+
+
+constructor() {
     super();
-    this.state = { 
-      checked: false,
-      text:''
+    this.state = {
+      buscador: '',
+      curso:'all',
+      tema:'all',
+      universidad:'all',
+      año:'all'
     };
     this.handleChange = this.handleChange.bind(this);
+    this.addTask = this.pedirTask.bind(this);
   }
 
-  handleChange() {
+  handleCheck = () => {
     this.setState({
       checked: !this.state.checked,
     })
   }
+
+
+
+  handleChange(e) {
+    //console.log(e.target.name, e.target.value)
+    //console.log(e.target.value)
+    console.log(this.state);   
+    const { name, value } = e.target;
+    this.setState({
+      [name]: value
+    });
+  }
+
+
+  pedirTask = (e) => {
+    e.preventDefault();
+    console.log(this.state);   
+    if (this.state.buscador === "") return
+    //fetch('http://localhost:3001/search?search_query=' + this.state.buscador)
+    fetch(`http://localhost:3001/search?search_query=${this.state.buscador}&curso=${this.state.curso}&tema=${this.state.tema}&universidad=${this.state.universidad}&anio=${this.state.año}`)
+    .then(res=> res.json()) // Convierte el resultado en json
+    .then(data => console.log(data))// Imprime el resultado en consola
+    .catch(err => console.log(err)); 
+ 
+
+    /*
+    fetch('/',{//Especificar a la ruta a donde se va enviar
+      method: 'GET',
+      body: JSON.stringify(this.state), //Convertir un objeto a string
+      headers:{
+        'Accept': 'aplication/json',
+        'Content-Type': 'aplication/json'
+      }
+    }).then(res=>console.log(res)) //Si en caso recibio algo debe dar respuesta
+    .catch(err => console.log(err)); 
+    */
+  }
+
+/*===================================*/
+
+  
+  
 
   /*handleChange(event) {
     this.setState({
@@ -64,7 +111,7 @@ class Buscador extends Component {
 
       <div className="row">
           <div className="col-md-3">
-          <select className="form-control">
+          <select name="curso" onChange={this.handleChange} value={this.state.curso} className="form-control">
               <option value="grapefruit">Aritmética</option>
               <option value="lime">Álgebra</option>
               <option selected value="coconut">Geometría</option>
@@ -72,11 +119,11 @@ class Buscador extends Component {
               <option value="mango">RM</option>
               <option value="mango">Física</option>
               <option value="mango">Química</option>
-              <option value="mango">Letras</option>
-              <option value="mango">Otros</option>
+              <option value="letras">Letras</option>
+              <option value="otros">Otros</option>
             </select>
           </div>
-          <div className="col-md-3">
+          <div name="tema" onChange={this.handleChange} value={this.state.tema} className="col-md-3">
           <select className="form-control">
               <option value="grapefruit">Proporciones</option>
               <option value="lime">Vectores</option>
@@ -90,14 +137,14 @@ class Buscador extends Component {
             </select>
           </div>
           <div className="col-md-3">
-          <select className="form-control">
+          <select name="universidad" onChange={this.handleChange} value={this.state.universidad} className="form-control">
               <option value="grapefruit">universidad Nacional de San Marcos</option>
               <option value="lime">Universidad del Callao</option>
               <option selected value="coconut">Universidad Nacional de Ingenieria</option>
             </select>
           </div>
           <div className="col-md-3">        
-            <select className="form-control">
+            <select name="año" onChange={this.handleChange} value={this.state.año}  className="form-control">
               <option value="grapefruit">2021-1</option>
               <option value="lime">2020-2</option>
               <option selected value="coconut">2020-1</option>
@@ -126,18 +173,18 @@ class Buscador extends Component {
 
       <div className="row my-3">
         <div className="col-md-10"> 
-          <input  className="form-control " placeholder="Escribe tu pregunta" 
+          <input name="buscador" onChange={this.handleChange} value={this.state.buscador}  className="form-control " placeholder="Escribe tu pregunta" 
           size="15" type="text" /*value={this.state.value} onChange={this.handleChange}*/ />
         </div>
         <div className="col-md-2"> 
-          <button className="btn btn-primary w-100 " value="Submit">Buscar</button>
+          <button className="btn btn-primary w-100 " value="Submit" onClick={this.pedirTask}>Buscar</button>
         </div>
       </div>
 
       <div className="row">
         <div className="col-md-4"><input type="checkbox" 
         checked={ this.state.checked } 
-        onChange={ this.handleChange }
+        onChange={ this.handleCheck }
         name="check" id="check" value="1"/> 
         Busqueda avanzada</div> 
       </div>

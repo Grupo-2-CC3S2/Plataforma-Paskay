@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { useState } from 'react';
+//import { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css'
 //import './Pregunta.css';
 import Solucion from '../../Solucion/Solucion';
@@ -23,21 +23,18 @@ const Toggle = () => {
 
 
 class Pregunta extends Component {
+
+  constructor(props) {
+    super(props);
+  }
+
   render(){
       return(
         <div className='container'>
         <div className='row'>
           <div className='col-md-12 my-3'>
-            <h3>Pregunta N° 16565</h3>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting 
-              industry. Lorem Ipsum has been the industry's standard dummy text 
-              ever since the 1500s, when an unknown printer took a galley of type 
-              and scrambled it to make a type specimen book. It has survived not 
-              only five centuries, but also the leap into electronic typesetting, 
-              remaining essentially unchanged. It was popularised in the 1960s 
-              with the release of Letraset sheets containing Lorem Ipsum passages, 
-              and more recently with desktop publishing software like Aldus 
-              PageMaker including versions of Lorem Ipsum.</p>
+            <h3>Pregunta N° {this.props.id}</h3>
+            <p>{this.props.texto}</p>
               <img src='./../../../imagenes/solucion.jpg'></img>
           </div>
           <div className='col-md-4'>Opción A</div>

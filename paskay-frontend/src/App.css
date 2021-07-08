@@ -19,11 +19,6 @@ header svg{
   margin: 0px 5px;
 }
 
-header div:nth-child(2){
-}
-header div:nth-child(1){
-  
-}
 header h1{
   color: white;
   text-align: left;
@@ -178,10 +173,6 @@ html {
   -ms-overflow-style: scrollbar;
 }
 
-*,
-*::before,
-*::after {
-}
 
 .container {
   width: 100%;

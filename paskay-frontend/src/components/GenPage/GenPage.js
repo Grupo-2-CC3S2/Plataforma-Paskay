@@ -1,6 +1,7 @@
 
 import React, {Component} from 'react';
 import { connect } from 'react-redux'
+import './../commonStyles.css'
 import {changeTest2} from '../../redux/ActionCreators';
 
 function mapStateToProps(state) {
@@ -35,7 +36,7 @@ class GenPage extends Component {
         <div className="col-md-12 my-4"><h3>GENERADOR DE EXÁMENES</h3><hr/></div>
       </div>
       <div className="row">
-      <div className="col-md-3">
+      <div className="col-md-3 cardStyle p-2">
         <div className="col-md-12">
           <h5>Institución</h5>
           <select className="form-control">
@@ -76,8 +77,8 @@ class GenPage extends Component {
           </div>
         </div>
       </div>
-      
-      <div className="col-md-8">
+      <div className='col-md-1 my-4'></div>
+      <div className="col-md-8 cardStyle p-4">
         <div className="col-md-12"><h4>Resumen</h4></div>
         <div className="col-md-12">
           <table className="table">
@@ -119,6 +120,7 @@ class GenPage extends Component {
             <p>*Para empezar, haga click en el botón 'Empezar' o en el número de pregunta*</p>
             <button className="btn btn-warning btn-lg">EMPEZAR</button>
           </div>
+          <div className="col-md-12 my-4"></div>
         </div>
       </div>
       </div>

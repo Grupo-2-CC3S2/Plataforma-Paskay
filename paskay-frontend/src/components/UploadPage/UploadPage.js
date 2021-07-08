@@ -1,6 +1,7 @@
 
 import React, {Component} from 'react';
 import { useState } from 'react';
+import './../commonStyles.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Button} from 'react-bootstrap';
 import { Collapse} from 'react-bootstrap';
@@ -200,33 +201,12 @@ class UploadPage extends Component {
 
   render(){
   return (
-
-    <div style={this.estilos} className = "container homepage page">
-
-      {/*//////////////////////////////////////////////////////////////
-      <div>First Name</div>
-        <input
-          name="firstname"
-          value={this.state.firstname}
-          onChange={this.handleChange.bind(this)} />
-        <div>Last Name</div>
-        <input
-          name="lastname"
-          value={this.state.lastname}
-          onChange={this.handleChange.bind(this)} />
-        <button onClick={() => this.addItem()}>Submit</button>
-        <PostList
-          postList={this.state.items}
-          removeItem={this.removeItem.bind(this)} 
-        />
-      //////////////////////////////////////////////////////////////*/}
-
-
+    
+    <div style={this.estilos} className = "container cardStyle my-2 p-4">
     {/*<form>*/}
-      <div className="row">
+    
+      <div className="row ">
         <div className="col-md-12 my-3"><hr/><h2>SUBIR PROBLEMA</h2><hr/></div>
-      </div>
-      <div className="row">
       <div className="col-md-12"><h4>Detalles </h4></div>
         <div className="col-md-4 my-3">
           <h5>Curso</h5>
@@ -289,8 +269,7 @@ class UploadPage extends Component {
         </div>
       </div>
       {/* ****************************************React transitions ************************************* */}
-      <div>
-        
+      <div className='my-4 p-4'>
         <Example />
       </div>  
       

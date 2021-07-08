@@ -10,7 +10,7 @@ import { Collapse} from 'react-bootstrap';
 function Example() {
   const [open, setOpen] = useState(false);
   const [open2, setOpen2] = useState(false);
-
+  
   return (
     <div className='row'>
       {/*////////////////// botones de opciones de problemas //////////////////*/}
@@ -63,7 +63,7 @@ function Example() {
             <div className="col-md-12 my-3"><h3>Filtros</h3></div>
               <div className="col-md-8 my-3">
               <h5>Descripción</h5>
-              <textarea className=" form-control"></textarea>
+              <textarea name="pruebacomotexto" onChange={this.handleChange} value={this.state.pruebacomotexto} className=" form-control"></textarea>
             </div>
             <div className="col-md-4">
             <div className="col-md-12 my-3"><h5>Palabras clave</h5></div>
@@ -81,9 +81,11 @@ function Example() {
         <div className='row my-3'>
           <div className='col-md-8'>
             <textarea className="col-md 12 form-control my-2" rows={'4'}></textarea>
-            <input className='col-md-2 mx-2' placeholder='opcion a'></input><input className='col-md-2 mx-2' placeholder='opcion b'></input>
-            <input className='col-md-2 mx-2' placeholder='opcion c'></input><input className='col-md-2 mx-2' placeholder='opcion d'></input>
-            <input className='col-md-2 mx-2' placeholder='opcion e'></input>
+            <input name="opciona" onChange={this.handleChange} value={this.state.opciona} className='col-md-2 mx-2' placeholder='opcion a'></input>
+            <input name="opcionb" onChange={this.handleChange} value={this.state.opcionb} className='col-md-2 mx-2' placeholder='opcion b'></input>
+            <input name="opcionc" onChange={this.handleChange} value={this.state.opcionc} className='col-md-2 mx-2' placeholder='opcion c'></input>
+            <input name="opciond" onChange={this.handleChange} value={this.state.opciond} className='col-md-2 mx-2' placeholder='opcion d'></input>
+            <input name="opcione" onChange={this.handleChange} value={this.state.opcione} className='col-md-2 mx-2' placeholder='opcion e'></input>
           </div>
           <div className='col-md-4'>
             <input className='col-md-12 my-5' type='file'/>
@@ -96,6 +98,8 @@ function Example() {
     </div>
   );
 }
+
+
 
 //////////////////////SAMPLE//////////////////////////////
 
@@ -156,21 +160,55 @@ class UploadPage extends Component {
     super(props);
 
     this.state = {
-      firstname: "",
+      //firstname: "",
       //lastname: "",
+      curso: 'all',
+      tema:'all',
+      subtema:'all',
+      universidad:'all',
+      año:'all',
+      ciclo:'all',
+      pruebacomotexto:'all',
+      opciona:'all',
+      opcionb:'all',
+      opcionc:'all',
+      opciond:'all',
+      opcione:'all',
       items: []
     };
+    this.handleChange = this.handleChange.bind(this);
+    this.addTask = this.pedirTask.bind(this);
   }
 
-  handleChange(event) {
+  handleChange(e) {
+    //console.log(e.target.name, e.target.value)
+    //console.log(e.target.value)
+    console.log(this.state);   
+    const { name, value } = e.target;
+    this.setState({
+      [name]: value
+    });
+  }
+
+  pedirTask = (e) => {
+    e.preventDefault();
+    console.log(this.state);   
+    if (this.state.buscador === "") return
+    //fetch('http://localhost:3001/search?search_query=' + this.state.buscador)
+    fetch(`http://localhost:3001/search?search_query=${this.state.buscador}&curso=${this.state.curso}&tema=${this.state.tema}&universidad=${this.state.universidad}&anio=${this.state.año}`)
+    .then(res=> res.json()) // Convierte el resultado en json
+    .then(data => console.log(data))// Imprime el resultado en consola
+    .catch(err => console.log(err)); 
+  }
+  /*handleChange(event) {
     if (event.target.name === "firstname") {
       this.setState({ firstname: event.target.value });
     } else if (event.target.name === "lastname") {
       this.setState({ lastname: event.target.value });
     }
-  }
+  }*/
 
-  addItem() {
+  /*addItem() {
     this.setState({
       items: [ 
         ...this.state.items, 
@@ -182,7 +220,7 @@ class UploadPage extends Component {
       firstname: "",
       lastname: ""
     });
-  }
+  }*/
 
   removeItem(index) {
     const items = this.state.items.filter((e, idx) => idx !== index); 
@@ -230,61 +268,60 @@ class UploadPage extends Component {
       <div className="col-md-12"><h4>Detalles </h4></div>
         <div className="col-md-4 my-3">
           <h5>Curso</h5>
-          <select className="form-control">
-            <option value="grapefruit">Aritmética</option>
-            <option value="lime">Álgebra</option>
-            <option selected value="coconut">Geometría</option>
-            <option value="mango">Trigonometría</option>
-            <option value="mango">RM</option>
-            <option value="mango">Física</option>
-            <option value="mango">Química</option>
-            <option value="mango">Letras</option>
-            <option value="mango">Otros</option>
+          <select name="curso" onChange={this.handleChange} value={this.state.curso} className="form-control">
+            <option value="Aritmética">Aritmética</option>
+            <option value="Álgebra">Álgebra</option>
+            <option selected value="Geometría">Geometría</option>
+            <option value="Trigonometría">Trigonometría</option>
+            <option value="RM">RM</option>
+            <option value="Física">Física</option>
+            <option value="Química">Química</option>
+            <option value="Letras">Letras</option>
+            <option value="Otros">Otros</option>
           </select>
         </div>
         <div className="col-md-4 my-3">
           <h5>Tema</h5>
-          <select className="form-control">
-            <option value="grapefruit"></option>
-            <option value="lime">Movimiento</option>
-            <option value="lime">Mecánica</option>
-            <option selected value="coconut">Fluidos</option>
-            <option value="mango">Electricidad</option>
-            <option value="mango">Magnetismo</option>
-            <option value="mango">Gravitación</option>
+          <select name="tema" onChange={this.handleChange} value={this.state.tema} className="form-control">
+            <option value="Movimiento">Movimiento</option>
+            <option value="Mecánica">Mecánica</option>
+            <option selected value="Fluidos">Fluidos</option>
+            <option value="Electricidad">Electricidad</option>
+            <option value="Magnetismo">Magnetismo</option>
+            <option value="Gravitación">Gravitación</option>
           </select>
         </div>
         <div className="col-md-4 my-3">
           <h5>Subtema</h5>
-          <select className="form-control">
-            <option value="grapefruit">Vectores</option>
-            <option value="lime">MRU</option>
-            <option selected value="coconut">MRUV</option>
-            <option value="mango">Caida Libre</option>
-            <option value="mango">Movimiento Parabólico</option>
+          <select name="subtema" onChange={this.handleChange} value={this.state.subtema} className="form-control">
+            <option value="Vectores">Vectores</option>
+            <option value="MRU">MRU</option>
+            <option selected value="MRUV">MRUV</option>
+            <option value="Caida Libre">Caida Libre</option>
+            <option value="Movimiento Parabólico">Movimiento Parabólico</option>
           </select>
         </div>
         <div className="col-md-4 my-3">
           <h5>Universidad</h5>
-          <select className="form-control">
-            <option value="grapefruit">UNI</option>
-            <option value="lime">UNMSM</option>
-            <option selected value="coconut">UNFV</option>
-            <option value="mango">UNLM</option>
-            <option value="mango">UNC</option>
-            <option value="mango">OTRAS</option>
+          <select name="universidad" onChange={this.handleChange} value={this.state.universidad} className="form-control">
+            <option value="UNI">UNI</option>
+            <option value="UNMSM">UNMSM</option>
+            <option selected value="UNFV">UNFV</option>
+            <option value="UNLM">UNLM</option>
+            <option value="UNC">UNC</option>
+            <option value="OTRAS">OTRAS</option>
           </select>
         </div>
         <div className="col-md-4 my-3">
           <h5>Año</h5>
-          <input className="form-control" type="number" placeholder="2020"></input>
+          <input name="año" onChange={this.handleChange} value={this.state.año} className="form-control" type="number" placeholder="2020"></input>
         </div>
         <div className="col-md-4 my-3">
           <h5>Ciclo</h5>
-          <select className="form-control">
-            <option value="grapefruit">I</option>
-            <option value="lime">II</option>
-            <option selected value="coconut">OTRO</option>
+          <select name="ciclo" onChange={this.handleChange} value={this.state.ciclo} className="form-control">
+            <option value="I">I</option>
+            <option value="II">II</option>
+            <option selected value="Otro">OTRO</option>
           </select>
         </div>
       </div>

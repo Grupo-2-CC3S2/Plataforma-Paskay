@@ -112,52 +112,48 @@ constructor() {
       <div className="row">
           <div className="col-md-3">
           <select name="curso" onChange={this.handleChange} value={this.state.curso} className="form-control">
-              <option value="all"> Todas </option>
-              <option value="grapefruit">Aritmética</option>
-              <option value="lime">Álgebra</option>
-              <option value="coconut">Geometría</option>
-              <option value="mango">Trigonometría</option>
-              <option value="mango">RM</option>
-              <option value="mango">Física</option>
-              <option value="mango">Química</option>
-              <option value="letras">Letras</option>
-              <option value="otros">Otros</option>
+              <option value="Aritmética">Aritmética</option>
+              <option value="Álgebra">Álgebra</option>
+              <option selected value="Geometría">Geometría</option>
+              <option value="Trigonometría">Trigonometría</option>
+              <option value="RM">RM</option>
+              <option value="Física">Física</option>
+              <option value="Química">Química</option>
+              <option value="Letras">Letras</option>
+              <option value="Otros">Otros</option>
             </select>
           </div>
           <div className="col-md-3">
           <select name="tema" onChange={this.handleChange} value={this.state.tema} className="form-control">
-              <option value="all"> Todas </option>
-              <option value="grapefruit">Proporciones</option>
-              <option value="lime">Vectores</option>
-              <option value="coconut">Productos notables</option>
-              <option value="mango">Regla de tres simple</option>
-              <option value="mango">Logica</option>
-              <option value="mango">Ecuaciones</option>
-              <option value="mango">Inecuaciones</option>
-              <option value="mango">Valor Absoluto</option>
-              <option value="mango">Otros</option>
+              <option value="Proporciones">Proporciones</option>
+              <option value="Vectores">Vectores</option>
+              <option selected value="Productos notables">Productos notables</option>
+              <option value="Regla de tres simple">Regla de tres simple</option>
+              <option value="Logica">Logica</option>
+              <option value="Ecuaciones">Ecuaciones</option>
+              <option value="Inecuaciones">Inecuaciones</option>
+              <option value="Valor Absoluto">Valor Absoluto</option>
+              <option value="Otros">Otros</option>
             </select>
           </div>
           <div className="col-md-3">
           <select name="universidad" onChange={this.handleChange} value={this.state.universidad} className="form-control">
-              <option value="all"> Todas </option>
-              <option value="grapefruit">universidad Nacional de San Marcos</option>
-              <option value="lime">Universidad del Callao</option>
-              <option value="coconut">Universidad Nacional de Ingenieria</option>
+              <option value="Universidad Nacional de San Marcos">Universidad Nacional de San Marcos</option>
+              <option value="Universidad del Callao">Universidad del Callao</option>
+              <option selected value="Universidad Nacional de Ingenieria">Universidad Nacional de Ingenieria</option>
             </select>
           </div>
           <div className="col-md-3">        
             <select name="año" onChange={this.handleChange} value={this.state.año}  className="form-control">
-              <option value="all"> Todas </option>
-              <option value="grapefruit">2021-1</option>
-              <option value="lime">2020-2</option>
-              <option value="coconut">2020-1</option>
-              <option value="mango">2019-2</option>
-              <option value="mango">2019-1</option>
-              <option value="mango">2018-2</option>
-              <option value="mango">2018-1</option>
-              <option value="mango">2017-2</option>
-              <option value="mango">Otros</option>
+              <option value="2021-1">2021-1</option>
+              <option value="2020-2<">2020-2</option>
+              <option selected value="2020-1">2020-1</option>
+              <option value="2019-2">2019-2</option>
+              <option value="2019-1">2019-1</option>
+              <option value="2018-2">2018-2</option>
+              <option value="2018-1">2018-1</option>
+              <option value="2017-2">2017-2</option>
+              <option value="Otros">Otros</option>
             </select>
           </div>
 

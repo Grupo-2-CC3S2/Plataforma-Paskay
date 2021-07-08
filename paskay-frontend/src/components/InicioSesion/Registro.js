@@ -1,20 +1,7 @@
 import React, {Component} from 'react';
 import Perfil from '../Perfil/Perfil';
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link,
-    NavLink,
-  } from "react-router-dom";
-import Registro from './Registro';
-import { faFileAlt } from "@fortawesome/free-solid-svg-icons";
-import { faHome } from "@fortawesome/free-solid-svg-icons";
-import { faUser } from "@fortawesome/free-solid-svg-icons";
-import { faUpload } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-class IniciarSesion extends Component {
+class Registro extends Component {
   
   constructor() {
     super();
@@ -107,19 +94,16 @@ class IniciarSesion extends Component {
 
       <div className="row my-3">
         <div className="col-md-12"> 
-        <NavLink activeClassName="selected-in" exact= "true"  to="/registro"> <FontAwesomeIcon icon={faUser} size = "1x"/>Registrarse</NavLink>
+          <button className="btn btn-primary w-40 ">Registrarse</button>
         </div>
       </div>
       <div className="row">
+      <Perfil></Perfil>
       </div>
-      <Router>
-              <Switch>
-                <Route path="/registro" component = {Registro}></Route>
-              </Switch>
-          </Router>
-    </div>
+    </div>  
+
   
   )};
 }
 
-export default IniciarSesion;
+export default Registro;

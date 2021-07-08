@@ -2,35 +2,32 @@ var express = require('express');
 var router = express.Router();
 const cors = require('cors');
 
-const Problema = require('../models/problema');
+var { search_in_db } = require('../controllers/search')
 
-/* GET home page. */
-router.get('/', cors(), async (req, res, next) => {
-  //const usuario = await Problema.find({"id_usr": "1"});
-  //console.log("obtenido",usuario)
-  console.log(req.query.search_query)
-  let results;
-  let cursoSearch = ".";
-  let temaSearch = ".";
-  let anioSearch = ".";
-  let uniSearch = "UNI";
-  if(req.query.search_query){
-    results = await Problema.find(
-      {
-        $text: {
-          $search: req.query.search_query
-        },
-        universidad: {$regex: uniSearch},
-        //curso: {$regex: cursoSearch},
-        id_tema: {$regex: temaSearch}
-      },
-      {
-        score: {$meta: 'textScore'}
-      }
-    ).sort({
-      score: {$meta: 'textScore'}
-    });
+const getRegexOfOption = (option) => {
+  if (option) return option == "all" ? "." : option;
+  else return ".";
+}
+
+
+const getOptionsOfAdvancedSearch = (queryOfURL) => {
+  return {
+    regex_curso: getRegexOfOption(queryOfURL.curso),
+    regex_tema: getRegexOfOption(queryOfURL.tema),
+    regex_anio: getRegexOfOption(queryOfURL.anio),
+    regex_universidad: getRegexOfOption(queryOfURL.universidad),
   }
+}
+router.get('/', cors(), async (req, res, next) => {
+
+  let results;
+
+  const optionsOfAdvancedSearch = getOptionsOfAdvancedSearch(req.query)
+
+  if(req.query.search_query){
+    results = await search_in_db(req.query.search_query, optionsOfAdvancedSearch) 
+  }
+
   res.json(results)
 });
 

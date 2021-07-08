@@ -9,7 +9,7 @@ var { uploadProblem,
       deleteAllProblems, 
       getProblem, 
       putProblem,
-      deleteProblem} = require('../controllers/problem')
+      deleteProblem } = require('../controllers/problem')
 
 router.route('/')
 .get(getAllProblems)

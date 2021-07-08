@@ -112,9 +112,10 @@ constructor() {
       <div className="row">
           <div className="col-md-3">
           <select name="curso" onChange={this.handleChange} value={this.state.curso} className="form-control">
+              <option value="all"> Todas </option>
               <option value="grapefruit">Aritmética</option>
               <option value="lime">Álgebra</option>
-              <option selected value="coconut">Geometría</option>
+              <option value="coconut">Geometría</option>
               <option value="mango">Trigonometría</option>
               <option value="mango">RM</option>
               <option value="mango">Física</option>
@@ -123,11 +124,12 @@ constructor() {
               <option value="otros">Otros</option>
             </select>
           </div>
-          <div name="tema" onChange={this.handleChange} value={this.state.tema} className="col-md-3">
-          <select className="form-control">
+          <div className="col-md-3">
+          <select name="tema" onChange={this.handleChange} value={this.state.tema} className="form-control">
+              <option value="all"> Todas </option>
               <option value="grapefruit">Proporciones</option>
               <option value="lime">Vectores</option>
-              <option selected value="coconut">Productos notables</option>
+              <option value="coconut">Productos notables</option>
               <option value="mango">Regla de tres simple</option>
               <option value="mango">Logica</option>
               <option value="mango">Ecuaciones</option>
@@ -138,16 +140,18 @@ constructor() {
           </div>
           <div className="col-md-3">
           <select name="universidad" onChange={this.handleChange} value={this.state.universidad} className="form-control">
+              <option value="all"> Todas </option>
               <option value="grapefruit">universidad Nacional de San Marcos</option>
               <option value="lime">Universidad del Callao</option>
-              <option selected value="coconut">Universidad Nacional de Ingenieria</option>
+              <option value="coconut">Universidad Nacional de Ingenieria</option>
             </select>
           </div>
           <div className="col-md-3">        
             <select name="año" onChange={this.handleChange} value={this.state.año}  className="form-control">
+              <option value="all"> Todas </option>
               <option value="grapefruit">2021-1</option>
               <option value="lime">2020-2</option>
-              <option selected value="coconut">2020-1</option>
+              <option value="coconut">2020-1</option>
               <option value="mango">2019-2</option>
               <option value="mango">2019-1</option>
               <option value="mango">2018-2</option>

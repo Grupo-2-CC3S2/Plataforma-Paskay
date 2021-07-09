@@ -1,0 +1,13 @@
+
+#pregPict{
+    border-radius: 25px;   
+}
+
+.pregContent{
+    background:rgb(239, 235, 255);
+    border-radius: 25px;
+}
+
+.pregFont{
+    font-size: 20px;
+}

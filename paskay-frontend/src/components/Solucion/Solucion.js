@@ -2,16 +2,25 @@ import React, {Component} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './Solucion.css';
 
+//================ Información de solucion de la bbdd ====================
+import imgSol from './../../imagenes/solMuestra.png';
+var idSol= '16565';
+var commentSol= "Lorem Ipsum is simply dummy text of the printing and typesetting\
+industry. Lorem Ipsum has been the industry's standard dummy text \
+ever since the 1500s, when an ";
+
+//================ Fin Información de solucion de la bbdd ====================
+
 class Solucion extends Component {
   render(){
       return(
-        <div className='row'>
+        <div className='row solContent'>
           <div className='col-md-12 my-3'>
-            <h3>Solucion N° 16565</h3>
-              <img src='./../../imagenes/solucion.jpg'></img>
-              <p>Lorem Ipsum is simply dummy text of the printing and typesetting 
-              industry. Lorem Ipsum has been the industry's standard dummy text 
-              ever since the 1500s, when an unknown printer took a galley</p>
+            <h3>Solucion N° {idSol}</h3>
+              <img className='col-md-8 solPict' src={imgSol}></img>
+          </div>
+          <div className='col-md-12 my-3'>
+            <p className='solFont'>Comentario: {commentSol}</p>
           </div>
         </div>
       )}

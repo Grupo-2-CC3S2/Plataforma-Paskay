@@ -1,5 +1,5 @@
-import bcrypt from "bcryptjs";
-import { Schema, model } from "mongoose";
+let bcrypt = require('bcryptjs');
+//let { Schema, model } = require('mongoose');
 
 var mongoose = require('mongoose');
 

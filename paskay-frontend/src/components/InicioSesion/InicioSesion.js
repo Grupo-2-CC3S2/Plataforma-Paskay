@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Perfil from '../Perfil/Perfil';
+import './../commonStyles.css'
 
 class IniciarSesion extends Component {
   

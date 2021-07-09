@@ -3,6 +3,8 @@ import React, {Component} from 'react';
 import { useState } from 'react';
 import './Buscador.css';
 import Pregunta from './Pregunta/Pregunta';
+import Solucion from '../Solucion/Solucion';
+import {FaEdit, FaFilter, FaSearch} from "react-icons/fa"
 //import { faThumbsUp } from "@fortawesome/free-solid-svg-icons";
 //import { faThumbsDown } from "@fortawesome/free-solid-svg-icons";
 
@@ -22,13 +24,26 @@ const BuscarPregunta = () => {
     </div>
   )
 }
-
-
 // ===========================Fin Mostrar Pregunta ====================
+// =================== Mostrar-ocultar solucion =================
+const Toggle = () => {
+  const [show, toggleShow] = React.useState(true);
+  return (
+    <div>
+      <button
+        className='btn btn-success btn-lg btn-block my-3'
+        onClick={() => toggleShow(!show)}
+      >
+        {show ? 'Ocultar Solución' : 'Mostrar Solución'}
+      </button>    
+      {show && <div><Solucion/></div>}
+    </div>
+  )
+}
+
+// ===================Fin Mostrar-ocultar solucion =================
 
 class Buscador extends Component { 
-
-
 constructor() {
     super();
     this.state = {
@@ -47,8 +62,6 @@ constructor() {
       checked: !this.state.checked,
     })
   }
-
-
 
   handleChange(e) {
     //console.log(e.target.name, e.target.value)
@@ -165,43 +178,38 @@ constructor() {
   return (
   
       
-    <div className="box container">
-      <div className="row">
+    <div className="container">
+      <div className="row cardStyle p-4 my-4">
         <div className="col-md-12 my-3"><h1 className="titulo">PLATAFORMA PASKAY</h1></div>
         <div className="col-md-12"><h2>¡Únete a millones de usuarios en la resolución de problemas!</h2></div>    
-      </div>
-
-      <div className="row my-3">
-        <div className="col-md-10"> 
+        <div className="col-md-8"> 
           <input name="buscador" onChange={this.handleChange} value={this.state.buscador}  className="form-control " placeholder="Escribe tu pregunta" 
           size="15" type="text" /*value={this.state.value} onChange={this.handleChange}*/ />
         </div>
-        <div className="col-md-2"> 
-          <button className="btn btn-primary w-100 " value="Submit" onClick={this.pedirTask}>Buscar</button>
+        <div className="col-md-2 text-left"> 
+          <button className="btn btn-primary w-100 " value="Submit" onClick={this.pedirTask}><FaSearch></FaSearch></button>
         </div>
-      </div>
 
-      <div className="row">
-        <div className="col-md-4"><input type="checkbox" 
+        <div className="col-md-1 text-left"><input type="checkbox" 
         checked={ this.state.checked } 
         onChange={ this.handleCheck }
+        className=''
         name="check" id="check" value="1"/> 
-        Busqueda avanzada</div> 
-      </div>
-      <div>
-        { content }
+        <FaFilter></FaFilter>
+        </div> 
+        <div className="col-md-12">{ content }</div>
       </div>
 
-      <div className="row my-3">
+      <div className="row  my-4 cardStyle p-4">
         <div className="col-md-12"> 
           {/*<button className="btn btn-primary w-50 ">Buscar</button>*/}
-          <h5>Resultados relacionados a {this.state.text}</h5>
+          <h5>Resultados relacionados a {this.state.text}<hr/></h5>
         </div>
-      </div>
-      <div className="row my-3">
+      
       <div className="col-md-12">
         {/*<BuscarPregunta/>*/}
         <Pregunta></Pregunta>
+        <Toggle/>
       </div>
       </div>
 

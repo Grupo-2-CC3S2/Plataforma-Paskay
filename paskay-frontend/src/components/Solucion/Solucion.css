@@ -1,61 +1,12 @@
-.homepage{
-  display: flex;
-  justify-content: center;
-  background: #101D29;
-}
-/*
-.homepage > div:first-child{
-  width: 70%;
+.solContent{
+    background:rgb(245, 189, 189);
+    border-radius: 35px;
 }
 
-*/
-.homepage > div:nth-child(2){
-  width: 30%;
-  background: #770606;
-}
-.card-p{
-  padding: 3px;
-  margin: 3px 0px;
-  background: #9897DE;
-}
-.head-p{
-  padding: 10px 15px;
-  background: #770606;
-  color: white;
-  display: flex;
-  justify-content: space-between;
+.solPict{
+    border-radius: 35px;   
 }
 
-
-.head-p span{
-
-  color: white;
-}
-
-.keywords a{
-  padding: 0px 5px;
-}
-
-.body-p{
-  padding: 5px 0px;
-  text-align: center;
-}
-.body-p img{
-  width: 50%;
-}
-.resp-p{
-  text-align: center;
-}
-
-.resp-p img{
-  width: 50%;
-  text-align: center;
-}
-
-
-.solucion > div:first-child{
-  display: inline-block;
-  background: blue;
-  padding: 3px;
-  color: white;
+.solFont{
+    font-size: 20px;
 }

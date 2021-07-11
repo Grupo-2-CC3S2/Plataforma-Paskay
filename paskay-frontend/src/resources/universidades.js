@@ -1,5 +1,6 @@
 export let UNIVERSIDADES = [
-  "Universidad Nacional de Ingenieria",
-  "Universidad del Callao"
+  "UNIVERSIDAD NACIONAL DE INGENIERIA",
+  "UNIVERSIDAD NACIONAL DEL CALLAO",
+  "UNIVERSIDAD NACIONAL MAYOR DE SAN MARCOS"
 ]
 

@@ -2,6 +2,7 @@
 import React, {Component} from 'react';
 import { useState } from 'react';
 import './Buscador.css';
+import Resultados from './Resultados/Resultados';
 import Pregunta from './Pregunta/Pregunta';
 import { CURSOS } from "../../resources/cursos"
 import { UNIVERSIDADES } from "../../resources/universidades"
@@ -11,7 +12,12 @@ import {FaEdit, FaFilter, FaSearch} from "react-icons/fa"
 //import { faThumbsUp } from "@fortawesome/free-solid-svg-icons";
 //import { faThumbsDown } from "@fortawesome/free-solid-svg-icons";
 
-// ===========================Mostrar Pregunta ====================
+// ========== Variables de prueba ===========
+import { testPregunta1 } from '../../resources/testVariables';
+// ========== Variables de prueba ===========
+
+
+// ===========================Mostrar SOLUCION ====================
 const BuscarPregunta = () => {
   const [show, toggleShow] = React.useState(true);
 
@@ -28,24 +34,6 @@ const BuscarPregunta = () => {
   )
 }
 // ===========================Fin Mostrar Pregunta ====================
-// =================== Mostrar-ocultar solucion =================
-const Toggle = () => {
-  const [show, toggleShow] = React.useState(true);
-  return (
-    <div>
-      <button
-        className='btn btn-success btn-lg btn-block my-3'
-        onClick={() => toggleShow(!show)}
-      >
-        {show ? 'Ocultar Solución' : 'Mostrar Solución'}
-      </button>    
-      {show && <div><Solucion/></div>}
-    </div>
-  )
-}
-
-// ===================Fin Mostrar-ocultar solucion =================
-
 class Buscador extends Component { 
 constructor() {
 
@@ -56,7 +44,7 @@ constructor() {
       tema:'all',
       universidad:'all',
       año:'all',
-      resultados:[]
+      resultados:[],
     };
     this.handleChange = this.handleChange.bind(this);
     this.addTask = this.pedirTask.bind(this);
@@ -176,44 +164,47 @@ constructor() {
 
       </div>
     // ==========================FIN BUSQUEDA AVANZADA =================================
-
   return (
+    // ==========================ENCABEZADO DEL BUSCADOR =================================
     <div className="container">
       <div className="row cardStyle p-4 my-4">
         <div className="col-md-12 my-3"><h1 className="titulo">PLATAFORMA PASKAY</h1></div>
         <div className="col-md-12"><h2>¡Únete a millones de usuarios en la resolución de problemas!</h2></div>    
-        <div className="col-md-8"> 
+        <div className="col-md-11"> 
           <input name="buscador" onChange={this.handleChange} value={this.state.buscador}  className="form-control " placeholder="Escribe tu pregunta" 
           size="15" type="text" /*value={this.state.value} onChange={this.handleChange}*/ />
         </div>
-        <div className="col-md-2 text-left"> 
+        <div className="col-md-1 text-left"> 
           <button className="btn btn-primary w-100 " value="Submit" onClick={this.pedirTask}><FaSearch></FaSearch></button>
         </div>
 
-        <div className="col-md-1 text-left"><input type="checkbox" 
+        <div className="col-md-4 text-left my-4"><input type="checkbox" 
         checked={ this.state.checked } 
         onChange={ this.handleCheck }
         className=''
         name="check" id="check" value="1"/> 
-        <FaFilter></FaFilter>
+         Búsqueda avanzada
         </div> 
         <div className="col-md-12">{ content }</div>
       </div>
-
+      {/* // ======================Fin ENCABEZADO DEL BUSCADOR =================================*/}
       <div className="row  my-4 cardStyle p-4">
         <div className="col-md-12"> 
           {/*<button className="btn btn-primary w-50 ">Buscar</button>*/}
           <h5>Resultados relacionados a {this.state.text}<hr/></h5>
         </div>
-      
+        <div className="col-md-12">
+          {/* ************Plantilla para mostrar resultados de busqueda*********** */}
+          <Resultados></Resultados>
+          <Resultados></Resultados>
+          <Resultados></Resultados>
+        </div>
       <div className="col-md-12">
         {/*<BuscarPregunta/>*/}
      {this.state.resultados.map((preg) => {
           console.log(preg)
           return <Pregunta id = {parseInt(preg._id.slice(18,24),16)} texto = {preg.description}></Pregunta>
         })}
-
-        <Toggle/>
       </div>
       </div>
 

@@ -7,11 +7,14 @@ import Solucion from '../../Solucion/Solucion';
 
 //================ Información d epregunta de la bbdd ====================
 import imgPreg from './../../../imagenes/pregMuestra.jpg'
-var idPregunta= 'Pregunta N° 16565';
+var idUsuario= '5465456';
+var nombreUsuario= 'Diana Ramirez'
+var idPregunta= '16565';
+var fechaSubida= '06/06/2021';
 var opcionesPregunta=['opcion A', 'opcion B', 'opcion C', 'opcion D', 'opcion E'];
 var textoPregunta= "Lorem Ipsum is simply dummy text of the printing and typesetting\
 industry. Lorem Ipsum has been the industry's standard dummy text \
-ever since the 1500s, when an unknown printer took a galley of type \
+ever since the 1500s, Soluciohen an unknown printer took a galley of type \
 and scrambled it to make a type specimen book. It has survived not \
 only five centuries, but also the leap into electronic typesetting, \
 remaining essentially unchanged. It was popularised in the 1960s \
@@ -34,16 +37,12 @@ class Pregunta extends Component {
         <div className='container'>
         <div className='row pregContent'>
           <div className='col-md-12 my-3'>
-        {/*
-            <h3>Pregunta N° {this.props.id}</h3>
-            <p>{this.props.texto}</p>
-              <img src='./../../../imagenes/solucion.jpg'></img>*/}
-            <h3>{idPregunta}</h3>
+            <h3>Pregunta N° {idPregunta}</h3>
           </div>
-          <div className='col-md-7 p-4 text-left  pregFont'>
+          <div className='col-md-12 p-4 text-left  pregFont'>
             <p>{textoPregunta}</p>
           </div>
-          <div className='col-md-5 my-4'>
+          <div className='col-md-12'>
             <img className='my-4 col-md-12' id='pregPict' src={imgPreg}/>
           </div>
           <div className='col-md-12 my-4 row pregFont'>
@@ -53,6 +52,10 @@ class Pregunta extends Component {
             <div className='col-md-4'><h3><Badge variant="secondary">{opcionesPregunta[3]}</Badge></h3></div>
             <div className='col-md-4'><h3><Badge variant="secondary">{opcionesPregunta[4]}</Badge></h3></div>
           </div>
+        </div>
+        <div className='row'>
+          <div className='col text-left my-4'><p className='grayText'>Autor: {nombreUsuario} ({idUsuario})</p></div>
+          <div className='col text-right my-4'><p className='grayText'>{fechaSubida}</p></div>
         </div>
         </div>
       )}

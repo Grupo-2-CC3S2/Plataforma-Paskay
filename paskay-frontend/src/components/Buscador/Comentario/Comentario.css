@@ -11,5 +11,9 @@ overflow: hidden;
 white-space: nowrap;
 }
 
+.grayText{
+   color: gray;
+}
+
 
 

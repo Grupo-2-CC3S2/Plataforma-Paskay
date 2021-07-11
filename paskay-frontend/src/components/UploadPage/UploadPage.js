@@ -6,9 +6,14 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import { Button} from 'react-bootstrap';
 import { Collapse} from 'react-bootstrap';
 
+
+import { CURSOS } from "../../resources/cursos"
+import { UNIVERSIDADES } from "../../resources/universidades"
+import { ANIOS } from "../../resources/anios"
+
 /////////////////////////////////////////////////////////
 
-function Example() {
+function Example(props) {
   const [open, setOpen] = useState(false);
   const [open2, setOpen2] = useState(false);
 
@@ -81,16 +86,18 @@ function Example() {
       <Collapse in={open2}>
         <div className='row my-3'>
           <div className='col-md-8'>
-            <textarea className="col-md 12 form-control my-2" rows={'4'}></textarea>
-            <input className='col-md-2 mx-2' placeholder='opcion a'></input><input className='col-md-2 mx-2' placeholder='opcion b'></input>
-            <input className='col-md-2 mx-2' placeholder='opcion c'></input><input className='col-md-2 mx-2' placeholder='opcion d'></input>
-            <input className='col-md-2 mx-2' placeholder='opcion e'></input>
+            <textarea name = "texto" onChange={props.handleChange} value={props.state.texto} className="col-md 12 form-control my-2" rows={'4'}></textarea>
+            <input name = "opc_a" onChange={props.handleChange} value={props.state.opc_a} className='col-md-2 mx-2' placeholder='opcion a'></input>
+            <input name = "opc_b" onChange={props.handleChange} value={props.state.opc_b} className='col-md-2 mx-2' placeholder='opcion b'></input>
+            <input name = "opc_c" onChange={props.handleChange} value={props.state.opc_c} className='col-md-2 mx-2' placeholder='opcion c'></input>
+            <input name = "opc_d" onChange={props.handleChange} value={props.state.opc_d} className='col-md-2 mx-2' placeholder='opcion d'></input>
+            <input name = "opc_e" onChange={props.handleChange} value={props.state.opc_e} className='col-md-2 mx-2' placeholder='opcion e'></input>
           </div>
           <div className='col-md-4'>
-            <input className='col-md-12 my-5' type='file'/>
+            <input  onChange={props.handleChange} className='col-md-12 my-5' type='file'/>
           </div>
           <div className="col-md-12 my-3">
-            <button className="btn btn-primary btn-lg w-50">Subir</button>  
+            <button onClick = {props.enviar} className="btn btn-primary btn-lg w-50">Subir</button>  
           </div>
         </div>
       </Collapse>
@@ -155,14 +162,30 @@ class UploadPage extends Component {
   /////////////////////////////////////////////////////////
   constructor(props) {
     super(props);
-
+    
+    this.state = {
+      curso: 'all',
+      tema: 'all',
+      universidad: 'all',
+      anio: 'all',
+      texto: 'all',
+      image: 'all',
+      opc_a: 'all',
+      opc_b: 'all',
+      opc_c: 'all',
+      opc_d: 'all',
+      opc_e: 'all'
+    };
+/*
     this.state = {
       firstname: "",
       //lastname: "",
       items: []
     };
+    */
   }
 
+  /*
   handleChange(event) {
     if (event.target.name === "firstname") {
       this.setState({ firstname: event.target.value });
@@ -170,7 +193,7 @@ class UploadPage extends Component {
       this.setState({ lastname: event.target.value });
     }
   }
-
+*/
   addItem() {
     this.setState({
       items: [ 
@@ -199,6 +222,62 @@ class UploadPage extends Component {
 
   } 
 
+
+  handleChange = (e) => {
+    //console.log(e.target.name, e.target.value)
+    //console.log(e.target.value)
+    console.log(this.state);   
+    if(e.target.files){
+      this.setState({ image: e.target.files[0] })
+    }else{
+      const { name, value } = e.target;
+      this.setState({
+        [name]: value
+      });
+    }
+  }
+
+
+  enviar = () => {
+    var formData = new FormData();
+
+    formData.append("enunciado", this.state.texto);
+    formData.append("anio", `${this.state.anio}-${this.state.ciclo}`);
+    formData.append("universidad", this.state.universidad);
+    formData.append("tema", this.state.tema);
+    formData.append("opciones", `[${this.state.opc_a},${this.state.opc_b}]`);
+    formData.append("curso", this.state.curso);
+
+    // HTML file input user's choice...
+    formData.append("image", this.state.image);
+
+    // JavaScript file-like object...
+    //var content = '<a id="a"><b id="b">hey!</b></a>'; // the body of the new file...
+    //var blob = new Blob([content], { type: "text/xml"});
+
+    //formData.append("webmasterfile", blob);
+
+    var request = new XMLHttpRequest();
+    request.open("POST", "http://localhost:3001/problems");
+    request.send(formData);
+  }
+
+
+
+
+
+  renderTemas = () => {
+    for(let i in CURSOS){
+      if(CURSOS[i].nombre == this.state.curso){
+          return CURSOS[i].temas.map((tema) => {
+            return <option value = {tema}>{tema}</option>
+           })
+      }
+    }
+    return <div></div>
+    
+  }
+
   render(){
   return (
     
@@ -210,67 +289,44 @@ class UploadPage extends Component {
       <div className="col-md-12"><h4>Detalles </h4></div>
         <div className="col-md-4 my-3">
           <h5>Curso</h5>
-          <select className="form-control">
-            <option value="grapefruit">Aritmética</option>
-            <option value="lime">Álgebra</option>
-            <option selected value="coconut">Geometría</option>
-            <option value="mango">Trigonometría</option>
-            <option value="mango">RM</option>
-            <option value="mango">Física</option>
-            <option value="mango">Química</option>
-            <option value="mango">Letras</option>
-            <option value="mango">Otros</option>
+          <select name="curso" onChange={this.handleChange} value={this.state.curso} className="form-control">
+              {CURSOS.map((curso) => {
+                return <option value = {curso.nombre}>{curso.nombre}</option>
+              })}
           </select>
         </div>
         <div className="col-md-4 my-3">
           <h5>Tema</h5>
-          <select className="form-control">
-            <option value="grapefruit"></option>
-            <option value="lime">Movimiento</option>
-            <option value="lime">Mecánica</option>
-            <option selected value="coconut">Fluidos</option>
-            <option value="mango">Electricidad</option>
-            <option value="mango">Magnetismo</option>
-            <option value="mango">Gravitación</option>
+          <select name="tema" onChange={this.handleChange} value={this.state.tema} className="form-control">
+              {this.renderTemas()}
           </select>
         </div>
-        <div className="col-md-4 my-3">
-          <h5>Subtema</h5>
-          <select className="form-control">
-            <option value="grapefruit">Vectores</option>
-            <option value="lime">MRU</option>
-            <option selected value="coconut">MRUV</option>
-            <option value="mango">Caida Libre</option>
-            <option value="mango">Movimiento Parabólico</option>
-          </select>
-        </div>
+        
         <div className="col-md-4 my-3">
           <h5>Universidad</h5>
-          <select className="form-control">
-            <option value="grapefruit">UNI</option>
-            <option value="lime">UNMSM</option>
-            <option selected value="coconut">UNFV</option>
-            <option value="mango">UNLM</option>
-            <option value="mango">UNC</option>
-            <option value="mango">OTRAS</option>
+          <select name="universidad" onChange={this.handleChange} value={this.state.universidad} className="form-control">
+              {UNIVERSIDADES.map((universidad) => {
+                return <option value = {universidad}>{universidad}</option>
+              })}
           </select>
         </div>
         <div className="col-md-4 my-3">
           <h5>Año</h5>
-          <input className="form-control" type="number" placeholder="2020"></input>
+          <input name = "anio" onChange={this.handleChange} value={this.state.anio} className="form-control" type="number" placeholder="2020"></input>
         </div>
         <div className="col-md-4 my-3">
           <h5>Ciclo</h5>
-          <select className="form-control">
-            <option value="grapefruit">I</option>
-            <option value="lime">II</option>
-            <option selected value="coconut">OTRO</option>
+          <select name = "ciclo" onChange={this.handleChange} value={this.state.ciclo} className="form-control">
+            <option value="I">I</option>
+            <option value="II">II</option>
+            <option value="III">III</option>
+            <option value="coconut">OTRO</option>
           </select>
         </div>
       </div>
       {/* ****************************************React transitions ************************************* */}
       <div className='my-4 p-4'>
-        <Example />
+        <Example enviar = {this.enviar} handleChange = {this.handleChange} state = {this.state} />
       </div>  
       
     {/*</form>*/}

@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 const cors = require('cors');
 
-var { search_in_db } = require('../controllers/search')
+var { search_in_db } = require('../controllers/search.controller')
 
 const getRegexOfOption = (option) => {
   if (option) return option == "all" ? "." : option;
@@ -27,6 +27,7 @@ router.get('/', cors(), async (req, res, next) => {
   if(req.query.search_query){
     results = await search_in_db(req.query.search_query, optionsOfAdvancedSearch) 
   }
+  console.log(results)
 
   res.json(results)
 });

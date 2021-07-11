@@ -10,16 +10,24 @@ var ProblemaSchema = new Schema(
     usuario: { type: Schema.Types.ObjectId, ref: 'Usuario' },
     likes: {type: Number, required:true},
     dislikes: {type: Number, required:true},
+    //name: {type: String, text: true, required:true, max: 1000, index: true},
+    enunciado: {type: String, text: true, required:true, max: 1000, index: true},
     name: {type: String, text: true, required:true, max: 1000, index: true},
-    description: {type: String, text: true, required:true, max: 1000, index: true},
-    claves: [{type: String}],
-    anio_tomado: {type: Date},
+    opciones: [{type: String}],
+    anio: {type: String},
     universidad: {type: String, required:true, max: 100},
-    id_tema: {type: String, required:true, max: 50},
-    url_image: {type: String, required:true, max: 200},
+    tema: {type: String, required:true, max: 50},
+    url_image: {type: String, max: 200},
     soluciones: [{ type: Schema.Types.ObjectId, ref: 'Solucion' }]
   }
 );
+
+ProblemaSchema.index(
+                    {
+                        'name': "text", 
+                        'enunciado': "text" 
+                    }
+                ); // schema level
 
 ProblemaSchema.methods.setImgUrl = function setImgUrl (filename) {
   const { host, port } = appConfig;

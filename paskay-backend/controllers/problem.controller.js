@@ -6,41 +6,51 @@ var mongoose = require('mongoose');
 exports.uploadProblem = async (req, res, next) => {
 
   console.log(req.body)
+
   let { 
-          usuario,
-          likes,
-          dislikes,
-          name,
-          description,
-          claves,
-          anio_tomado,
+          //usuario,
+          enunciado,
+          opciones,
+          anio,
           universidad,
-          id_tema,
+          tema/*,
           url_image,
-          soluciones
+          soluciones*/
         } = req.body;
 
   let _id = mongoose.Types.ObjectId();
-  usuario = mongoose.Types.ObjectId(usuario);
+  //usuario = mongoose.Types.ObjectId(usuario);
+  let usuario = mongoose.Types.ObjectId();
+  let name = "Pregunta prueba"
+  let soluciones = []
+  
+  /*
   let soString = soluciones
   soluciones = []
   for (sol in soString){
     soluciones.push(mongoose.Types.ObjectId(soString[sol]))
   }
+  */
+  let likes = 0;
+  let dislikes = 0;
   const problema = new Problema({ 
                                   _id,
                                   usuario,
                                   likes,
                                   dislikes,
                                   name,
-                                  description,
-                                  claves,
-                                  anio_tomado,
+                                  enunciado,
+                                  opciones,
+                                  anio,
                                   universidad,
-                                  id_tema,
-                                  url_image,
+                                  tema,
                                   soluciones
                                 });
+  if(req.file) {
+    const {filename} = req.file
+    problema.setImgUrl(filename)
+
+  }
   await problema.save();
   res.json({status: 'Problem Saved'});
 }
@@ -48,6 +58,7 @@ exports.uploadProblem = async (req, res, next) => {
 
 exports.getAllProblems = async (req, res, next) => {
   const problemas = await Problema.find({});
+  console.log(problemas);
   res.json(problemas);
 }
 

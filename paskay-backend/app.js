@@ -5,17 +5,19 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var usersRouter = require('./routes/users.routes');
 var generadorRouter = require('./routes/generador');
-var searchRouter = require('./routes/search');
-var problemaRouter = require('./routes/problem');
+var searchRouter = require('./routes/search.routes');
+var problemaRouter = require('./routes/problem.routes');
 var solutionRouter = require('./routes/solucions');
+var authRouter = require('./routes/auth.routes');
 
 var bodyParser = require('body-parser');
 
+let { createRoles } = require('./libs/initialSetup')
 
 var app = express();
-
+createRoles()
 
 
 const { mongoose } = require('./database');
@@ -35,11 +37,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/public',express.static(path.join(__dirname, 'storage/imgs')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/generador', generadorRouter);
-app.use('/search', searchRouter);
-app.use('/problems', problemaRouter);
-app.use('/solutions', solutionRouter);
+app.use('/api/users', usersRouter);
+app.use('/api/generador', generadorRouter);
+app.use('/api/search', searchRouter);
+app.use('/api/problems', problemaRouter);
+app.use('/api/solutions', solutionRouter);
+app.use('/api/auth', authRouter);
 
 
 // catch 404 and forward to error handler

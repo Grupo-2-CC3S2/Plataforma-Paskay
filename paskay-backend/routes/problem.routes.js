@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 
+const cors = require('cors');
+
 const upload = require('../libs/storage')
 
 var { uploadProblem,
@@ -9,11 +11,11 @@ var { uploadProblem,
       deleteAllProblems, 
       getProblem, 
       putProblem,
-      deleteProblem } = require('../controllers/problem')
+      deleteProblem } = require('../controllers/problem.controller')
 
 router.route('/')
 .get(getAllProblems)
-.post(upload.single('image'),uploadProblem)
+.post(cors(),upload.single('image'),uploadProblem)
 .put(putProblems)
 .delete(deleteAllProblems);
 

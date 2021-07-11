@@ -9,7 +9,7 @@ exports.search_in_db = (search_query, options) => {
         },
         universidad: {$regex: options.regex_universidad},
         //curso: {$regex: cursoSearch},
-        id_tema: {$regex: options.regex_tema}
+        tema: {$regex: options.regex_tema}
       },
       {
         score: {$meta: 'textScore'}

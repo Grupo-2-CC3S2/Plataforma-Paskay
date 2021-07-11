@@ -12,6 +12,7 @@ import HomePage from './HomePage/HomePage';
 import UploadPage from './UploadPage/UploadPage';
 import GenPage from './GenPage/GenPage';
 import IniciarSesion from './InicioSesion/InicioSesion';
+import Registro from './Registro/Registro';
 import Buscador from './Buscador/Buscador';
 
 import { faFileAlt } from "@fortawesome/free-solid-svg-icons";
@@ -115,10 +116,11 @@ class Main extends Component {
                     </nav>
                 </div>
               <Switch>
+                <Route path="/registro" component = {Registro}></Route>
                 <Route path="/login" component = {IniciarSesion}></Route>
                 <Route path="/generador" component = {GenPage}></Route>
                 <Route path="/upload" component = {UploadPage}></Route>
-                <Route path="/" component = {Buscador}></Route>
+                <Route path="/" component = {Buscador}></Route>              
               </Switch>
           </Router>
         </div>

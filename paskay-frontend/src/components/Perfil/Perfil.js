@@ -14,6 +14,7 @@ import ModalDialog from 'react-bootstrap/ModalDialog'
 import { Button} from 'react-bootstrap';
 import { SyncProblemSharp } from '@material-ui/icons';
 
+
 class Perfil extends Component {
   constructor(props) {
     super(props);
@@ -91,7 +92,7 @@ class Perfil extends Component {
             </div>
           </div>
         </div>
-        {/* ============== INFO DE TU ACTIVIDAD =================*/}
+        {/* ============== Fin INFO DE TU ACTIVIDAD =================*/}
         {/* ============== modal para ver ejercicio =================*/}
         <Modal size='lg' centered show={this.state.isOpen} onHide={this.closeModal}>
           <Modal.Header closeButton>

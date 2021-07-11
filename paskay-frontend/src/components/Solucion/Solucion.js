@@ -1,9 +1,20 @@
 import React, {Component} from 'react';
+import { useState } from 'react';
+import { Button} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './Solucion.css';
+//Para hacer zomm en imagenes
+import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
+import {FaEdit, FaEye, FaScroll, FaSearchPlus,FaSearchMinus } from "react-icons/fa"
+import Alert from 'react-bootstrap/Alert'
+
 
 //================ Información de solucion de la bbdd ====================
 import imgSol from './../../imagenes/solMuestra.png';
+import { faSearchMinus, faSearchPlus } from '@fortawesome/free-solid-svg-icons';
+var idUsuario= '5465456';
+var nombreUsuario= 'Diana Ramirez'
+var fechaSubida= '06/06/2021';
 var idSol= '16565';
 var commentSol= "Lorem Ipsum is simply dummy text of the printing and typesetting\
 industry. Lorem Ipsum has been the industry's standard dummy text \
@@ -11,16 +22,46 @@ ever since the 1500s, when an ";
 
 //================ Fin Información de solucion de la bbdd ====================
 
+function AlertDismissibleExample() {
+  const [show, setShow] = useState(true);
+  if (show) {
+    return (
+      <Alert variant="warning" onClose={() => setShow(false)} dismissible>
+        <Alert.Heading>Para hacer ZOOM</Alert.Heading>
+        <p>
+          junta y separa los dedos , o usa la rueda del mouse.
+        </p>
+        <FaSearchPlus/> <FaSearchMinus/>
+      </Alert>
+    );
+  }
+  return <div className='text-right'><Button onClick={() => setShow(true)}><FaEye></FaEye></Button></div>;
+}
+
 class Solucion extends Component {
   render(){
       return(
-        <div className='row solContent'>
-          <div className='col-md-12 my-3'>
-            <h3>Solucion N° {idSol}</h3>
-              <img className='col-md-8 solPict' src={imgSol}></img>
-          </div>
-          <div className='col-md-12 my-3'>
-            <p className='solFont'>Comentario: {commentSol}</p>
+        <div className='container'>
+          <div className='row'>
+            <div className='solContent'>
+            <div className='col-md-12 my-3'>
+                <h3>Solucion N° {idSol}</h3>
+                <div className='col-md-12 my-3'>
+                  <AlertDismissibleExample />
+              </div>
+                <TransformWrapper>
+                  <TransformComponent>
+                    <img className='col-md-12 solPict' src={imgSol} zoomSrc={imgSol}></img>
+                  </TransformComponent>
+                </TransformWrapper>
+              </div>
+                  <div className='col-md-12 my-3'>
+                <p className='solFont'>Comentario: {commentSol}</p>
+              </div>
+              </div>
+              <div className='col my-4 text-left'><p className='grayText'>Autor: {nombreUsuario} ({idUsuario})</p></div>
+              <div className='col my-4 text-right'><p className='grayText'>{fechaSubida}</p></div>
+            
           </div>
         </div>
       )}

@@ -11,5 +11,15 @@ overflow: hidden;
 white-space: nowrap;
 }
 
+.grayText{
+   color: gray;
+}
+
+.reSize{
+   size: 10px;
+}
+
+
+
 
 

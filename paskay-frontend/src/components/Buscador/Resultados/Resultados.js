@@ -108,8 +108,8 @@ class Resultados extends Component {
     {/*========RESULTADoS DE BUSQUEDA =============== */}
       <div className='row text-left my-2'>
         <div className='col-md-12'>
-          <h5 className=''>Pregunta N° {idPregunta1}</h5>
-          <p className='text-left ones-chars' >{testPregunta1}</p>
+          <h5 className=''>Pregunta N° {this.props.pregunta._id}</h5>
+          <p className='text-left ones-chars' >{this.props.pregunta.question}</p>
           <button className='btn btn-warning' onClick={this.openModal}>Ver más...</button> 
         </div>
         <div className='col-md-6 my-4'>
@@ -131,7 +131,7 @@ class Resultados extends Component {
           <Modal.Title className='text-center'>Información</Modal.Title>
           </Modal.Header>
           {/* Plantilla de Pregunta */}
-          <Modal.Body><Pregunta/></Modal.Body>
+          <Modal.Body><Pregunta pregunta = {this.props.pregunta} id = {this.props.id} question = {this.props.question} opciones = {this.props.opciones} /></Modal.Body>
           <Modal.Body>
           {/* *************** Area para la pregunta ***************** */}
           <div className='container'>
@@ -141,13 +141,13 @@ class Resultados extends Component {
                   onClick={() => this.handleLike()}
                   
                 >
-                  <FaThumbsUp/> <span class="badge badge-light active">{this.state.like}</span>
+                  <FaThumbsUp/> <span class="badge badge-light active">{this.props.pregunta.likes}</span>
                 </button>
                 <button className="btn btn-primary mx-2"
 
                   onClick={() => this.handleDislike()}
                 >
-                  <FaThumbsDown/> <span class="badge badge-light">{this.state.dislike}</span>
+                  <FaThumbsDown/> <span class="badge badge-light">{this.props.pregunta.dislikes}</span>
                 </button>
               </div>
               <div className=' text-right' >

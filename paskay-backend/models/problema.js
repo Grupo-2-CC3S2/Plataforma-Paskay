@@ -10,22 +10,28 @@ var ProblemaSchema = new Schema(
     usuario: { type: Schema.Types.ObjectId, ref: 'Usuario' },
     likes: {type: Number, required:true},
     dislikes: {type: Number, required:true},
-    //name: {type: String, text: true, required:true, max: 1000, index: true},
-    enunciado: {type: String, text: true, required:true, max: 1000, index: true},
-    name: {type: String, text: true, required:true, max: 1000, index: true},
+    type: {type: String, required:true, max: 10},
+    keywords: {type: String, required:true, max: 1000},
+    question: {type: String, required:true, max: 3000},
     opciones: [{type: String}],
     anio: {type: String},
     universidad: {type: String, required:true, max: 100},
     tema: {type: String, required:true, max: 50},
+    curso: {type: String, required:true, max: 50},
     url_image: {type: String, max: 200},
-    soluciones: [{ type: Schema.Types.ObjectId, ref: 'Solucion' }]
+    soluciones: [{ type: Schema.Types.ObjectId, ref: 'Solucion' }],
+    comments: [{ type: Schema.Types.ObjectId, ref: 'Comment' }]
+  },
+  {
+    timestamps: true,
+    autoIndex: true
   }
 );
 
 ProblemaSchema.index(
                     {
-                        'name': "text", 
-                        'enunciado': "text" 
+                        'question': "text",
+                        'keywords': "text" 
                     }
                 ); // schema level
 

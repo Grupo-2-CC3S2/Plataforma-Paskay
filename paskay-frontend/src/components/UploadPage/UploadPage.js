@@ -164,17 +164,17 @@ class UploadPage extends Component {
     super(props);
     
     this.state = {
-      curso: 'all',
-      tema: 'all',
-      universidad: 'all',
+      curso: 'All',
+      tema: 'All',
+      universidad: 'All',
       anio: 'all',
-      texto: 'all',
-      image: 'all',
-      opc_a: 'all',
-      opc_b: 'all',
-      opc_c: 'all',
-      opc_d: 'all',
-      opc_e: 'all'
+      texto: 'Escriba el enunciado',
+      image: 'None',
+      opc_a: 'opc a',
+      opc_b: 'opc b',
+      opc_c: 'opc c',
+      opc_d: 'opc d',
+      opc_e: 'opc e'
     };
 /*
     this.state = {
@@ -241,12 +241,16 @@ class UploadPage extends Component {
   enviar = () => {
     var formData = new FormData();
 
-    formData.append("enunciado", this.state.texto);
+    formData.append("question", this.state.texto);
     formData.append("anio", `${this.state.anio}-${this.state.ciclo}`);
     formData.append("universidad", this.state.universidad);
     formData.append("tema", this.state.tema);
-    formData.append("opciones", `[${this.state.opc_a},${this.state.opc_b}]`);
     formData.append("curso", this.state.curso);
+    formData.append("opc_a", this.state.opc_a);
+    formData.append("opc_b", this.state.opc_b);
+    formData.append("opc_c", this.state.opc_c);
+    formData.append("opc_d", this.state.opc_d);
+    formData.append("opc_e", this.state.opc_e);
 
     // HTML file input user's choice...
     formData.append("image", this.state.image);
@@ -258,7 +262,7 @@ class UploadPage extends Component {
     //formData.append("webmasterfile", blob);
 
     var request = new XMLHttpRequest();
-    request.open("POST", "http://localhost:3001/problems");
+    request.open("POST", "http://localhost:3001/api/problems");
     request.send(formData);
   }
 
@@ -290,6 +294,7 @@ class UploadPage extends Component {
         <div className="col-md-4 my-3">
           <h5>Curso</h5>
           <select name="curso" onChange={this.handleChange} value={this.state.curso} className="form-control">
+              <option value = "All">Todos</option>
               {CURSOS.map((curso) => {
                 return <option value = {curso.nombre}>{curso.nombre}</option>
               })}
@@ -298,6 +303,7 @@ class UploadPage extends Component {
         <div className="col-md-4 my-3">
           <h5>Tema</h5>
           <select name="tema" onChange={this.handleChange} value={this.state.tema} className="form-control">
+              <option value = "All">Todos</option>
               {this.renderTemas()}
           </select>
         </div>
@@ -305,6 +311,7 @@ class UploadPage extends Component {
         <div className="col-md-4 my-3">
           <h5>Universidad</h5>
           <select name="universidad" onChange={this.handleChange} value={this.state.universidad} className="form-control">
+              <option value = "All">Todos</option>
               {UNIVERSIDADES.map((universidad) => {
                 return <option value = {universidad}>{universidad}</option>
               })}
@@ -317,6 +324,7 @@ class UploadPage extends Component {
         <div className="col-md-4 my-3">
           <h5>Ciclo</h5>
           <select name = "ciclo" onChange={this.handleChange} value={this.state.ciclo} className="form-control">
+              <option value = "All">Todos</option>
             <option value="I">I</option>
             <option value="II">II</option>
             <option value="III">III</option>

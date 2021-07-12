@@ -1,5 +1,6 @@
 
 const Problema = require('../models/problema');
+const Usuario = require('../models/usuario');
 
 var mongoose = require('mongoose');
 
@@ -9,20 +10,33 @@ exports.uploadProblem = async (req, res, next) => {
 
   let { 
           //usuario,
-          enunciado,
-          opciones,
+          question,
           anio,
           universidad,
-          tema/*,
+          tema,
+          curso,
+          opc_a,
+          opc_b,
+          opc_c,
+          opc_d,
+          opc_e/*,
           url_image,
           soluciones*/
         } = req.body;
 
   let _id = mongoose.Types.ObjectId();
   //usuario = mongoose.Types.ObjectId(usuario);
-  let usuario = mongoose.Types.ObjectId();
-  let name = "Pregunta prueba"
+
+  //const userAdmin = await new Usuario({username: 'admin'}).save()
+  const userAdmin = await Usuario.findOne({username: "admin"})
+  let usuario = userAdmin._id
+  
+  //let usuario = mongoose.Types.ObjectId('60ea935b75794a5859a37a7b');
   let soluciones = []
+  let opciones = [opc_a, opc_b, opc_c, opc_d, opc_e]  
+  let keywords = curso + " " + tema + " " + universidad + " " + anio;
+  let comments = []
+  let type = "text"
   
   /*
   let soString = soluciones
@@ -38,13 +52,16 @@ exports.uploadProblem = async (req, res, next) => {
                                   usuario,
                                   likes,
                                   dislikes,
-                                  name,
-                                  enunciado,
+                                  type,
+                                  question,
+                                  keywords,
                                   opciones,
                                   anio,
                                   universidad,
                                   tema,
-                                  soluciones
+                                  curso,
+                                  soluciones,
+                                  comments
                                 });
   if(req.file) {
     const {filename} = req.file

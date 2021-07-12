@@ -8,7 +8,8 @@ exports.search_in_db = (search_query, options) => {
           $search: search_query
         },
         universidad: {$regex: options.regex_universidad},
-        //curso: {$regex: cursoSearch},
+        curso: {$regex: options.regex_curso},
+        anio: {$regex: options.regex_anio},
         tema: {$regex: options.regex_tema}
       },
       {

@@ -32,30 +32,37 @@ class Pregunta extends Component {
     super(props);
   }
 
+  renderImagePregunta = () => {
+    if(this.props.pregunta.url_image){
+          return (<div className='col-md-12'>
+                    <img className='my-4 col-md-12' id='pregPict' src={this.props.pregunta.url_image}/>
+                  </div>)
+
+    }else return <div></div>
+  }
+
   render(){
       return(
         <div className='container'>
         <div className='row pregContent'>
           <div className='col-md-12 my-3'>
-            <h3>Pregunta N° {idPregunta}</h3>
+            <h3>Pregunta N° {this.props.pregunta._id}</h3>
           </div>
           <div className='col-md-12 p-4 text-left  pregFont'>
-            <p>{textoPregunta}</p>
+            <p>{this.props.pregunta.question}</p>
           </div>
-          <div className='col-md-12'>
-            <img className='my-4 col-md-12' id='pregPict' src={imgPreg}/>
-          </div>
+          {this.renderImagePregunta()}
           <div className='col-md-12 my-4 row pregFont'>
-            <div className='col-md-4'><h3><Badge variant="secondary">{opcionesPregunta[0]}</Badge></h3></div>
-            <div className='col-md-4'><h3><Badge variant="secondary">{opcionesPregunta[1]}</Badge></h3></div>
-            <div className='col-md-4'><h3><Badge variant="secondary">{opcionesPregunta[2]}</Badge></h3></div>
-            <div className='col-md-4'><h3><Badge variant="secondary">{opcionesPregunta[3]}</Badge></h3></div>
-            <div className='col-md-4'><h3><Badge variant="secondary">{opcionesPregunta[4]}</Badge></h3></div>
+            <div className='col-md-4'><h3><Badge variant="secondary">{this.props.pregunta.opciones[0]}</Badge></h3></div>
+            <div className='col-md-4'><h3><Badge variant="secondary">{this.props.pregunta.opciones[1]}</Badge></h3></div>
+            <div className='col-md-4'><h3><Badge variant="secondary">{this.props.pregunta.opciones[2]}</Badge></h3></div>
+            <div className='col-md-4'><h3><Badge variant="secondary">{this.props.pregunta.opciones[3]}</Badge></h3></div>
+            <div className='col-md-4'><h3><Badge variant="secondary">{this.props.pregunta.opciones[4]}</Badge></h3></div>
           </div>
         </div>
         <div className='row'>
           <div className='col text-left my-4'><p className='grayText'>Autor: {nombreUsuario} ({idUsuario})</p></div>
-          <div className='col text-right my-4'><p className='grayText'>{fechaSubida}</p></div>
+          <div className='col text-right my-4'><p className='grayText'>{this.props.pregunta.createdAt}</p></div>
         </div>
         </div>
       )}

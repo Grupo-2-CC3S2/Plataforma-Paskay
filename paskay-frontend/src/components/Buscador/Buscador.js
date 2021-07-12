@@ -68,7 +68,6 @@ constructor() {
 
   renderTemas = () => {
     for(let i in CURSOS){
-      console.log(CURSOS[i]);   
       if(CURSOS[i].nombre == this.state.curso){
           return CURSOS[i].temas.map((tema) => {
             return <option value = {tema}>{tema}</option>
@@ -85,7 +84,7 @@ constructor() {
     console.log(this.state);   
     if (this.state.buscador === "") return
     //fetch('http://localhost:3001/search?search_query=' + this.state.buscador)
-    fetch(`http://localhost:3001/search?search_query=${this.state.buscador}&curso=${this.state.curso}&tema=${this.state.tema}&universidad=${this.state.universidad}&anio=${this.state.año}`)
+    fetch(`http://localhost:3001/api/search?search_query=${this.state.buscador}&curso=${this.state.curso}&tema=${this.state.tema}&universidad=${this.state.universidad}&anio=${this.state.año}`)
     .then(res=> res.json()) // Convierte el resultado en json
     .then(data => this.setState({"resultados": data}))// Imprime el resultado en consola
     .catch(err => console.log(err)); 
@@ -194,17 +193,18 @@ constructor() {
           <h5>Resultados relacionados a {this.state.text}<hr/></h5>
         </div>
         <div className="col-md-12">
-          {/* ************Plantilla para mostrar resultados de busqueda*********** */}
-          <Resultados></Resultados>
-          <Resultados></Resultados>
-          <Resultados></Resultados>
+          {/* ************Plantilla para mostrar resultados de busqueda*********** 
+          <Resultados id = "12" question = "esta es una pregunta"></Resultados>*/}
+          {this.state.resultados.map((preg) => {
+            return <Resultados pregunta = {preg} id = {parseInt(preg._id.slice(18,24),16)} question = {preg.question} opciones = {preg.opciones}></Resultados>
+          })}
         </div>
       <div className="col-md-12">
         {/*<BuscarPregunta/>*/}
+      {/*
      {this.state.resultados.map((preg) => {
-          console.log(preg)
-          return <Pregunta id = {parseInt(preg._id.slice(18,24),16)} texto = {preg.description}></Pregunta>
-        })}
+          return <Pregunta id = {parseInt(preg._id.slice(18,24),16)} question = {preg.question} opciones = {preg.opciones}></Pregunta>
+        })} */}
       </div>
       </div>
 

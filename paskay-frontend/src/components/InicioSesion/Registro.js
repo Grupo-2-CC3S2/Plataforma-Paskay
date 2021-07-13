@@ -47,7 +47,7 @@ class Registro extends Component {
     <div className="container">
 
       <div className="row">
-        <div className="col-md-12 my-3"><h2 className="titulo">Inicio de Sesion</h2></div>
+        <div className="col-md-12 my-3"><h2 className="titulo">Registrate</h2></div>
         <div className="col-md-12 my-3">Ingrese correo electronico</div>
       </div>
 

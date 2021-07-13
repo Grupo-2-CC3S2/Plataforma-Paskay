@@ -12,6 +12,7 @@ import HomePage from './HomePage/HomePage';
 import UploadPage from './UploadPage/UploadPage';
 import GenPage from './GenPage/GenPage';
 import IniciarSesion from './InicioSesion/InicioSesion';
+import Registro from './InicioSesion/Registro';
 import Buscador from './Buscador/Buscador';
 
 import { faFileAlt } from "@fortawesome/free-solid-svg-icons";
@@ -97,7 +98,7 @@ class Main extends Component {
         <Router>
             <header>
               <div><h1><img src = {logo}></img>PLATAFORMA PASKAY</h1></div>
-              <NavLink activeClassName="selected-in" exact= "true"  to="/login"> <FontAwesomeIcon icon={faUser} size = "1x"/>Iniciar Sesion</NavLink>
+              <NavLink activeClassName="selected-in" exact= "true"  to="/signin"> <FontAwesomeIcon icon={faUser} size = "1x"/>Iniciar Sesion</NavLink>
             </header>
               <div>
                   <nav>
@@ -115,7 +116,8 @@ class Main extends Component {
                     </nav>
                 </div>
               <Switch>
-                <Route path="/login" component = {IniciarSesion}></Route>
+                <Route path="/signin" component = {IniciarSesion}></Route>
+                <Route path="/signup" component = {Registro}></Route>
                 <Route path="/generador" component = {GenPage}></Route>
                 <Route path="/upload" component = {UploadPage}></Route>
                 <Route path="/" component = {Buscador}></Route>

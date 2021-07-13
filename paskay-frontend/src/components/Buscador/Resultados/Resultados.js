@@ -108,7 +108,7 @@ class Resultados extends Component {
     {/*========RESULTADoS DE BUSQUEDA =============== */}
       <div className='row text-left my-2'>
         <div className='col-md-12'>
-          <h5 className=''>Pregunta N° {this.props.pregunta._id}</h5>
+          <h5 className=''>Pregunta N° {parseInt(this.props.pregunta._id.slice(18,24),16)}</h5>
           <p className='text-left ones-chars' >{this.props.pregunta.question}</p>
           <button className='btn btn-warning' onClick={this.openModal}>Ver más...</button> 
         </div>

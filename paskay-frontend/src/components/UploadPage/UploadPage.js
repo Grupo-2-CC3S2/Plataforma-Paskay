@@ -5,12 +5,13 @@ import './../commonStyles.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Button} from 'react-bootstrap';
 import { Collapse} from 'react-bootstrap';
-
+import { Redirect } from 'react-router'
 
 import { CURSOS } from "../../resources/cursos"
 import { UNIVERSIDADES } from "../../resources/universidades"
 import { ANIOS } from "../../resources/anios"
 
+const axios = require('axios').default;
 /////////////////////////////////////////////////////////
 
 function Example(props) {
@@ -174,7 +175,8 @@ class UploadPage extends Component {
       opc_b: 'opc b',
       opc_c: 'opc c',
       opc_d: 'opc d',
-      opc_e: 'opc e'
+      opc_e: 'opc e',
+      redirect: false
     };
 /*
     this.state = {
@@ -260,10 +262,30 @@ class UploadPage extends Component {
     //var blob = new Blob([content], { type: "text/xml"});
 
     //formData.append("webmasterfile", blob);
-
+    /*
     var request = new XMLHttpRequest();
     request.open("POST", "http://localhost:3001/api/problems");
+    request.setRequestHeader('Authorization', 'Bearer ' + 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwZWI4NjExZmYzMTQ1NzVjNzZkOTg2NSIsImlhdCI6MTYyNjE0ODkzNywiZXhwIjoxNjI2MjM1MzM3fQ.YvHD8LJlcmADp-MWuGfTIcaAk8ak73G6qZgX-6Fpa30');
     request.send(formData);
+    */
+    axios({
+      method: "post",
+      url: "http://localhost:3001/api/problems",
+      data: formData,
+      //headers: { "Content-Type": "multipart/form-data", 'Authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwZWI4NjExZmYzMTQ1NzVjNzZkOTg2NSIsImlhdCI6MTYyNjE0ODkzNywiZXhwIjoxNjI2MjM1MzM3fQ.YvHD8LJlcmADp-MWuGfTIcaAk8ak73G6qZgX-6Fpa30'},
+      //x-access-token
+      headers: { "Content-Type": "multipart/form-data", 'x-access-token': window.localStorage.getItem("token")},
+    })
+      .then((response) => {
+        //handle success
+        console.log(response);
+      })
+      .catch((e) => {
+        //handle error
+        if (e.response.status) this.setState({ redirect: true })
+        console.log("response: ",e.response.data.message);
+    });
+
   }
 
 
@@ -283,6 +305,7 @@ class UploadPage extends Component {
   }
 
   render(){
+    if (this.state.redirect) return <Redirect to='/signin'/>;
   return (
     
     <div style={this.estilos} className = "container cardStyle my-2 p-4">

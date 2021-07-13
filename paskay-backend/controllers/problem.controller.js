@@ -6,7 +6,7 @@ var mongoose = require('mongoose');
 
 exports.uploadProblem = async (req, res, next) => {
 
-  console.log(req.body)
+  console.log(req.headers)
 
   let { 
           //usuario,
@@ -45,8 +45,8 @@ exports.uploadProblem = async (req, res, next) => {
     soluciones.push(mongoose.Types.ObjectId(soString[sol]))
   }
   */
-  let likes = 0;
-  let dislikes = 0;
+  let likes = [];
+  let dislikes = [];
   const problema = new Problema({ 
                                   _id,
                                   usuario,

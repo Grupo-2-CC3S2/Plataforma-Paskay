@@ -7,14 +7,14 @@ var Schema = mongoose.Schema;
 var ProblemaSchema = new Schema(
   {
     _id: Schema.Types.ObjectId,
-    usuario: { type: Schema.Types.ObjectId, ref: 'Usuario' },
-    likes: {type: Number, required:true},
-    dislikes: {type: Number, required:true},
+    usuario: { type: Schema.Types.ObjectId, required: true, ref: 'Usuario' },
+    likes : [{ type: Schema.ObjectId, ref: 'Usuario'}],
+    dislikes : [{ type: Schema.ObjectId, ref: 'Usuario'}],
     type: {type: String, required:true, max: 10},
     keywords: {type: String, required:true, max: 1000},
     question: {type: String, required:true, max: 3000},
     opciones: [{type: String}],
-    anio: {type: String},
+    anio: {type: String, required: true},
     universidad: {type: String, required:true, max: 100},
     tema: {type: String, required:true, max: 50},
     curso: {type: String, required:true, max: 50},
@@ -39,12 +39,6 @@ ProblemaSchema.methods.setImgUrl = function setImgUrl (filename) {
   const { host, port } = appConfig;
   this.url_image = `${host}:${port}/public/${filename}`
 }
-
-ProblemaSchema
-.virtual('url')
-.get(function () {
-  return '/catalog/problema/' + this._id;
-});
 
 //Export model
 module.exports = mongoose.model('Problema', ProblemaSchema);

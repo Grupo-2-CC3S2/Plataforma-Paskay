@@ -6,12 +6,14 @@ const jwt = require('jsonwebtoken');
 const Role = require('../models/Role');
 
 exports.signUp = async (req, res) => {
-  const { username, email, password, roles } = req.body;
+  const { username, nombres, apellidos , email, password, roles } = req.body;
 
   //const userFound = Usuario.find({})
 
   let newuser = new Usuario({ 
      username, 
+     nombres,
+     apellidos,
      email, 
      password: await Usuario.encryptPassword(password) 
    })
@@ -37,6 +39,7 @@ exports.signUp = async (req, res) => {
 }
 
 exports.signIn = async (req, res) => {
+  console.log("body",req.body)
   const userFound = await Usuario.findOne({ email: req.body.email }).populate("roles");
 
   if (!userFound) return res.status(400).json({message: "user not found"})

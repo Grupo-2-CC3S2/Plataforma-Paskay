@@ -15,13 +15,15 @@ exports.getAllUsers = async (req, res, next) => {
 
 exports.createUser = async (req, res, next) => {
 
-  const { username, email, password, roles } = req.body;
+  const { username, nombres, apellidos, email, password, roles } = req.body;
 
   //const userFound = Usuario.find({})
 
   let newuser = new Usuario({ 
      username, 
-     email, 
+     email,
+     nombres,
+     apellidos,
      password: await Usuario.encryptPassword(password) 
    })
 

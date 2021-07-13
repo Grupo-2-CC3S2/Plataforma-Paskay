@@ -5,6 +5,8 @@ var mongoose = require('mongoose');
 
 var Schema = mongoose.Schema;
 
+//const Problema  = require('../models/problema');
+
 
 //////////////////////////////////////////////////7
 
@@ -14,6 +16,14 @@ const UsuarioSchema = new Schema(
       type: String,
       unique: true,
     },
+    nombres: {
+      type: String,
+      required: true,
+    },
+    apellidos: {
+      type: String,
+      required: true,
+    },
     email: {
       type: String,
       unique: true,
@@ -22,6 +32,18 @@ const UsuarioSchema = new Schema(
       type: String,
       required: true,
     },
+    imageProfileUrl: {
+      type: String
+    },
+    Description: {
+      type: String
+    },
+    likesProblem : [{ type: Schema.ObjectId, ref: 'Problema'}],
+    dislikesProblem : [{ type: Schema.ObjectId, ref: 'Problema'}],
+    likesSolucion : [{ type: Schema.ObjectId, ref: 'Solucion'}],
+    dislikesSolucion : [{ type: Schema.ObjectId, ref: 'Solucion'}],
+    publishedProblem : [{ type: Schema.ObjectId, ref: 'Solucion'}],
+    publishedSolucion : [{ type: Schema.ObjectId, ref: 'Problema'}],
     roles: [
       {
         type: Schema.Types.ObjectId,

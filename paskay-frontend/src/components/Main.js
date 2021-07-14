@@ -12,14 +12,16 @@ import HomePage from './HomePage/HomePage';
 import UploadPage from './UploadPage/UploadPage';
 import GenPage from './GenPage/GenPage';
 import IniciarSesion from './InicioSesion/InicioSesion';
-import Registro from './InicioSesion/Registro';
+import Registro from './Registro/Registro';
 import Buscador from './Buscador/Buscador';
+import Perfil from './Perfil/Perfil';
 
 import { faFileAlt } from "@fortawesome/free-solid-svg-icons";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { faUpload } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import StatusPage from './StatusPage/StatusPage';
 
 class Main extends Component {
   //Empieza constructor
@@ -98,7 +100,7 @@ class Main extends Component {
         <Router>
             <header>
               <div><h1><img src = {logo}></img>PLATAFORMA PASKAY</h1></div>
-              <NavLink activeClassName="selected-in" exact= "true"  to="/signin"> <FontAwesomeIcon icon={faUser} size = "1x"/>Iniciar Sesion</NavLink>
+              <NavLink activeClassName="selected-in" exact= "true"  to="/login"> <FontAwesomeIcon icon={faUser} size = "1x"/>Iniciar Sesion</NavLink>
             </header>
               <div>
                   <nav>
@@ -118,9 +120,13 @@ class Main extends Component {
               <Switch>
                 <Route path="/signin" component = {IniciarSesion}></Route>
                 <Route path="/signup" component = {Registro}></Route>
+                <Route path="/registro" component = {Registro}></Route>
+                <Route path="/login" component = {IniciarSesion}></Route>
+                <Route path="/perfil" component = {Perfil}></Route>
                 <Route path="/generador" component = {GenPage}></Route>
                 <Route path="/upload" component = {UploadPage}></Route>
-                <Route path="/" component = {Buscador}></Route>
+                <Route path="/status" render={(props) => <StatusPage {...props}/>}/>
+                <Route path="/" component = {Buscador}></Route>              
               </Switch>
           </Router>
         </div>

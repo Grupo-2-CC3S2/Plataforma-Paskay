@@ -28,8 +28,14 @@ exports.uploadProblem = async (req, res, next) => {
   //usuario = mongoose.Types.ObjectId(usuario);
 
   //const userAdmin = await new Usuario({username: 'admin'}).save()
-  const userAdmin = await Usuario.findOne({username: "admin"})
-  let usuario = userAdmin._id
+  //const userAdmin = await Usuario.findOne({username: "admin"})
+  const user = await Usuario.findById(req.userId);
+
+  user.publishedProblem.push(_id)
+  let usuario = user._id
+
+  user.save()
+
   
   //let usuario = mongoose.Types.ObjectId('60ea935b75794a5859a37a7b');
   let soluciones = []

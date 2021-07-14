@@ -53,8 +53,8 @@ exports.deleteAllUsers = async (req, res, next) => {
 
 exports.getUser = async (req, res, next) => {
   try{
-    const user = await Usuario.findById(req.params.Id);
-    res.json(user);
+    //const user = await Usuario.findById(req.params.Id);
+    res.json(req.userData);
   } catch(error){
     console.log(error)
     res.statusCode = 400

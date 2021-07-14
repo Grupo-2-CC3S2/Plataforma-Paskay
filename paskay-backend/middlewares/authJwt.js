@@ -16,7 +16,7 @@ exports.verifyToken = async (req, res, next) => {
 
     const user = await Usuario.findById(req.userId, { password: 0 });
     if (!user) return res.status(404).json({ message: "No user found" });
-
+    req.userData = user;
     next();
   } catch (error) {
     return res.status(401).json({ message: "Unauthorized!" });

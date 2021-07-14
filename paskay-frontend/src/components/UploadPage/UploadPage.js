@@ -282,8 +282,11 @@ class UploadPage extends Component {
       })
       .catch((e) => {
         //handle error
-        if (e.response.status) this.setState({ redirect: true })
-        console.log("response: ",e.response.data.message);
+        if (e.response) {
+          if (e.response.status) 
+              this.setState({ redirect: true })
+          console.log("response: ",e.response.data.message);
+        }
     });
 
   }

@@ -40,7 +40,7 @@ exports.signUp = async (req, res) => {
 
 exports.signIn = async (req, res) => {
   console.log("body",req.body)
-  const userFound = await Usuario.findOne({ email: req.body.email }).populate("roles");
+  const userFound = await Usuario.findOne({ username: req.body.username }).populate("roles");
 
   if (!userFound) return res.status(400).json({message: "user not found"})
 

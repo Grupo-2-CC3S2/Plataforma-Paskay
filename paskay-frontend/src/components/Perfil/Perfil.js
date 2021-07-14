@@ -14,10 +14,15 @@ import ModalDialog from 'react-bootstrap/ModalDialog'
 import { Button} from 'react-bootstrap';
 import { SyncProblemSharp } from '@material-ui/icons';
 
+import {
+  NavLink,
+} from "react-router-dom";
+
 
 class Perfil extends Component {
   constructor(props) {
     super(props);
+    console.log(this.props)
 
     this.state = {
       //Modal cerrado al inicio
@@ -36,6 +41,11 @@ class Perfil extends Component {
     this.setState({msg : 'Welcome to the React world!'})
   }
 
+  closeSesion = () => {
+
+    window.localStorage.setItem("token", "");
+  }
+
 
   render(){
   return (
@@ -43,7 +53,10 @@ class Perfil extends Component {
 
       <div className="row">
         {/* Mensaje de saludo con el nombre de usuario */}
-        <div className="col-md-12 my-3"><p className="headInfo">Bienvenido @Usuario</p></div>
+        <div className="col-md-12 my-3"><p className="headInfo">Bienvenido @ {this.props.userData.username}</p></div>
+        <div className="col-md-12"> 
+          <NavLink exact= "true" onClick = {this.props.closeSesion}  to="/login">Cerrar sesión</NavLink>
+        </div>
       </div>
       <div className='row'>
         {/* ============== iNFORMACION PERSONAL ====================*/}

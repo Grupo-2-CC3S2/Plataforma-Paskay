@@ -9,6 +9,9 @@ const { verifyToken, isAdmin } = require('../middlewares/authJwt')
 
 const { checkDuplicateUsernameOrEmail, checkRolesExisted } = require('../middlewares/verifySignup')
 
+
+const cors = require('cors');
+
 router.use(bodyParser.json());
 
 const Usuario = require('../models/usuario');
@@ -25,11 +28,11 @@ router.route('/')
 .delete([verifyToken, isAdmin], deleteAllUsers);
 
 router.route('/:Id')
-.get([verifyToken, isAdmin], getUser)
-.post((req, res, next) => {
-    res.end('POST operation not supported on /users/'+ req.params.Id);
-})
+.post(cors(),[verifyToken], getUser)
 .put([verifyToken, isAdmin], updateUser)
+.options(cors(),(req, res, next) => {
+    res.end();
+})
 .delete([verifyToken, isAdmin], deleteUser);
 
 

@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import './PreguntaDeExamen.css';
 //import { useState } from 'react';
 //import { FormControl, FormLabel, FormControlLabel, Radio, InputLabel, RadioGroup, RadioButton} from '@material-ui/core';
-import { RadioGroup, RadioButton, ReversedRadioButton } from 'react-radio-buttons'
+//import { RadioGroup, RadioButton, ReversedRadioButton } from 'react-radio-buttons'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Badge from 'react-bootstrap/Badge'
 import Solucion from '../../Solucion/Solucion';

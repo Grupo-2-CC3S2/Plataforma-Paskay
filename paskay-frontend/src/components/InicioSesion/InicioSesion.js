@@ -22,8 +22,8 @@ class IniciarSesion extends Component {
   constructor() {
     super();
     this.state = {
-      username:'Username',
-      password:'Password'
+      username:'',
+      password:''
     };
   }
 
@@ -39,7 +39,7 @@ class IniciarSesion extends Component {
       })
         .then((response) => {
           //handle success
-          console.log("resposeeeeeeeeeeee",response);
+          console.log("response",response);
           this.setState({ session: true, userData: response.data })
         })
         .catch((e) => {
@@ -129,7 +129,7 @@ class IniciarSesion extends Component {
 
       <div className="row">
         <div className="col-md-12 my-3"><h2 className="titulo">Inicio de Sesion</h2></div>
-        <div className="col-md-12 my-3">Ingrese tu Username</div>
+        <div className="col-md-12 my-3">Username</div>
       </div>
 
       <div className="row form-group">
@@ -138,7 +138,7 @@ class IniciarSesion extends Component {
         </div>
 
         <div className="col-md-4">
-        <input name="username" onChange={this.handleChange} value={this.state.username} className="form-control " placeholder="Por ejemplo: example@gmail.com" size="15" type="text" />
+        <input name="username" onChange={this.handleChange} value={this.state.username} className="form-control " placeholder="Username" size="15" type="text" />
         </div>
 
         <div className="col-md-4">
@@ -146,7 +146,7 @@ class IniciarSesion extends Component {
       </div>
 
       <div className="row">
-        <div className="col-md-12 my-3">Ingrese</div>
+        <div className="col-md-12 my-3">Password</div>
       </div>
 
       <div className="row form-group">
@@ -155,7 +155,7 @@ class IniciarSesion extends Component {
         </div>
 
         <div className="col-md-4">
-        <input name="password" onChange={this.handleChange} value={this.state.password} className="form-control " placeholder="Contraseña" size="15" type="text" />
+        <input name="password" onChange={this.handleChange} value={this.state.password} className="form-control " placeholder="Password" size="15" type="text" />
         </div>
 
         <div className="col-md-4">

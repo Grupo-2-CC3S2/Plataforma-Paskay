@@ -5,6 +5,10 @@ export const changeTest = () => ({
   type: ActionTypes.CHANGE_TEST
 })
 
+export const changeSession = () => ({
+  type: ActionTypes.CHANGE_SESSION
+})
+
 export const changeTest2 = (p) => ({
   type: ActionTypes.CHANGE_TEST_2,
   payload: p

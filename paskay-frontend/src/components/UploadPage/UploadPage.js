@@ -169,13 +169,13 @@ class UploadPage extends Component {
       tema: 'All',
       universidad: 'All',
       anio: 'all',
-      texto: 'Escriba el enunciado',
+      texto: '',
       image: 'None',
-      opc_a: 'opc a',
-      opc_b: 'opc b',
-      opc_c: 'opc c',
-      opc_d: 'opc d',
-      opc_e: 'opc e',
+      opc_a: '',
+      opc_b: '',
+      opc_c: '',
+      opc_d: '',
+      opc_e: '',
       redirect: false
     };
 /*

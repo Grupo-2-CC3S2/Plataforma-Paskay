@@ -41,12 +41,15 @@ class Pregunta extends Component {
     }else return <div></div>
   }
 
+
+  idToNumber = (_id) => parseInt(_id.slice(18,24),16)
+
   render(){
       return(
         <div className='container'>
         <div className='row pregContent'>
           <div className='col-md-12 my-3'>
-            <h3>Pregunta N° {this.props.pregunta._id}</h3>
+            <h3>Pregunta N° {this.idToNumber(this.props.pregunta._id)}</h3>
           </div>
           <div className='col-md-12 p-4 text-left  pregFont'>
             <p>{this.props.pregunta.question}</p>
@@ -61,8 +64,8 @@ class Pregunta extends Component {
           </div>
         </div>
         <div className='row'>
-          <div className='col text-left my-4'><p className='grayText'>Autor: {nombreUsuario} ({idUsuario})</p></div>
-          <div className='col text-right my-4'><p className='grayText'>{this.props.pregunta.createdAt}</p></div>
+          <div className='col text-left my-4'><p className='grayText'>Autor: {this.props.pregunta.usuario.username} ({this.idToNumber(this.props.pregunta.usuario._id)})</p></div>
+          <div className='col text-right my-4'><p className='grayText'>Creado: {this.props.pregunta.createdAt}</p></div>
         </div>
         </div>
       )}

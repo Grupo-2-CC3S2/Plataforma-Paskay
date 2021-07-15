@@ -15,7 +15,7 @@ exports.search_in_db = (search_query, options) => {
       {
         score: {$meta: 'textScore'}
       }
-    ).sort({
+    ).populate("usuario").sort({
       score: {$meta: 'textScore'}
     });
 

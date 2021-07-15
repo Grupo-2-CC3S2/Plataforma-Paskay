@@ -113,6 +113,9 @@ constructor() {
       text:event.target.value
     })
   }*/
+
+
+  idToNumber = (_id) => parseInt(_id.slice(18,24),16)
   
   render(){
    

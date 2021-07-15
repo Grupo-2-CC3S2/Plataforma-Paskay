@@ -3,7 +3,7 @@ import { useState } from 'react';
 import './Perfil.css';
 import Pregunta from '../Buscador/Pregunta/Pregunta';
 //url de donde está la foto de usuario
-import imgPerfil from './../../imagenes/perfil_1.jpg'
+import imgPerfil from './../../imagenes/perfil.png'
 //Estoy usando otros iconos
 //npm install react-icons
 //Luego importas los iconos que usas (la importación es automática, con poner <Fa.../> detecta)
@@ -62,18 +62,14 @@ class Perfil extends Component {
         {/* ============== iNFORMACION PERSONAL ====================*/}
         <div id='selfInfo' className='col-md-4 my-2 '>
           <div className='row cardStyle'>
-            <div className='col-md-12 text-center my-4'><img id='profilePict' src={imgPerfil} /></div>
-            <div className='col-md-12'><h4>Andrea Violeta</h4></div>
-            <div className='col-md-12'>(Estudiante de Ingeniería Civil)</div>
-            <div className='col-md-12 text grayText'>ID: 626000659</div>
+            <div className='col-md-12 text-center my-4'><img id='profilePict' src={this.props.userData.imageProfileUrl ? this.props.userData.imageProfileUrl: imgPerfil } /></div>
+            <div className='col-md-12'><h4>{this.props.userData.nombres}</h4></div>
+    {/*<div className='col-md-12'>(Estudiante de Ingeniería Civil)</div>*/}
+            <div className='col-md-12 text grayText'>ID: {this.props.userData._id}</div>
             <div className='col-md-12 text-center my-4' id='aboutYou'>
-              'is simply dummy text of the printing and typesetting industry. 
-               Lorem Ipsum has been the industry's standard dummy text ever since 
-               the 1500s, when an unknown printer took a galley of type and scrambled 
-               it to make a type s'.
+                {this.props.userData.desciption} 
             </div>
-            <div className='col-md-12'><FaEnvelope /> cvasquez@uni.pe</div>
-            <div className='col-md-12'><FaWhatsapp /> +51 999 999 999</div>
+            <div className='col-md-12'><FaEnvelope />{this.props.userData.email}</div>
             <div className='col-md-12 text-center my-3'><hr/><button class='btn btn-lg btn-warning'><FaEdit/>Editar</button></div>
           </div>
         </div>

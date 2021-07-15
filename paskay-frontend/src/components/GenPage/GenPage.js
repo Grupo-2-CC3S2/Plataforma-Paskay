@@ -1,8 +1,11 @@
 
 import React, {Component} from 'react';
 import { connect } from 'react-redux'
+import ExamGen from '../ExamenGenerado/ExamGen';
 import './../commonStyles.css'
 import {changeTest2} from '../../redux/ActionCreators';
+
+
 
 function mapStateToProps(state) {
   console.log("stateee",state)
@@ -122,6 +125,9 @@ class GenPage extends Component {
           </div>
           <div className="col-md-12 my-4"></div>
         </div>
+      </div>
+      <div className="row">
+        <ExamGen/>
       </div>
       </div>
     </div>

@@ -1,0 +1,19 @@
+
+#pregPict{
+    border-radius: 25px;   
+}
+
+.pregContent{
+    border-radius: 10px;
+    border-style: solid;
+    border-width: 2px;
+    box-shadow: 2px 2px 10px gray;
+}
+
+.pregFont{
+    font-size: 20px;
+}
+
+.grayText{
+    color: gray;
+ }

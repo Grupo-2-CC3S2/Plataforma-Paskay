@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
-import './Pregunta.css';
+import './PreguntaDeExamen.css';
 //import { useState } from 'react';
+//import { FormControl, FormLabel, FormControlLabel, Radio, InputLabel, RadioGroup, RadioButton} from '@material-ui/core';
+import { RadioGroup, RadioButton, ReversedRadioButton } from 'react-radio-buttons'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Badge from 'react-bootstrap/Badge'
 import Solucion from '../../Solucion/Solucion';
@@ -26,54 +28,41 @@ PageMaker including versions of Lorem Ipsum.";
 
 
 
-class Pregunta extends Component {
+class PreguntaDeExamen extends Component {
 
   constructor(props) {
     super(props);
   }
-
-  renderImagePregunta = () => {
-    if(this.props.pregunta.url_image){
-          return (<div className='col-md-12'>
-                    <img className='my-4 col-md-12' id='pregPict' src={this.props.pregunta.url_image}/>
-                  </div>)
-
-    }else return <div></div>
-  }
-
-
-  idToNumber = (_id) => parseInt(_id.slice(18,24),16)
 
   render(){
       return(
         <div className='container'>
         <div className='row pregContent'>
           <div className='col-md-12 my-3'>
-            <h3>Pregunta N° {this.idToNumber(this.props.pregunta._id)}</h3>
+            <h3>Pregunta N° {idPregunta}</h3>
           </div>
           <div className='col-md-12 p-4 text-left  pregFont'>
-            <p>{this.props.pregunta.question}</p>
+            <p>{textoPregunta}</p>
           </div>
-          {this.renderImagePregunta()}
-          <div className='col-md-12 my-4 row pregFont'>
-            <div className='col-md-4'><h3><Badge variant="secondary">{this.props.pregunta.opciones[0]}</Badge></h3></div>
-            <div className='col-md-4'><h3><Badge variant="secondary">{this.props.pregunta.opciones[1]}</Badge></h3></div>
-            <div className='col-md-4'><h3><Badge variant="secondary">{this.props.pregunta.opciones[2]}</Badge></h3></div>
-            <div className='col-md-4'><h3><Badge variant="secondary">{this.props.pregunta.opciones[3]}</Badge></h3></div>
-            <div className='col-md-4'><h3><Badge variant="secondary">{this.props.pregunta.opciones[4]}</Badge></h3></div>
-
+          <div className='col-md-12'>
+            <img className='my-4 col-md-12' id='pregPict' src={imgPreg}/>
           </div>
-        </div>
-        <div className='row'>
-          <div className='col text-left my-4'><p className='grayText'>Autor: {this.props.pregunta.usuario.username} ({this.idToNumber(this.props.pregunta.usuario._id)})</p></div>
-          <div className='col text-right my-4'><p className='grayText'>Creado: {this.props.pregunta.createdAt}</p></div>
+          <div className='col-md-12 my-4 pregFont'>
+            <form className='row'>
+              <div className='col-md-4'><h3><Badge variant="secondary"><input type="radio" name="fruit" value="apple" /> {opcionesPregunta[0]}</Badge></h3></div>
+              <div className='col-md-4'><h3><Badge variant="secondary"><input type="radio" name="fruit" value="apple" /> {opcionesPregunta[1]}</Badge></h3></div>
+              <div className='col-md-4'><h3><Badge variant="secondary"><input type="radio" name="fruit" value="apple" /> {opcionesPregunta[2]}</Badge></h3></div>
+              <div className='col-md-4'><h3><Badge variant="secondary"><input type="radio" name="fruit" value="apple" /> {opcionesPregunta[3]}</Badge></h3></div>
+              <div className='col-md-4'><h3><Badge variant="secondary"><input type="radio" name="fruit" value="apple" /> {opcionesPregunta[4]}</Badge></h3></div>
+            </form>
+          </div>
         </div>
         </div>
       )}
 
 }
 
-export default Pregunta;
+export default PreguntaDeExamen;
 
 /*
 class Solucion extends Component{

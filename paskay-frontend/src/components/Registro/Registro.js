@@ -1,10 +1,13 @@
+import { TextField } from '@material-ui/core';
 import React, {Component} from 'react';
-
+import './../../components/commonStyles.css'
 import { Redirect } from 'react-router'
 
 import StatusPage from '../StatusPage/StatusPage';
 
+
 const axios = require('axios').default;
+
 
 class Registro extends Component {
   
@@ -91,11 +94,11 @@ class Registro extends Component {
      
   }
   render(){
-  if (this.state.statuspage == 200 ) return <StatusPage status = {this.state.statuspage} message = {this.state.statusMessage} />
+  if (this.state.statuspage == 200 ) return <h1><StatusPage status = {this.state.statuspage} message = {this.state.statusMessage} /></h1>
   if (this.state.statuspage == 400 ) return  <StatusPage status = {this.state.statuspage} message = {this.state.statusMessage} />  
 
     return (
-    <div className="container">
+    <div className="container cardStyle my-2">
 
 
       <div className="row">
@@ -109,7 +112,7 @@ class Registro extends Component {
         </div>
 
         <div className="col-md-4">
-        <input name="username" onChange={this.handleChange} value={this.state.username} className="form-control " placeholder="El juan" size="15" type="text" />
+        <input name="username" onChange={this.handleChange} value={this.state.username} className="form-control " placeholder="Ingresa un Alias" size="15" type="text" />
         </div>
 
         <div className="col-md-4">
@@ -134,7 +137,7 @@ class Registro extends Component {
         </div>
 
         <div className="col-md-4">
-        <input name="nombres" onChange={this.handleChange} value={this.state.nombres} className="form-control " placeholder="Jaun Carlos" size="15" type="text" />
+        <input name="nombres" onChange={this.handleChange} value={this.state.nombres} className="form-control " placeholder="Tu nombre" size="15" type="text" />
         </div>
 
         <div className="col-md-4">
@@ -151,7 +154,7 @@ class Registro extends Component {
         </div>
 
         <div className="col-md-4">
-        <input name="apellidos" onChange={this.handleChange} value={this.state.apellidos} className="form-control " placeholder="Alvarez Contreras" size="15" type="text" />
+        <input name="apellidos" onChange={this.handleChange} value={this.state.apellidos} className="form-control " placeholder="Tu apellido" size="15" type="text" />
         </div>
 
         <div className="col-md-4">
@@ -171,7 +174,7 @@ class Registro extends Component {
         </div>
 
         <div className="col-md-4">
-        <input name="correo" onChange={this.handleChange} value={this.state.correo} className="form-control " placeholder="example@gmail.com" size="15" type="text" />
+        <input name="correo" onChange={this.handleChange} value={this.state.correo} className="form-control " placeholder="ej: example@gmail.com" size="15" type="text" />
         </div>
 
         <div className="col-md-4">
@@ -189,7 +192,7 @@ class Registro extends Component {
         </div>
 
         <div className="col-md-4">
-        <input name="contraseña" onChange={this.handleChange} value={this.state.contraseña} className="form-control " placeholder="Contraseña" size="15" type="text" />
+        <TextField name="contraseña" onChange={this.handleChange} value={this.state.contraseña} className="form-control " placeholder="Contraseña" size="15" type="password" />
         </div>
 
         <div className="col-md-4">
@@ -199,7 +202,7 @@ class Registro extends Component {
 
       <div className="row my-3">
         <div className="col-md-12"> 
-          <button className="btn btn-primary w-40 " onClick={this.pedirTask} >Registrarse</button>
+          <button className="btn btn-primary w-40 my-4" onClick={this.pedirTask} >Registrarse</button>
         </div>
       </div>
 

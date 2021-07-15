@@ -49,18 +49,18 @@ class Pregunta extends Component {
         <div className='container'>
         <div className='row pregContent'>
           <div className='col-md-12 my-3'>
-            <h3>Pregunta N° {this.idToNumber(this.props.pregunta._id)}</h3>
+            <h3>ID- Pregunta {this.idToNumber(this.props.pregunta._id)}</h3>
           </div>
           <div className='col-md-12 p-4 text-left  pregFont'>
             <p>{this.props.pregunta.question}</p>
           </div>
           {this.renderImagePregunta()}
           <div className='col-md-12 my-4 row pregFont'>
-            <div className='col-md-4'><h3><Badge variant="secondary">{this.props.pregunta.opciones[0]}</Badge></h3></div>
-            <div className='col-md-4'><h3><Badge variant="secondary">{this.props.pregunta.opciones[1]}</Badge></h3></div>
-            <div className='col-md-4'><h3><Badge variant="secondary">{this.props.pregunta.opciones[2]}</Badge></h3></div>
-            <div className='col-md-4'><h3><Badge variant="secondary">{this.props.pregunta.opciones[3]}</Badge></h3></div>
-            <div className='col-md-4'><h3><Badge variant="secondary">{this.props.pregunta.opciones[4]}</Badge></h3></div>
+            <div className='col-md-4'><h3>A) <Badge variant="secondary">{this.props.pregunta.opciones[0]}</Badge></h3></div>
+            <div className='col-md-4'><h3>B) <Badge variant="secondary">{this.props.pregunta.opciones[1]}</Badge></h3></div>
+            <div className='col-md-4'><h3>C) <Badge variant="secondary">{this.props.pregunta.opciones[2]}</Badge></h3></div>
+            <div className='col-md-4'><h3>D) <Badge variant="secondary">{this.props.pregunta.opciones[3]}</Badge></h3></div>
+            <div className='col-md-4'><h3>E) <Badge variant="secondary">{this.props.pregunta.opciones[4]}</Badge></h3></div>
 
           </div>
         </div>

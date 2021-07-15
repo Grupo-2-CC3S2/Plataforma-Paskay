@@ -22,7 +22,7 @@ function Example(props) {
     <div className='row'>
       {/*////////////////// botones de opciones de problemas //////////////////*/}
       <div className='col-md-6'>
-        <Button
+        <Button disabled
           className={'btn-block'}
           onClick={() => {setOpen(true); setOpen2(false);}}
           aria-controls="example-collapse-text"
@@ -38,6 +38,7 @@ function Example(props) {
           onClick={() => {setOpen(false); setOpen2(true);}}
           aria-controls="example-collapse-text2"
         //aria-expanded={open2}
+          onClick = {props.enviar}
         >
           Problema como Texto
         </Button>

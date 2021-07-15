@@ -45,7 +45,7 @@ class Solucion extends Component {
           <div className='row'>
             <div className='solContent'>
             <div className='col-md-12 my-3'>
-                <h3>Solucion N° {idSol}</h3>
+                <h3>ID-Solución {idSol}</h3>
                 <div className='col-md-12 my-3'>
                   <AlertDismissibleExample />
               </div>

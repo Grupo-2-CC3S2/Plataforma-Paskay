@@ -6,7 +6,7 @@ import Solucion from '../../Solucion/Solucion';
 import Modal from 'react-bootstrap/Modal'
 import ModalDialog from 'react-bootstrap/ModalDialog'
 import { Button} from 'react-bootstrap';
-import {FaEdit, FaThumbsUp, FaThumbsDown, FaComment, FaResolving, FaPencilRuler} from "react-icons/fa"
+import {FaEdit, FaThumbsUp, FaThumbsDown, FaComment, FaResolving, FaPencilRuler, FaUpload} from "react-icons/fa"
 
 // ========== Variables de prueba ===========
 import { testPregunta1} from '../../../resources/testVariables';
@@ -17,10 +17,11 @@ import { idPregunta1 } from '../../../resources/testVariables';
 // =================== Mostrar-ocultar solucion =================
 const VerSolucion = () => {
   const [show, toggleShow] = React.useState(false);
+  const [Upl, toggleUpl] = React.useState(false);
   return (
     <div className='container'>
       <div className='row'>
-        <div className='col-md-12 text-center my-4'>
+        <div className='col-md-6 text-center my-4'>
           <button
             className='btn btn-success'
             onClick={() => toggleShow(!show)}
@@ -30,10 +31,24 @@ const VerSolucion = () => {
             <span class="badge badge-light">4</span>
           </button>
         </div>
+        <div className='col-md-6 text-center my-4'>
+          <button
+            className='btn btn-danger'
+            onClick={() => toggleUpl(!Upl)}
+          >
+            <FaUpload/>
+            {Upl ? ' Ocultar ' : ' Subir solución '}
+          </button>
+        </div>
       </div>   
       {show && 
         <div className='row'>
           <div className='col-md-12 text-center'><Solucion/></div>
+        </div>
+      }
+      {Upl && 
+        <div className='row'>
+          <div className='col-md-12 text-center'><input type='file'></input></div>
         </div>
       }
     </div>
@@ -108,7 +123,7 @@ class Resultados extends Component {
     {/*========RESULTADoS DE BUSQUEDA =============== */}
       <div className='row text-left my-2'>
         <div className='col-md-12'>
-          <h5 className=''>Pregunta N° {parseInt(this.props.pregunta._id.slice(18,24),16)}</h5>
+          <h5 className=''>Pregunta- ID {parseInt(this.props.pregunta._id.slice(18,24),16)}</h5>
           <p className='text-left ones-chars' >{this.props.pregunta.question}</p>
           <button className='btn btn-warning' onClick={this.openModal}>Ver más...</button> 
         </div>
@@ -164,7 +179,7 @@ class Resultados extends Component {
           <Modal.Body>
           <hr/>
             <div className='col-md-12'>
-                <h4>Comentarios (4)</h4>
+                <h4>Comentarios (2)</h4>
             </div>
           <div className='container text-left'>
           <div className='row'>
@@ -172,6 +187,7 @@ class Resultados extends Component {
               <p className='grayText'>Escribe un comentario...</p>
               <textarea class='col-md-12'></textarea>
             </div>
+            <div class='col-md-12 my-2 text-right'><button type='reset' className='btn btn-success'>Enviar</button></div>
           </div>
             <div className='row'>
               <div className='col-md-6'>

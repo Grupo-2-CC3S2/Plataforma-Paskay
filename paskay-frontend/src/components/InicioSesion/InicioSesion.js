@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import Perfil from '../Perfil/Perfil';
-
+import {FaEdit, FaThumbsUp, FaThumbsDown, FaComment, FaResolving, FaPencilRuler, FaUpload, FaUser, FaKey, FaRegistered, FaJoint, FaDoorOpen} from "react-icons/fa"
+import { TextField } from '@material-ui/core';
+import './../../components/commonStyles.css'
 
 import './../commonStyles.css';
 import {
@@ -13,6 +15,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import Registro from '../Registro/Registro';
+import { faIdCardAlt } from '@fortawesome/free-solid-svg-icons';
 
 
 const axios = require('axios').default;
@@ -125,11 +128,11 @@ class IniciarSesion extends Component {
   //if (this.state.session) return <Redirect to='/perfil'/>;
   if (this.state.session) return <Perfil closeSesion = {this.closeSesion} userData = {this.state.userData} />;
   return (
-    <div className="container">
+    <div className="container cardStyle my-4">
 
       <div className="row">
-        <div className="col-md-12 my-3"><h2 className="titulo">Inicio de Sesion</h2></div>
-        <div className="col-md-12 my-3">Username</div>
+        <div className="col-md-12 my-3"><h4 className="titulo">Inicio de Sesion</h4></div>
+        <div className="col-md-12 my-3"><h3><FaUser/></h3></div>
       </div>
 
       <div className="row form-group">
@@ -146,7 +149,7 @@ class IniciarSesion extends Component {
       </div>
 
       <div className="row">
-        <div className="col-md-12 my-3">Password</div>
+        <div className="col-md-12 my-3"><h3><FaKey/></h3></div>
       </div>
 
       <div className="row form-group">
@@ -155,7 +158,7 @@ class IniciarSesion extends Component {
         </div>
 
         <div className="col-md-4">
-        <input name="password" onChange={this.handleChange} value={this.state.password} className="form-control " placeholder="Password" size="15" type="text" />
+        <TextField name="password" onChange={this.handleChange} value={this.state.password} className="form-control " placeholder="Password" size="15" type="password" />
         </div>
 
         <div className="col-md-4">
@@ -163,10 +166,10 @@ class IniciarSesion extends Component {
       </div>
 
       <div className="row my-3">
-        <div className="col-md-12"> 
+        <div className="col-6 my-2 text-right"> 
           <button className="btn btn-primary w-40 " onClick={this.pedirTask} >Iniciar Sesion</button>
         </div>
-        <div className="col-md-12"> 
+        <div className="col-6 my-2 text-left"> 
           <button className="btn btn-primary w-40 " onClick={this.closeSesion} >Cerrar Sesion</button>
         </div>
       </div>
@@ -179,7 +182,7 @@ class IniciarSesion extends Component {
       <div className="row my-3">
         <div className="col-md-12"> 
     {/* <button className="btn btn-primary w-40 ">Registrarse</button>*/}
-          <NavLink exact= "true"  to="/registro">Registrase</NavLink>
+          <h4 className= 'btn btn-lg btn-light'><NavLink exact= "true"  to="/registro"><FaDoorOpen/> Registrase</NavLink></h4>
         </div>
       </div>
       <div className="row">

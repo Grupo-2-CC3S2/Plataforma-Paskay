@@ -2,14 +2,26 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux'
 import ExamGen from '../ExamenGenerado/ExamGen';
+import PreguntaDeExamen from '../ExamenGenerado/PreguntaDeExamen/PreguntaDeExamen';
 import './../commonStyles.css'
 import {changeTest2} from '../../redux/ActionCreators';
+import Modal from 'react-bootstrap/Modal'
+import { Button} from 'react-bootstrap';
+
+// ============== Variables de muestra ===============
+  const titRM=['RM/ PREGUNA 1', 'RM/ PREGUNA 2', 'RM/ PREGUNA 3', 'RM/ PREGUNA 4', 'RM/ PREGUNA 5'];
+  const titLetras=['LETRAS/ PREGUNA 1', 'LETRAS/ PREGUNA 2', 'LETRAS/ PREGUNA 3', 'LETRAS/ PREGUNA 4', 'LETRAS/ PREGUNA 5'];
+  const titMate=['MATEMÁTICA/ PREGUNA 1', 'MATEMÁTICA/ PREGUNA 2', 'MATEMÁTICA/ PREGUNA 3', 'MATEMÁTICA/ PREGUNA 4', 'MATEMÁTICA/ PREGUNA 5'];
+  const titFisica=['FÍSICA/ PREGUNA 1', 'FÍSICA/ PREGUNA 2', 'FÍSICA/ PREGUNA 3', 'FÍSICA/ PREGUNA 4', 'FÍSICA/ PREGUNA 5'];
+  const titQuim=['QUÍMICA/ PREGUNA 1', 'QUÍMICA/ PREGUNA 2', 'QUÍMICA/ PREGUNA 3', 'QUÍMICA/ PREGUNA 4', 'QUÍMICA/ PREGUNA 5'];
 
 
+// ============== Variables de muestra ===============
 
 function mapStateToProps(state) {
   console.log("stateee",state)
   return {
+    isOpen: false,
     test: state.test.testState2
   }
 }
@@ -19,9 +31,18 @@ class GenPage extends Component {
    constructor(props){
      super(props)
 
-     this.state = {user: "Sin usuario"}
+     this.state = {
+      contRM: 0,
+      //tituloModal:titRM[{contRM}], 
+      tituloModal: '',
+      user: "Sin usuario"}
 
-        
+     //Set state para mostrar y ocultar modal
+      this.openModal = () => this.setState({ isOpen: true });
+      this.closeModal = () => this.setState({ isOpen: false });
+       //Alterar titulo
+       this.alterTit=()=>this.setState({tituloModal: 'aea'})
+       
     }
  
   obtenerDatos = () => {
@@ -121,14 +142,33 @@ class GenPage extends Component {
           </div>
           <div className="col-md-12">
             <p>*Para empezar, haga click en el botón 'Empezar' o en el número de pregunta*</p>
-            <button className="btn btn-warning btn-lg">EMPEZAR</button>
+            <button className="btn btn-warning btn-lg" onClick={this.openModal}>EMPEZAR</button>
           </div>
           <div className="col-md-12 my-4"></div>
         </div>
       </div>
       <div className="row">
-        <ExamGen/>
       </div>
+      {/* =========================MODAL DE PREGUNTAS =========================== */}
+      <Modal size='lg' centered show={this.state.isOpen} onHide={this.closeModal}>
+          <Modal.Header closeButton>
+          <Modal.Title className='text-center'>RM/ PREGUNTA N° 1 {this.state.tituloModal}</Modal.Title>
+          </Modal.Header>
+          {/* Plantilla de PreguntaExamen */}
+          <Modal.Body><PreguntaDeExamen/></Modal.Body>
+          <Modal.Body>
+            <div className= 'row'>
+            <div className='col-md-6 text-left'><Button onClick={this.alterTit}>Anterior</Button></div>
+            <div className='col-md-6 text-right'><Button>Siguiente</Button></div>
+            </div>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={this.closeModal}>
+              Close
+            </Button>
+          </Modal.Footer>
+        </Modal>
+        {/* ============== fin modal de pregunta=================*/}
       </div>
     </div>
   )};

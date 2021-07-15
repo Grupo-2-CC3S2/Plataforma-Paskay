@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
-import './Pregunta.css';
+import './PreguntaDeExamen.css';
 //import { useState } from 'react';
+//import { FormControl, FormLabel, FormControlLabel, Radio, InputLabel, RadioGroup, RadioButton} from '@material-ui/core';
+import { RadioGroup, RadioButton, ReversedRadioButton } from 'react-radio-buttons'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Badge from 'react-bootstrap/Badge'
 import Solucion from '../../Solucion/Solucion';
@@ -26,7 +28,7 @@ PageMaker including versions of Lorem Ipsum.";
 
 
 
-class Pregunta extends Component {
+class PreguntaDeExamen extends Component {
 
   constructor(props) {
     super(props);
@@ -37,7 +39,7 @@ class Pregunta extends Component {
         <div className='container'>
         <div className='row pregContent'>
           <div className='col-md-12 my-3'>
-            <h3>ID de pregunta: {idPregunta}</h3>
+            <h3>Pregunta N° {idPregunta}</h3>
           </div>
           <div className='col-md-12 p-4 text-left  pregFont'>
             <p>{textoPregunta}</p>
@@ -45,24 +47,22 @@ class Pregunta extends Component {
           <div className='col-md-12'>
             <img className='my-4 col-md-12' id='pregPict' src={imgPreg}/>
           </div>
-          <div className='col-md-12 my-4 row pregFont'>
-            <div className='col-md-4'><h3>A) <Badge variant="secondary">{opcionesPregunta[0]}</Badge></h3></div>
-            <div className='col-md-4'><h3>B) <Badge variant="secondary">{opcionesPregunta[1]}</Badge></h3></div>
-            <div className='col-md-4'><h3>C) <Badge variant="secondary">{opcionesPregunta[2]}</Badge></h3></div>
-            <div className='col-md-4'><h3>D) <Badge variant="secondary">{opcionesPregunta[3]}</Badge></h3></div>
-            <div className='col-md-4'><h3>E) <Badge variant="secondary">{opcionesPregunta[4]}</Badge></h3></div>
+          <div className='col-md-12 my-4 pregFont'>
+            <form className='row'>
+              <div className='col-md-4'><h3><Badge variant="secondary"><input type="radio" name="fruit" value="apple" /> {opcionesPregunta[0]}</Badge></h3></div>
+              <div className='col-md-4'><h3><Badge variant="secondary"><input type="radio" name="fruit" value="apple" /> {opcionesPregunta[1]}</Badge></h3></div>
+              <div className='col-md-4'><h3><Badge variant="secondary"><input type="radio" name="fruit" value="apple" /> {opcionesPregunta[2]}</Badge></h3></div>
+              <div className='col-md-4'><h3><Badge variant="secondary"><input type="radio" name="fruit" value="apple" /> {opcionesPregunta[3]}</Badge></h3></div>
+              <div className='col-md-4'><h3><Badge variant="secondary"><input type="radio" name="fruit" value="apple" /> {opcionesPregunta[4]}</Badge></h3></div>
+            </form>
           </div>
-        </div>
-        <div className='row'>
-          <div className='col text-left my-4'><p className='grayText'>Autor: {nombreUsuario} ({idUsuario})</p></div>
-          <div className='col text-right my-4'><p className='grayText'>{fechaSubida}</p></div>
         </div>
         </div>
       )}
 
 }
 
-export default Pregunta;
+export default PreguntaDeExamen;
 
 /*
 class Solucion extends Component{

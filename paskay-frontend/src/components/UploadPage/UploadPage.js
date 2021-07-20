@@ -38,7 +38,6 @@ function Example(props) {
           onClick={() => {setOpen(false); setOpen2(true);}}
           aria-controls="example-collapse-text2"
         //aria-expanded={open2}
-          onClick = {props.enviar}
         >
           Problema como Texto
         </Button>

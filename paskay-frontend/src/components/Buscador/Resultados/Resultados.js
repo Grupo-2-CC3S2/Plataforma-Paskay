@@ -48,7 +48,16 @@ const VerSolucion = () => {
       }
       {Upl && 
         <div className='row'>
+          <select>
+            <option>A</option>
+            <option>B</option>
+            <option>C</option>
+            <option>D</option>
+            <option>E</option>
+            <option>NA</option>
+          </select>
           <div className='col-md-12 text-center'><input type='file'></input></div>
+
         </div>
       }
     </div>

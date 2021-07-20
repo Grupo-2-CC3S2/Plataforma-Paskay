@@ -1,13 +1,13 @@
 
 import React, {Component} from 'react';
 import { connect } from 'react-redux'
-import ExamGen from '../ExamenGenerado/ExamGen';
-import PreguntaDeExamen from '../ExamenGenerado/PreguntaDeExamen/PreguntaDeExamen';
+//import ExamGen from '../ExamenGenerado/ExamGen';
+//import PreguntaDeExamen from '../ExamenGenerado/PreguntaDeExamen/PreguntaDeExamen';
 import './../commonStyles.css'
 import {changeTest2} from '../../redux/ActionCreators';
 import Modal from 'react-bootstrap/Modal'
 import { Button} from 'react-bootstrap';
-
+import Quizz from './Quizz/Quizz';
 // ============== Variables de muestra ===============
   const titRM=['RM/ PREGUNA 1', 'RM/ PREGUNA 2', 'RM/ PREGUNA 3', 'RM/ PREGUNA 4', 'RM/ PREGUNA 5'];
   const titLetras=['LETRAS/ PREGUNA 1', 'LETRAS/ PREGUNA 2', 'LETRAS/ PREGUNA 3', 'LETRAS/ PREGUNA 4', 'LETRAS/ PREGUNA 5'];
@@ -144,7 +144,7 @@ class GenPage extends Component {
             <p>*Para empezar, haga click en el botón 'Empezar' o en el número de pregunta*</p>
             <button className="btn btn-warning btn-lg" onClick={this.openModal}>EMPEZAR</button>
           </div>
-          <div className="col-md-12 my-4"></div>
+          <div className="col-md-12 my-4"><Quizz/></div>
         </div>
       </div>
       <div className="row">
@@ -155,7 +155,7 @@ class GenPage extends Component {
           <Modal.Title className='text-center'>RM/ PREGUNTA N° 1 {this.state.tituloModal}</Modal.Title>
           </Modal.Header>
           {/* Plantilla de PreguntaExamen */}
-          <Modal.Body><PreguntaDeExamen/></Modal.Body>
+          <Modal.Body>{<Quizz/>}</Modal.Body>
           <Modal.Body>
             <div className= 'row'>
             <div className='col-md-6 text-left'><Button onClick={this.alterTit}>Anterior</Button></div>

@@ -1,10 +1,10 @@
 
 import React, {Component} from 'react';
 import { connect } from 'react-redux'
-import PreguntaDeExamen from './PreguntaDeExamen/PreguntaDeExamen';
+//import PreguntaDeExamen from './PreguntaDeExamen/PreguntaDeExamen'
 import './ExamGen.css'
 import './../commonStyles.css'
-import {changeTest2} from '../../redux/ActionCreators';
+import {changeTest2} from '../../../redux/ActionCreators';
 
 // ======== variables del componente ==========
   var arrSecciones =['Letras y RM', 'Matemática', 'Física y Química']

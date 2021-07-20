@@ -5,7 +5,7 @@ import './PreguntaDeExamen.css';
 import { RadioGroup, RadioButton, ReversedRadioButton } from 'react-radio-buttons'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Badge from 'react-bootstrap/Badge'
-import Solucion from '../../Solucion/Solucion';
+import Solucion from '../../../Solucion/Solucion';
 
 //================ Información d epregunta de la bbdd ====================
 import imgPreg from './../../../imagenes/pregMuestra.jpg'

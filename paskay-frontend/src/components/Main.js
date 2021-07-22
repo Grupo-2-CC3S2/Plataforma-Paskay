@@ -99,7 +99,7 @@ class Main extends Component {
       <div className = "contenedor">      
         <Router>
             <header>
-              <div><h1><img src = {logo}></img>PLATAFORMA PASKAY</h1></div>
+              <div className='text-center'><h1><img src = {logo}></img>PLATAFORMA PASKAY</h1></div>
               <NavLink activeClassName="selected-in" exact= "true"  to="/login"> <FontAwesomeIcon icon={faUser} size = "1x"/>Iniciar Sesion</NavLink>
             </header>
               <div>

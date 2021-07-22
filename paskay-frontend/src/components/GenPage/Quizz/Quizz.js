@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
 import { useState } from 'react';
 import './Quizz.css';
-import {FaCheck, FaComment, FaEdit, FaEnvelope, FaIdCardAlt, FaList, FaSimCard, FaTwitter, FaUserEdit, FaWhatsapp, FaWhatsappSquare} from "react-icons/fa"
+import {FaArrowLeft, FaArrowRight, FaCheck, FaCheckSquare, FaComment, FaEdit, FaEnvelope, FaIdCardAlt, FaList, FaSimCard, FaTwitter, FaUserEdit, FaWhatsapp, FaWhatsappSquare} from "react-icons/fa"
 import Modal from 'react-bootstrap/Modal'
 import ModalDialog from 'react-bootstrap/ModalDialog'
 import { Alert, Button} from 'react-bootstrap';
 import { SyncProblemSharp } from '@material-ui/icons';
+
 
 //================= PREGUNTAS PRUEBA 1 ======================
 const preguntasP1 = [
@@ -192,6 +193,12 @@ const questions = [
 ];
 //=================Fin Datos de las preguntas ======================
 
+var rptasP1= new Array(preguntasP1.length).fill(-1);
+var rptasP2= new Array(preguntasP2.length).fill(-1);
+var rptasP3= new Array(preguntasP3.length).fill(-1);
+//var arrMarked= rptasP1;
+
+
 class Quizz extends Component {
   constructor(props) {
     super(props);
@@ -201,24 +208,62 @@ class Quizz extends Component {
       setCurrentQuestion: 0,
       showScore: false,
       score: 0,
+      totalScore: [0, 0, 0],
       //Mostrar sección de exámen
       showP1: true,
       showP1: false,
       showP1: false,
       disabBot: [false, true, true],
+      finished: [false, false, false],
       currentId: 1 ,
-      currentPart: {}
+      currentPart: preguntasP1,
+      marked: 0,
+      totalMarked: [0, 0, 0],
+      arrMarked: rptasP1
     }
 
-    this.nextQuestion=()=>{  
-      if (this.state.currentQuestion+1 < questions.length) {
+    this.nextQuestion=(skipped, idClave)=>{
+      if(!skipped){
+        this.state.arrMarked[this.state.currentQuestion]=idClave ;
+        this.setState({ marked: this.state.marked+1});
+        //setTimeout(function(){ console.log(this.state.marked)}, 500);
+        
+      }
+      
+      //alert('holaa:'+this.state.arrMarked); 
+      //setTimeout(function(){ console.log(this.state.totalMarked[0])}, 500);
+      if (this.state.currentQuestion+1 < this.state.currentPart.length) {
         this.setState({ currentQuestion: this.state.currentQuestion + 1 });
+        
       } else {
         var disabBots=[true, true, true];
         disabBots[this.state.currentId]=false;
         this.setState({showScore: true, disabBot: disabBots});
+        this.state.totalMarked[this.state.currentId-1]= this.state.marked;
+        this.state.totalScore[this.state.currentId-1]= this.state.score;
+        this.state.finished[this.state.currentId-1]=true;
+        
+        
+      }
+      
+    };
+
+    this.beforeQuestion=()=>{
+
+        //this.state.arrMarked[this.state.currentQuestion]= true;
+        //this.setState({ marked: this.state.marked+1});
+      
+      //alert('holaa:'+this.state.arrMarked);  
+      if (this.state.currentQuestion+1 > 1) {
+        this.setState({ currentQuestion: this.state.currentQuestion - 1 });
+        //this.setState({ score: this.state.score -1});
+        //this.setState({ marked: this.state.marked-1});
       }
     };
+
+    this.paintButton=()=>{
+      
+    }
 
     this.resetPart=()=>{
       this.setState({
@@ -226,17 +271,19 @@ class Quizz extends Component {
         setCurrentQuestion: 0,
         showScore: false,
         score: 0,
+        marked:0,
         currentId: this.state.currentId + 1
       });
     }
 
-    this.countScore=(answCorrect)=>{
-       if(answCorrect) this.setState({ score: this.state.score +1});
+    this.countScore=(answCorrect, indexClave)=>{
+        if(this.state.arrMarked[indexClave]==-1){
+          if(answCorrect) this.setState({ score: this.state.score +1});
+        }else{
+          this.setState({ score: this.state.score -1});
+          if(answCorrect) this.setState({ score: this.state.score +1});
+        }
     };
-
-    this.setExamPart=()=>{
-      if(this.state.showP1) this.setState({ currentPart: preguntasP1});
-   };
   }
 
   render(){
@@ -246,84 +293,60 @@ class Quizz extends Component {
     <div className="wrapper-quizz">
     <div className="container">
       <div className="row">
-        
-        <div className='col-md-12 text-left'>
+      {/* =======================TABLAS DE RESULTADOS ============== */}  
+        {this.state.finished[0]?<div className='col-md-12 text-left'>
           <h5 className='text-center'>PRIMERA PRUEBA</h5>
           <table className="table my-4">
              <tr>
               <td><h6>NOMBRE</h6></td>
-              <td><h6><FaCheck/> BUENAS</h6></td>
+              <td><h6><FaCheckSquare/> RESPONDIDAS</h6></td>
+              <td><h6><FaCheck/> CORRECTAS</h6></td>
               <td><h6><FaList/> PUNTAJE</h6></td>
             </tr>
             <tr>
-              <td><h6>RAZONAMIENTO MATEMÁTICO</h6></td>
-              <td><h6>20/50</h6></td>
-              <td><h6>150</h6></td>
-            </tr>
-            <tr>
-              <td><h6>RAZONAMIENTO VERBAL</h6></td>
-              <td><h6>20/50</h6></td>
-              <td><h6>150</h6></td>
-            </tr>
-            <tr>
-              <td><h6>HUMANIDADES</h6></td>
-              <td><h6>20/50</h6></td>
-              <td><h6>150</h6></td>
-            </tr>
-            <tr>
               <td><h6>TOTAL</h6></td>
-              <td><h6>60/150</h6></td>
-              <td><h6>450</h6></td>
+              <td><h6>{this.state.totalMarked[0]}/{preguntasP1.length}</h6></td>
+              <td><h6>{this.state.totalScore[0]}/{this.state.totalMarked[0]}</h6></td>
+              <td><h6>{this.state.totalScore[0]*5 - 0.5*(this.state.totalMarked[0]-this.state.totalScore[0])}</h6></td>
             </tr>
           </table>
-        </div>
+        </div>: null}
 
-        <div className='col-md-12 text-left'>
+        {this.state.finished[1]?<div className='col-md-12 text-left'>
           <h5 className='text-center'>SEGUNDA PRUEBA</h5>
           <table className="table my-4">
-             <tr>
+          <tr>
               <td><h6>NOMBRE</h6></td>
-              <td><h6><FaCheck/> BUENAS</h6></td>
+              <td><h6><FaCheckSquare/> RESPONDIDAS</h6></td>
+              <td><h6><FaCheck/> CORRECTAS</h6></td>
               <td><h6><FaList/> PUNTAJE</h6></td>
             </tr>
             <tr>
-              <td><h6>MATEMÁTICA</h6></td>
-              <td><h6>20/50</h6></td>
-              <td><h6>150</h6></td>
-            </tr>
-            <tr>
               <td><h6>TOTAL</h6></td>
-              <td><h6>60/150</h6></td>
-              <td><h6>450</h6></td>
+              <td><h6>{this.state.totalMarked[1]}/{preguntasP2.length}</h6></td>
+              <td><h6>{this.state.totalScore[1]}/{this.state.totalMarked[1]}</h6></td>
+              <td><h6>{this.state.totalScore[1]*5 - 0.5*(this.state.totalMarked[1]-this.state.totalScore[1])}</h6></td>
             </tr>
           </table>
-        </div>
+        </div>:null}
 
-        <div className='col-md-12 text-left'>
+        {this.state.finished[2]?<div className='col-md-12 text-left'>
           <h5 className='text-center'>TERCERA PRUEBA</h5>
           <table className="table my-4">
-             <tr>
+          <tr>
               <td><h6>NOMBRE</h6></td>
-              <td><h6><FaCheck/> BUENAS</h6></td>
+              <td><h6><FaCheckSquare/> RESPONDIDAS</h6></td>
+              <td><h6><FaCheck/> CORRECTAS</h6></td>
               <td><h6><FaList/> PUNTAJE</h6></td>
             </tr>
             <tr>
-              <td><h6>FÍSICA</h6></td>
-              <td><h6>20/50</h6></td>
-              <td><h6>150</h6></td>
-            </tr>
-            <tr>
-              <td><h6>QUÍMICA</h6></td>
-              <td><h6>20/50</h6></td>
-              <td><h6>150</h6></td>
-            </tr>
-            <tr>
               <td><h6>TOTAL</h6></td>
-              <td><h6>60/150</h6></td>
-              <td><h6>450</h6></td>
+              <td><h6>{this.state.totalMarked[2]}/{preguntasP3.length}</h6></td>
+              <td><h6>{this.state.totalScore[2]}/{this.state.totalMarked[2]}</h6></td>
+              <td><h6>{this.state.totalScore[2]*5 - 0.5*(this.state.totalMarked[2]-this.state.totalScore[2])}</h6></td>
             </tr>
           </table>
-        </div>
+        </div>:null}
 
       </div>
       <div className='row'>
@@ -335,10 +358,10 @@ class Quizz extends Component {
             showP1: true,
             showP2: false,
             showP3: false,
-            currentPart: preguntasP1
+            //currentPart: preguntasP1
           })}}
           type="button" class="btn btn-primary mx-2">
-            PRUEBA 1 <span class="badge badge-light active">4</span>
+            PRUEBA 1 <span class="badge badge-light active">{preguntasP1.length}</span>
           </button>  
         </div>
 
@@ -346,10 +369,11 @@ class Quizz extends Component {
           <button
           disabled={this.state.disabBot[1]} 
           onClick={() => {this.setState({
-            currentPart: preguntasP2
+            currentPart: preguntasP2,
+            arrMarked: rptasP2,
           }); this.resetPart();}}
           type="button" class="btn btn-primary mx-2">
-            PRUEBA 2 <span class="badge badge-light active">4</span>
+            PRUEBA 2 <span class="badge badge-light active">{preguntasP2.length}</span>
           </button>  
         </div>
 
@@ -357,10 +381,11 @@ class Quizz extends Component {
           <button
           disabled={this.state.disabBot[2]}
           onClick={() => {this.setState({
-            currentPart: preguntasP3
+            currentPart: preguntasP3,
+            arrMarked: rptasP3
           }); this.resetPart()}}
           type="button" class="btn btn-primary mx-2">
-            PRUEBA 3 <span class="badge badge-light active">4</span>
+            PRUEBA 3 <span class="badge badge-light active">{preguntasP3.length}</span>
           </button>  
         </div>
         {/* ======================MOSTRAR LAS PARTES DEL EXAMEN ===================== */}
@@ -370,7 +395,7 @@ class Quizz extends Component {
           {//Contenido de la Prueba 1
           this.state.showScore ? (
 			    <div className='row score-section'>
-            <div className='col-md-12 text-center'><h4>{this.state.score} pregunta correcta de {this.state.currentPart.length}</h4></div>
+            <div className='col-md-12 text-center'><h4>HAS TERMINADO LA PARTE {this.state.currentId}</h4></div>
           </div>
 			    ) : (
 				  <div className='row'>
@@ -385,14 +410,26 @@ class Quizz extends Component {
             {this.state.currentPart[this.state.currentQuestion].answerOptions.map((answerOption, index) => (
             /* Muestra las 5 opciones de las preguntas */
               <div className='col-md-4'>
-                <button className='btn btn-primary my-2 w-50' onClick={()=>{
-                  this.countScore(answerOption.isCorrect); 
-                  this.nextQuestion();}}>
+                <button className={this.state.arrMarked[this.state.currentQuestion]==index? 'btn-outline-dark btn my-2 w-50': 'btn-dark btn my-2 w-50'} onClick={()=>{
+                  this.countScore(answerOption.isCorrect, index); 
+                  this.nextQuestion(false, index);}}>
                 {answerOption.answerText}
                 </button>
               </div>
             ))}
-					  </div>    
+					  </div>
+            <div className='col-md-6 text-left my-4'>
+            <button className='btn btn-outline-success my-2 w-20' onClick={()=>{
+              this.beforeQuestion(true);}}>
+              <FaArrowLeft/> Regresar 
+            </button>  
+            </div>  
+            <div className='col-md-6 text-right my-4'>
+            <button className='btn btn-outline-success my-2 w-20' onClick={()=>{
+              this.nextQuestion(true, -1);}}>
+              Saltar <FaArrowRight/> 
+            </button>
+            </div> 
           </div>
 			    )}
         </div>}

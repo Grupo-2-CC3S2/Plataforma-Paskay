@@ -6,7 +6,7 @@ import Solucion from '../../Solucion/Solucion';
 import Modal from 'react-bootstrap/Modal'
 import ModalDialog from 'react-bootstrap/ModalDialog'
 import { Button} from 'react-bootstrap';
-import {FaEdit, FaThumbsUp, FaThumbsDown, FaComment, FaResolving, FaPencilRuler, FaUpload} from "react-icons/fa"
+import {FaEdit, FaThumbsUp, FaThumbsDown, FaComment, FaResolving, FaPencilRuler, FaUpload, FaShare} from "react-icons/fa"
 
 // ========== Variables de prueba ===========
 import { testPregunta1} from '../../../resources/testVariables';
@@ -48,7 +48,9 @@ const VerSolucion = () => {
       }
       {Upl && 
         <div className='row'>
+          <div className='col-md-6'>
           <select>
+            <option>¿Tienes la clave?</option>
             <option>A</option>
             <option>B</option>
             <option>C</option>
@@ -56,8 +58,18 @@ const VerSolucion = () => {
             <option>E</option>
             <option>NA</option>
           </select>
-          <div className='col-md-12 text-center'><input type='file'></input></div>
+          </div>
+          <div className='col-md-6 '>
 
+          <input id="inputGroupFile01" type="file" className="custom-file-input" />
+          <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+        
+          </div>
+          <div className='col-md-12'>
+          <textarea className='col-md-12'></textarea>
+          </div>
+          <div className='text-center col-md-12'><button className='w-50 btn btn-outline-danger  btn-block'>Enviar <FaShare/></button></div>
+          
         </div>
       }
     </div>

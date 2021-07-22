@@ -32,6 +32,7 @@ class GenPage extends Component {
      super(props)
 
      this.state = {
+      started: false,
       contRM: 0,
       //tituloModal:titRM[{contRM}], 
       tituloModal: '',
@@ -48,9 +49,13 @@ class GenPage extends Component {
   obtenerDatos = () => {
     fetch('http://localhost:3001/generador')
         .then(response => response.json())
-        .then(data => this.setState({ user: data.username }));
-    
+        .then(data => this.setState({ user: data.username }));  
   }
+
+  mostrarExamen=()=>{
+    this.setState({started: !this.state.started});
+  }
+
 
 
   render(){
@@ -60,7 +65,8 @@ class GenPage extends Component {
         <div className="col-md-12 my-4"><h3>GENERADOR DE EXÁMENES</h3><hr/></div>
       </div>
       <div className="row">
-      <div className="col-md-3 cardStyle p-2">
+      <div className="col-md-3 p-2">
+      <div className="cardStyle">
         <div className="col-md-12">
           <h5>Institución</h5>
           <select className="form-control">
@@ -101,6 +107,7 @@ class GenPage extends Component {
           </div>
         </div>
       </div>
+      </div>
       <div className='col-md-1 my-4'></div>
       <div className="col-md-8 cardStyle p-4">
         <div className="col-md-12"><h4>Resumen</h4></div>
@@ -113,38 +120,11 @@ class GenPage extends Component {
           </table>
         </div>
         <div className="row">
-          <div className="col-md-6 my-3">
-            <h5>RM </h5>
-            <button>P1</button><button>P2</button><button>P1</button>
-            <button>P3</button><button>P4</button><button>P5</button>
-          </div>
-          <div className="col-md-6 my-3">
-            <h5>Letras</h5>
-            <button>P1</button><button>P2</button><button>P1</button>
-            <button>P3</button><button>P4</button><button>P5</button>
-          </div>
-          <div className="col-md-6 my-3">
-            <h5>Matemática</h5>
-            <button>P1</button><button>P2</button><button>P1</button>
-            <button>P3</button><button>P4</button><button>P5</button>
-            <button>P6</button><button>P7</button><button>P8</button>
-            <button>P9</button><button>P10</button>
-          </div>
-          <div className="col-md-6 my-3">
-            <h5>Física</h5>
-            <button>P1</button><button>P2</button><button>P1</button>
-            <button>P3</button><button>P4</button><button>P5</button>
-          </div>
-          <div className="col-md-6 my-3">
-            <h5>Química</h5>
-            <button>P1</button><button>P2</button><button>P1</button>
-            <button>P3</button><button>P4</button><button>P5</button>
-          </div>
-          <div className="col-md-12">
+          {!this.state.started?<div className="col-md-12">
             <p>*Para empezar, haga click en el botón 'Empezar' o en el número de pregunta*</p>
-            <button className="btn btn-warning btn-lg" onClick={this.openModal}>EMPEZAR</button>
-          </div>
-          <div className="col-md-12 my-4"><Quizz/></div>
+            <button className="btn btn-warning btn-lg" onClick={()=>{this.openModal(); this.mostrarExamen();}}>EMPEZAR</button>
+          </div>:
+          <div className="col-md-12 my-4"><Quizz/></div>}
         </div>
       </div>
       <div className="row">

@@ -9,11 +9,13 @@ import { UNIVERSIDADES } from "../../resources/universidades"
 import { ANIOS } from "../../resources/anios"
 import Solucion from '../Solucion/Solucion';
 import {FaEdit, FaFilter, FaSearch} from "react-icons/fa"
+
 //import { faThumbsUp } from "@fortawesome/free-solid-svg-icons";
 //import { faThumbsDown } from "@fortawesome/free-solid-svg-icons";
 
 // ========== Variables de prueba ===========
 import { testPregunta1 } from '../../resources/testVariables';
+import logoPaskay from './../../imagenes/paskay_log.png';
 // ========== Variables de prueba ===========
 
 
@@ -170,7 +172,7 @@ constructor() {
     // ==========================ENCABEZADO DEL BUSCADOR =================================
     <div className="container">
       <div className="row cardStyle p-4 my-4">
-        <div className="col-md-12 my-3"><h1 className="titulo">PLATAFORMA PASKAY</h1></div>
+        <div className="col-md-12 my-3"><img src={logoPaskay} alt='logo'/></div>
         <div className="col-md-12"><h2>¡Únete a millones de usuarios en la resolución de problemas!</h2></div>    
         <div className="col-md-11"> 
           <input name="buscador" onChange={this.handleChange} value={this.state.buscador}  className="form-control " placeholder="Escribe tu pregunta" 

@@ -106,7 +106,7 @@ class Perfil extends Component {
                 })}
               </table>  
             </div>
-            <div className='col-md-12'><h5>Tus Soluciones compartidas</h5></div>
+            {/*<div className='col-md-12'><h5>Tus Soluciones compartidas</h5></div>
             <div className='col-md-12 my-4'>
               <table className='table table-responsive'>
                 <tr><th>id</th><th>Fecha</th><th>Likes</th><th>Dislikes</th></tr>
@@ -116,7 +116,7 @@ class Perfil extends Component {
                 <tr><td><button className='btn btn-success'>26966</button></td><td>09/06/2021</td><td>1</td><td>0</td></tr>
                 <tr><td><button className='btn btn-success'>26966</button></td><td>09/06/2021</td><td>1</td><td>0</td></tr>
               </table>  
-            </div>
+              </div>*/}
           </div>
         </div>
         {/* ============== Fin INFO DE TU ACTIVIDAD =================*/}

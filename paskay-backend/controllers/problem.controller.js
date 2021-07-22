@@ -80,9 +80,29 @@ exports.uploadProblem = async (req, res, next) => {
 
 
 exports.getAllProblems = async (req, res, next) => {
-  const problemas = await Problema.find({});
-  console.log(problemas);
-  res.json(problemas);
+
+  if (req.query.curso || req.query.count){
+    Problema.aggregate([
+        { "$match": { curso: req.query.curso } },
+        {
+            "$sample": {size: parseInt(req.query.count)}
+        }
+    ]).exec((err, problemas) => {
+        if (err) throw err;
+
+        res.json(problemas);
+        //db.products.aggregate([
+        //  {$match: {category:"Electronic Devices"}}, // filter the results
+        //  {$sample: {size: 5}} // You want to get 5 docs
+        //kkkk]);
+
+
+    })
+  } else {
+    const problemas = await Problema.find({});
+    console.log(problemas);
+    res.json(problemas);
+  }
 }
 
 

@@ -42,7 +42,7 @@ const UsuarioSchema = new Schema(
     dislikesProblem : [{ type: Schema.ObjectId, ref: 'Problema'}],
     likesSolucion : [{ type: Schema.ObjectId, ref: 'Solucion'}],
     dislikesSolucion : [{ type: Schema.ObjectId, ref: 'Solucion'}],
-    publishedProblem : [{ type: Schema.ObjectId, ref: 'Solucion'}],
+    publishedProblem : [{ type: Schema.ObjectId, ref: 'Problema'}],
     publishedSolucion : [{ type: Schema.ObjectId, ref: 'Problema'}],
     roles: [
       {

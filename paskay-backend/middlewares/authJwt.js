@@ -14,7 +14,7 @@ exports.verifyToken = async (req, res, next) => {
     const decoded = jwt.verify(token, "api");
     req.userId = decoded.id;
 
-    const user = await Usuario.findById(req.userId, { password: 0 });
+    const user = await Usuario.findById(req.userId, { password: 0 }).populate("publishedProblem");
     if (!user) return res.status(404).json({ message: "No user found" });
     req.userData = user;
     next();

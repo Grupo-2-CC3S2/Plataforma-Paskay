@@ -65,7 +65,8 @@ class Pregunta extends Component {
           </div>
         </div>
         <div className='row'>
-          <div className='col text-left my-4'><p className='grayText'>Autor: {this.props.pregunta.usuario.username} ({this.idToNumber(this.props.pregunta.usuario._id)})</p></div>
+          // Muestra el usaurio si se ha obtenido de la BBDD
+          {this.props.pregunta.usuario.username ?  <div className='col text-left my-4'><p className='grayText'>Autor: {this.props.pregunta.usuario.username} ({this.idToNumber(this.props.pregunta.usuario._id)})</p></div> : <div></div>}          
           <div className='col text-right my-4'><p className='grayText'>Creado: {this.props.pregunta.createdAt}</p></div>
         </div>
         </div>

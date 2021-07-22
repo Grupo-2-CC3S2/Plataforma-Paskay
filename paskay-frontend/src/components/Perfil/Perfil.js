@@ -19,6 +19,21 @@ import {
 } from "react-router-dom";
 
 
+const idToNumber = (_id) => parseInt(_id.slice(18,24),16)
+
+function PreguntaPerfil(props){
+  let likes = props.pregunta.likes.length
+  let dislikes = props.pregunta.dislikes.length
+  let soluciones = props.pregunta.soluciones.length
+  let fecha = new Date(props.pregunta.createdAt)
+  let day = fecha.getDate()
+  let month = fecha.getMonth() + 1
+  let year = fecha.getFullYear()
+  console.log("tipo",typeof(new Date(fecha)))
+
+  return <tr><td><button onClick = {() => props.openModal(props.xkey)}  className='btn btn-success'>{idToNumber(props.pregunta._id)}</button></td><td>{day}/{month}/{year}</td><td>{likes}</td><td>{dislikes}</td><td>{soluciones}</td></tr>
+}
+
 class Perfil extends Component {
   constructor(props) {
     super(props);
@@ -26,10 +41,14 @@ class Perfil extends Component {
 
     this.state = {
       //Modal cerrado al inicio
-      isOpen: false
+      isOpen: false,
+      pregSelected: 0
     }
     //Set state para mostrar y ocultar modal
-    this.openModal = () => this.setState({ isOpen: true });
+    this.openModal = (p) => {
+      this.setState({ isOpen: true, pregSelected: p});
+      console.log(this.state.pregSelected)
+    }
     this.closeModal = () => this.setState({ isOpen: false });
       
     // Binding this keyword
@@ -81,11 +100,10 @@ class Perfil extends Component {
             <div className='col-md-12'>
               <table className='table table-responsive'>
                 <tr><th>id</th><th>Fecha</th><th>Likes</th><th>Dislikes</th><th>Soluciones</th></tr>
-                <tr><td><button onClick={this.openModal} className='btn btn-success'>26626</button></td><td>06/05/2021</td><td>5</td><td>2</td><td>1</td></tr>
-                <tr><td><button onClick={this.openModal} className='btn btn-success'>26966</button></td><td>09/06/2021</td><td>1</td><td>0</td><td>0</td></tr>
-                <tr><td><button onClick={this.openModal} className='btn btn-success'>26966</button></td><td>09/06/2021</td><td>1</td><td>0</td><td>0</td></tr>
-                <tr><td><button onClick={this.openModal} className='btn btn-success'>26966</button></td><td>09/06/2021</td><td>1</td><td>0</td><td>0</td></tr>
-                <tr><td><button onClick={this.openModal} className='btn btn-success'>26966</button></td><td>09/06/2021</td><td>1</td><td>0</td><td>0</td></tr>
+                {/* Muestra los problemas publicados */
+                this.props.userData.publishedProblem.map((p, i) => {
+                  return <PreguntaPerfil openModal = {this.openModal} xkey = {i} pregunta = {p}/>
+                })}
               </table>  
             </div>
             <div className='col-md-12'><h5>Tus Soluciones compartidas</h5></div>
@@ -107,7 +125,7 @@ class Perfil extends Component {
           <Modal.Header closeButton>
           <Modal.Title>Modal heading</Modal.Title>
           </Modal.Header>
-          <Modal.Body><Pregunta/></Modal.Body>
+          <Modal.Body><Pregunta pregunta = {this.props.userData.publishedProblem[this.state.pregSelected]}/></Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={this.closeModal}>
               Close
